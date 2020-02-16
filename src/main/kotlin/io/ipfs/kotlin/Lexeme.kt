@@ -106,8 +106,8 @@ fun fullnameOfLexeme (lexeme: Lexeme): String {
     return string
 }
 
-fun isInMetaOfLexeme(lex: Lexeme, caller: String): Boolean {
-    val here = functionName()
+fun isInMetaOfLexeme(lex: Lexeme): Boolean {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
     if (isTrace(here)) println("$here: input lex '$lex'")
@@ -165,8 +165,8 @@ fun isInMetaOfLexeme(lex: Lexeme, caller: String): Boolean {
     return result
 }
 
-fun isMetaKeywordOfString (str: String, caller: String): Boolean {
-  val here = functionName()
+fun isMetaKeywordOfString (str: String): Boolean {
+  val (here, caller) = hereAndCaller()
   entering(here, caller)
 
   if (isTrace(here)) println("$here: str '$str'")
@@ -195,10 +195,10 @@ fun isMetaKeywordOfString (str: String, caller: String): Boolean {
   return result
 }
 
-fun isMetaKeywordValueOfDollarStringDollar (dol_dol: String, caller: String): Boolean {
+fun isMetaKeywordValueOfDollarStringDollar (dol_dol: String): Boolean {
 // $keywordFromUser: anything$
 // $keyword: value$  
-  val here = functionName()
+  val (here, caller) = hereAndCaller()
   entering(here, caller)
   
    if (! dol_dol.contains(':')){
@@ -218,8 +218,8 @@ fun isMetaKeywordValueOfDollarStringDollar (dol_dol: String, caller: String): Bo
   return result
 }
 
-fun isInTextOfLexeme(lex: Lexeme, caller: String): Boolean {
-    val here = functionName()
+fun isInTextOfLexeme(lex: Lexeme): Boolean {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
     if (isTrace(here)) println("$here: input lex '$lex'")
@@ -277,8 +277,8 @@ fun isInTextOfLexeme(lex: Lexeme, caller: String): Boolean {
     return result
 }
 
-fun lexemeOfWord (keyword: String, caller: String) : Lexeme {
-    val here = functionName()
+fun lexemeOfWord (keyword: String) : Lexeme {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
     if (isTrace(here)) println("$here: input keyword: '$keyword'")
@@ -306,8 +306,8 @@ fun lexemeOfWord (keyword: String, caller: String) : Lexeme {
   return lexeme
  }
 
-fun isKeywordWithOfLexeme(lex: Lexeme, caller: String): Boolean {
-    val here = functionName()
+fun isKeywordWithOfLexeme(lex: Lexeme): Boolean {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
     if (isTrace(here)) println("$here: input lex '$lex'")
@@ -325,8 +325,8 @@ fun isKeywordWithOfLexeme(lex: Lexeme, caller: String): Boolean {
     return result
 }
 
-fun isTokenOfChar(cha: Char, caller: String) : Boolean {
-    val here = functionName()
+fun isTokenOfChar(cha: Char) : Boolean {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
     if (isTrace(here)) println("$here: input cha '$cha'")
@@ -354,8 +354,8 @@ fun isTokenOfChar(cha: Char, caller: String) : Boolean {
   return result
  }
 
-fun nextWordOfString(pos:Int, lin: String, caller: String): String {
-    val here = functionName()
+fun nextWordOfString(pos:Int, lin: String): String {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
     if (isTrace(here)) println("$here: input pos '$pos'")
@@ -427,8 +427,8 @@ fun stringValueOfLexeme (lexeme: Lexeme): String {
     return string
 }
 
-fun tokenOfChar(cha: Char, pos: Int, lin: String, caller: String) : Lexeme {
-    val here = functionName()
+fun tokenOfChar(cha: Char, pos: Int, lin: String) : Lexeme {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
     if (isTrace(here)) println("$here: input cha '$cha'")

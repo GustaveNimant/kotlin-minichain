@@ -24,8 +24,10 @@ fun main(args: Array<String>) {
       } else {
         provideBlockGenesisTreeNode(here)
       }
-      
-    if (isDebug(here)) println ("$here: tree '$tree'")
-    println("\nnormal termination")
-    exiting(here)
+
+  println("Parser tree:")
+  println(tree)
+  
+  println("\nnormal termination")
+  exiting(here)
 }

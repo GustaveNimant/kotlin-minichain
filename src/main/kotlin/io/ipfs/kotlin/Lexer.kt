@@ -9,8 +9,8 @@ fun fullnameListOfLexemeList (lex_l: List<Lexeme>) : List<String> {
   return str_l 
 }
 
-fun hasKeywordPreviousOfLexemeList (met_l: List<Lexeme>, caller: String): Boolean {
-    val here = functionName()
+fun hasKeywordPreviousOfLexemeList (met_l: List<Lexeme>): Boolean {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
     if (isTrace(here)) println("$here: input met_l '$met_l'")
@@ -23,8 +23,8 @@ fun hasKeywordPreviousOfLexemeList (met_l: List<Lexeme>, caller: String): Boolea
     return result
 }
 
-fun isAuthorNameOfString(str: String, caller: String): Boolean {
-    val here = functionName()
+fun isAuthorNameOfString(str: String): Boolean {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
     if (isTrace(here)) println("$here: input str '$str'")
@@ -37,8 +37,8 @@ fun isAuthorNameOfString(str: String, caller: String): Boolean {
     return result
 }
 
-fun isDateOfString(str: String, caller: String): Boolean {
-    val here = functionName()
+fun isDateOfString(str: String): Boolean {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
     
     if (isTrace(here)) println("$here: input str '$str'")
@@ -54,8 +54,8 @@ fun isDateOfString(str: String, caller: String): Boolean {
     return result
 }
 
-fun isFilePathOfString(str: String, caller: String): Boolean {
-    val here = functionName()
+fun isFilePathOfString(str: String): Boolean {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
     
     if (isTrace(here)) println("$here: input str '$str'")
@@ -67,8 +67,8 @@ fun isFilePathOfString(str: String, caller: String): Boolean {
     return result
 }
 
-fun isFromUserKeywordValueOfString(str: String, caller: String): Boolean {
-    val here = functionName()
+fun isFromUserKeywordValueOfString(str: String): Boolean {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
     
     if (isTrace(here)) println("$here: input str '$str'")
@@ -80,8 +80,8 @@ fun isFromUserKeywordValueOfString(str: String, caller: String): Boolean {
     return result
 }
 
-fun isKeywordNameOfString(str: String, caller: String): Boolean {
-    val here = functionName()
+fun isKeywordNameOfString(str: String): Boolean {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
     if (isTrace(here)) println("$here: input str '$str'")
@@ -92,8 +92,8 @@ fun isKeywordNameOfString(str: String, caller: String): Boolean {
     return result
 }
 
-fun isKeywordOfString(str: String, caller: String): Boolean {
-    val here = functionName()
+fun isKeywordOfString(str: String): Boolean {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
     if (isTrace(here)) println("$here: input str '$str'")
@@ -104,8 +104,8 @@ fun isKeywordOfString(str: String, caller: String): Boolean {
     return result
 }
 
-fun isKeywordWithQmHashOfLexeme(lex: Lexeme, caller: String): Boolean {
-    val here = functionName()
+fun isKeywordWithQmHashOfLexeme(lex: Lexeme): Boolean {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
     println("$here: input lex '$lex'")
@@ -116,8 +116,8 @@ fun isKeywordWithQmHashOfLexeme(lex: Lexeme, caller: String): Boolean {
     return result
 }
 
-fun isNextNameOfString(str: String, caller: String): Boolean {
-    val here = functionName()
+fun isNextNameOfString(str: String): Boolean {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
     
     if (isTrace(here)) println("$here: input str '$str'")
@@ -129,8 +129,8 @@ fun isNextNameOfString(str: String, caller: String): Boolean {
     return result
 }
 
-fun isQmHashOfString(str: String, caller: String): Boolean {
-    val here = functionName()
+fun isQmHashOfString(str: String): Boolean {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
     
     val pattern = Regex("^Qm([a-zA-Z0-9]+)")
@@ -142,8 +142,8 @@ fun isQmHashOfString(str: String, caller: String): Boolean {
     return result
 }
 
-fun isSignatureOfString(str: String, caller: String): Boolean {
-    val here = functionName()
+fun isSignatureOfString(str: String): Boolean {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
     
     val pattern = Regex("(.*)")
@@ -155,8 +155,8 @@ fun isSignatureOfString(str: String, caller: String): Boolean {
     return result
 }
 
-fun isSpotOfString(str: String, caller: String): Boolean {
-    val here = functionName()
+fun isSpotOfString(str: String): Boolean {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
     
     if (isTrace(here)) println("$here: input str '$str'")
@@ -169,8 +169,8 @@ fun isSpotOfString(str: String, caller: String): Boolean {
     return result
 }
 
-fun isTextVariableOfString(str: String, caller: String): Boolean {
-    val here = functionName()
+fun isTextVariableOfString(str: String): Boolean {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
     
     val pattern = Regex("""\w+""")
@@ -182,8 +182,8 @@ fun isTextVariableOfString(str: String, caller: String): Boolean {
     return result
 }
 
-fun isTextWordOfString(str: String, caller: String): Boolean {
-    val here = functionName()
+fun isTextWordOfString(str: String): Boolean {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
     
     val pattern = Regex("""\w+""")
@@ -194,8 +194,8 @@ fun isTextWordOfString(str: String, caller: String): Boolean {
     return result
 }
 
-fun isTicOfString(str: String, caller: String): Boolean {
-    val here = functionName()
+fun isTicOfString(str: String): Boolean {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
     
     if (isTrace(here)) println("$here: input str '$str'")
@@ -208,8 +208,8 @@ fun isTicOfString(str: String, caller: String): Boolean {
     return result
 }
 
-fun isZ2HashOfString(str: String, caller: String): Boolean {
-    val here = functionName()
+fun isZ2HashOfString(str: String): Boolean {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
     
     val pattern = Regex("^z2([a-zA-Z0-9]+)")
@@ -221,8 +221,8 @@ fun isZ2HashOfString(str: String, caller: String): Boolean {
     return result
 }
 
-fun keywordNameOfString (str: String, caller: String): String {
-    val here = functionName()
+fun keywordNameOfString (str: String): String {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
    println("$here: str '$str'")
@@ -235,8 +235,8 @@ fun keywordNameOfString (str: String, caller: String): String {
     return result
 }
 
-fun keywordOfString(str: String, caller: String): String {
-    val here = functionName()
+fun keywordOfString(str: String): String {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
    if (isTrace(here)) println("$here: input str '$str'")
@@ -249,9 +249,9 @@ fun keywordOfString(str: String, caller: String): String {
     return result
 }
 
-fun lexemeListFromUserKeywordValueOfStringDollared (str: String, caller: String) : List<Lexeme> {
+fun lexemeListFromUserKeywordValueOfStringDollared (str: String) : List<Lexeme> {
 // 'any_string'$
-    val here = functionName()
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
     val end_cha = str.last()
@@ -324,11 +324,11 @@ fun lexemeListFromUserKeywordValueOfStringDollared (str: String, caller: String)
    return result
 }
 
-fun lexemeListMetaOfDollarString (lin: String, caller: String) : Pair<List<Lexeme>, Int> {
+fun lexemeListMetaOfDollarString (lin: String) : Pair<List<Lexeme>, Int> {
 // $keyword: specific_value
 // keyword is well defined Meta
 
-    val here = functionName()
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
     if (isTrace(here)) println("$here: input lin '$lin'")
@@ -475,9 +475,9 @@ fun lexemeListMetaOfDollarString (lin: String, caller: String) : Pair<List<Lexem
 
 }
 
-fun lexemeListMetaValueOfStringDollared (lin: String, caller: String) : List<Lexeme> {
+fun lexemeListMetaValueOfStringDollared (lin: String) : List<Lexeme> {
 // $KeywordMeta: MetaValue$
-    val here = functionName()
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
     if (isTrace(here)) println("$here: input lin '$lin'")
@@ -539,9 +539,9 @@ fun lexemeListMetaValueOfStringDollared (lin: String, caller: String) : List<Lex
    return result 
 }
 
-fun lexemeListOfAuthorLine (lin: String, caller: String) : Pair<List<Lexeme>, Int> {
+fun lexemeListOfAuthorLine (lin: String) : Pair<List<Lexeme>, Int> {
 // # $Author: michel$'
-    val here = functionName()
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
     if (isTrace(here)) println("$here: input lin '$lin'")
@@ -610,9 +610,9 @@ fun lexemeListOfAuthorLine (lin: String, caller: String) : Pair<List<Lexeme>, In
    return result
 }
 
-fun lexemeListOfDateLine (lin: String, caller: String) : Pair<List<Lexeme>, Int> {
+fun lexemeListOfDateLine (lin: String) : Pair<List<Lexeme>, Int> {
 // # $Date: 27-05-2015$
-    val here = functionName()
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
     if (isTrace(here)) println("$here: input lin '$lin'")
@@ -695,12 +695,12 @@ fun lexemeListOfDateLine (lin: String, caller: String) : Pair<List<Lexeme>, Int>
    return result
 }
 
-fun lexemeListOfDollarStringDollar (dol_dol: String, caller: String): Pair<List<Lexeme>, Int> {
+fun lexemeListOfDollarStringDollar (dol_dol: String): Pair<List<Lexeme>, Int> {
 /*
  $any test$
 */
   
-  val here = functionName()
+  val (here, caller) = hereAndCaller()
   entering(here, caller)
 
   if (isTrace(here)) println("$here: input dol_dol '$dol_dol'")
@@ -731,8 +731,8 @@ fun lexemeListOfDollarStringDollar (dol_dol: String, caller: String): Pair<List<
   return result
 }
 
-fun lexemeListOfFileName(fil_nam: String, caller: String) : List<Lexeme> {
-    val here = functionName()
+fun lexemeListOfFileName(fil_nam: String) : List<Lexeme> {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
     val ext = fileExtensionOfFileName(fil_nam)
@@ -748,9 +748,9 @@ fun lexemeListOfFileName(fil_nam: String, caller: String) : List<Lexeme> {
     return lex_l
 }
 
-fun lexemeListOfMembersKeyword (lin: String, caller: String) : Pair<List<Lexeme>, Int> {
+fun lexemeListOfMembersKeyword (lin: String) : Pair<List<Lexeme>, Int> {
 // $members: michelc@lausanne , emilea$ 
-    val here = functionName()
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
     if (isTrace(here)) println("$here: input lin '$lin'")
@@ -809,12 +809,12 @@ fun lexemeListOfMembersKeyword (lin: String, caller: String) : Pair<List<Lexeme>
 
 }
 
-fun lexemeListOfMembersRemainderString (str: String, caller: String) : Pair<List<Lexeme>, Int> {
+fun lexemeListOfMembersRemainderString (str: String) : Pair<List<Lexeme>, Int> {
 // " emilea@paris, michelc@lausanne$ "
 // " jules, alain@champagne$ "
 // " michelc@lausanne$ "
 // " louis$ "
-    val here = functionName()
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
     if (isTrace(here)) println("$here: input str '$str'")
@@ -895,9 +895,9 @@ fun lexemeListOfMembersRemainderString (str: String, caller: String) : Pair<List
    return result
 }
 
-fun lexemeListOfMutableLine (lin: String, caller: String) : Pair<List<Lexeme>, Int> {
+fun lexemeListOfMutableLine (lin: String) : Pair<List<Lexeme>, Int> {
 // mutable: /.brings/system/bin/kwextract.pl$
-    val here = functionName()
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
     if (isTrace(here)) println("$here: input lin '$lin'")
@@ -966,9 +966,9 @@ fun lexemeListOfMutableLine (lin: String, caller: String) : Pair<List<Lexeme>, I
    return result
 }
 
-fun lexemeListOfNextLine (lin: String, caller: String) : Pair<List<Lexeme>, Int> {
+fun lexemeListOfNextLine (lin: String) : Pair<List<Lexeme>, Int> {
 // # $next: unknown$'
-    val here = functionName()
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
     if (isTrace(here)) println("$here: input lin '$lin'")
@@ -1042,9 +1042,9 @@ fun lexemeListOfNextLine (lin: String, caller: String) : Pair<List<Lexeme>, Int>
    return result
 }
 
-fun lexemeListOfNonSharpedLine (lin: String, caller: String) : List<Lexeme> {
+fun lexemeListOfNonSharpedLine (lin: String) : List<Lexeme> {
 // any text 
-    val here = functionName()
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
     if (isTrace(here)) println("$here: input lin '$lin'")
@@ -1143,9 +1143,9 @@ somekeyword: somevalue$  '
    return result
 }
 
-fun lexemeListOfParentsLine (lin: String, caller: String) : Pair<List<Lexeme>, Int> {
+fun lexemeListOfParentsLine (lin: String) : Pair<List<Lexeme>, Int> {
 // parents: QmU1RDLsAGNPVuwDjKD3RQx7R6aEuQfcmSiubviDZ2XRVC$
-    val here = functionName()
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
     if (isTrace(here)) println("$here: input lin '$lin'")
@@ -1214,9 +1214,9 @@ fun lexemeListOfParentsLine (lin: String, caller: String) : Pair<List<Lexeme>, I
    return result
 }
 
-fun lexemeListOfPreviousLine (lin: String, caller: String) : Pair<List<Lexeme>, Int> {
+fun lexemeListOfPreviousLine (lin: String) : Pair<List<Lexeme>, Int> {
 // previous: QmU1RDLsAGNPVuwDjKD3RQx7R6aEuQfcmSiubviDZ2XRVC$
-    val here = functionName()
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
     if (isTrace(here)) println("$here: input lin '$lin'")
@@ -1285,9 +1285,9 @@ fun lexemeListOfPreviousLine (lin: String, caller: String) : Pair<List<Lexeme>, 
    return result
 }
 
-fun lexemeListOfQmHashLine (lin: String, caller: String) : Pair<List<Lexeme>, Int> {
+fun lexemeListOfQmHashLine (lin: String) : Pair<List<Lexeme>, Int> {
 // qm: z2U1RDLsAGNPVuwDjKD3RQx7R6aEuQfcmSiubviDZ2XRVC$
-    val here = functionName()
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
     if (isTrace(here)) println("$here: input lin '$lin'")
@@ -1356,9 +1356,9 @@ fun lexemeListOfQmHashLine (lin: String, caller: String) : Pair<List<Lexeme>, In
    return result
 }
 
-fun lexemeListOfSharpedLine (lin: String, caller: String) : List<Lexeme> {
+fun lexemeListOfSharpedLine (lin: String) : List<Lexeme> {
 // Source: /my/perl/script/kwextract.pl,v$
-    val here = functionName()
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
     if (isTrace(here)) println("$here: input lin '$lin'")
@@ -1434,9 +1434,9 @@ fun lexemeListOfSharpedLine (lin: String, caller: String) : List<Lexeme> {
    return result
 }
 
-fun lexemeListOfSignatureLine (lin: String, caller: String) : Pair<List<Lexeme>, Int> {
+fun lexemeListOfSignatureLine (lin: String) : Pair<List<Lexeme>, Int> {
 // # $signature: n/a$'
-    val here = functionName()
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
     if (isTrace(here)) println("$here: input lin '$lin'")
@@ -1499,9 +1499,9 @@ fun lexemeListOfSignatureLine (lin: String, caller: String) : Pair<List<Lexeme>,
    return result
 }
 
-fun lexemeListOfSourceLine (lin: String, caller: String) : Pair<List<Lexeme>, Int> {
+fun lexemeListOfSourceLine (lin: String) : Pair<List<Lexeme>, Int> {
 // Source: /my/perl/script/kwextract.pl,v$
-    val here = functionName()
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
     if (isTrace(here)) println("$here: input lin '$lin'")
@@ -1570,9 +1570,9 @@ fun lexemeListOfSourceLine (lin: String, caller: String) : Pair<List<Lexeme>, In
    return result
 }
 
-fun lexemeListOfSpotLine (lin: String, caller: String) : Pair<List<Lexeme>, Int> {
+fun lexemeListOfSpotLine (lin: String) : Pair<List<Lexeme>, Int> {
 // # $spot: 1579373044$'
-    val here = functionName()
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
     if (isTrace(here)) println("$here: input lin '$lin'")
@@ -1645,11 +1645,11 @@ fun lexemeListOfSpotLine (lin: String, caller: String) : Pair<List<Lexeme>, Int>
    return result
 }
 
-fun lexemeListOfTextString (str: String, caller: String) : Pair<List<Lexeme>, Int> {
+fun lexemeListOfTextString (str: String) : Pair<List<Lexeme>, Int> {
 /*
  variable 
 */
-    val here = functionName()
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
     if (isTrace(here)) println("$here: input str '$str'")
@@ -1710,9 +1710,9 @@ fun lexemeListOfTextString (str: String, caller: String) : Pair<List<Lexeme>, In
    return result
 }
 
-fun lexemeListOfTicLine (lin: String, caller: String) : Pair<List<Lexeme>, Int> {
+fun lexemeListOfTicLine (lin: String) : Pair<List<Lexeme>, Int> {
 // # $tic: 1579373044$'
-    val here = functionName()
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
     if (isTrace(here)) println("$here: input lin '$lin'")
@@ -1791,8 +1791,8 @@ fun lexemeListOfTicLine (lin: String, caller: String) : Pair<List<Lexeme>, Int> 
    return result
 }
 
-fun lexemeListOfYmlFile (ymlFileName: String, caller: String): List<Lexeme> {
-    val here = functionName()
+fun lexemeListOfYmlFile (ymlFileName: String): List<Lexeme> {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
     var lexemeList = mutableListOf<Lexeme>()
@@ -1819,8 +1819,8 @@ fun lexemeListOfYmlFile (ymlFileName: String, caller: String): List<Lexeme> {
     return lexemeList
 }
 
-fun nameKeywordWithOfLexeme(lex: Lexeme, caller: String): String {
-    val here = functionName()
+fun nameKeywordWithOfLexeme(lex: Lexeme): String {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
     println("$here: input lex '$lex'")
@@ -1844,8 +1844,8 @@ fun stringValueListOfLexemeList (lex_l: List<Lexeme>) : List<String> {
   return str_l 
 }
 
-fun unknownCharacterOfMessage (mes: String?, caller: String): Char? {
-    val here = functionName()
+fun unknownCharacterOfMessage (mes: String?): Char? {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
     val messageType : String?

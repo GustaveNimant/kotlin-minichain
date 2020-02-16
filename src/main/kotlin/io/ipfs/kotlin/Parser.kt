@@ -5,8 +5,8 @@ import java.io.File
 import java.util.Stack
 import java.lang.Character.MIN_VALUE as nullChar
 
-fun blockKindOfMetaLexemeList (met_l: List<Lexeme>, caller: String): String {
-    val here = functionName()
+fun blockKindOfMetaLexemeList (met_l: List<Lexeme>): String {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
     var result = "genesis"
@@ -21,9 +21,9 @@ fun blockKindOfMetaLexemeList (met_l: List<Lexeme>, caller: String): String {
     return result
 }
 
-fun leafedNodeAndStackOfLexemeMetaStack (lex_met_s: Stack<Lexeme>, caller: String): Pair<TreeNode<String>, Stack<Lexeme>> {
+fun leafedNodeAndStackOfLexemeMetaStack (lex_met_s: Stack<Lexeme>): Pair<TreeNode<String>, Stack<Lexeme>> {
 // Set up a Leafed Node (ex.: qm / z2....)
-    val here = functionName()
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
     var node = TreeNode<String>("")
@@ -132,8 +132,8 @@ fun leafedNodeAndStackOfLexemeMetaStack (lex_met_s: Stack<Lexeme>, caller: Strin
     return Pair (node, lex_met_s)
 }
 
-fun provideBlockCurrentTreeNode (caller: String) : TreeNode<String> {
-    val here = functionName()
+fun provideBlockCurrentTreeNode () : TreeNode<String> {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
 // <BlockCurrent> ::= <TreeMeta> <TreeText>
@@ -150,8 +150,8 @@ fun provideBlockCurrentTreeNode (caller: String) : TreeNode<String> {
     return tree
 }
 
-fun provideBlockGenesisTreeNode (caller: String) : TreeNode<String> {
-    val here = functionName()
+fun provideBlockGenesisTreeNode () : TreeNode<String> {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
 // <BlockGenesis> ::= <TreeMeta> <TreeText>
@@ -168,8 +168,8 @@ fun provideBlockGenesisTreeNode (caller: String) : TreeNode<String> {
     return tree
 }
 
-fun provideBlockMetaTreeNode (caller: String) : TreeNode<String> {
-    val here = functionName()
+fun provideBlockMetaTreeNode () : TreeNode<String> {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
 // <TreeMeta> ::= TreeMetaRecordList ::= { TreeMetaRecord }
@@ -186,8 +186,8 @@ fun provideBlockMetaTreeNode (caller: String) : TreeNode<String> {
     return tree
 }
 
-fun provideBlockTextTreeNode (caller: String) : TreeNode<String> {
-    val here = functionName()
+fun provideBlockTextTreeNode () : TreeNode<String> {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
 // <TreeText> ::= TreeTextRecordList
@@ -204,8 +204,8 @@ fun provideBlockTextTreeNode (caller: String) : TreeNode<String> {
     return tree
 }
 
-fun provideMetaLexemeList (caller: String) : List<Lexeme> {
-    val here = functionName()
+fun provideMetaLexemeList () : List<Lexeme> {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
     val lex_l = provideLexemeList (here)
@@ -237,8 +237,8 @@ fun provideMetaLexemeList (caller: String) : List<Lexeme> {
     return metaList
 }
 
-fun provideRecordTextList (caller: String) : List<String> {
-    val here = functionName()
+fun provideRecordTextList () : List<String> {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
 // A record is enclosed between two TokenEndOfLine
@@ -272,8 +272,8 @@ fun provideRecordTextList (caller: String) : List<String> {
     return result
 }
 
-fun provideTextLexemeList (caller: String) : List<Lexeme> {
-    val here = functionName()
+fun provideTextLexemeList () : List<Lexeme> {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
     val lex_l = provideLexemeList (here)
@@ -306,8 +306,8 @@ fun provideTextLexemeList (caller: String) : List<Lexeme> {
     return textList
 }
 
-fun provideTreeMetaRecordList (caller: String) : List<TreeNode<String>> {
-    val here = functionName()
+fun provideTreeMetaRecordList () : List<TreeNode<String>> {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
 // <TreeMetaRecordList> ::= { <TreeMetaRecord> }
@@ -345,8 +345,8 @@ fun provideTreeMetaRecordList (caller: String) : List<TreeNode<String>> {
     return tree_l
 }
 
-fun provideTreeTextRecordList (caller: String) : List<TreeNode<String>> {
-    val here = functionName()
+fun provideTreeTextRecordList () : List<TreeNode<String>> {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
 // <TreeTextRecordList> ::= { <TreeTextRecord> }

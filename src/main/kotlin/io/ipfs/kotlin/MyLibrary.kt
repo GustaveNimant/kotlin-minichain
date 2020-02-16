@@ -65,14 +65,20 @@ fun <T> teeStackFromTeeOfTeeStack (tee:T, tee_s: Stack<T>): Stack<T> {
     return tee_s
 }
 
+fun callerName(): String {
+    val sta = Thread.currentThread().stackTrace[3]
+    val str = sta.getMethodName()
+    return str	
+}
+
 fun characterStackOfString (str: String) : Stack<Char> {
     var stack = Stack<Char>()
     str.reversed().forEach { c -> stack.push(c)}
     return stack
 }
 
-fun countOfCharOfString (cha: Char, str: String, caller: String) : Int {
-    val here = functionName()
+fun countOfCharOfString (cha: Char, str: String) : Int {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
     var count = 0
@@ -85,7 +91,7 @@ fun countOfCharOfString (cha: Char, str: String, caller: String) : Int {
     return count
 }
 
-fun entering(here: String, caller: String):Unit {
+fun entering(here: String):Unit {
     level = level + 1
     if (level > 70) {
        println ("Error maximum number of nesting levels reached")
@@ -119,8 +125,15 @@ fun functionName(): String {
     return str	
 }
 
-fun inputRead(caller: String): String {
-    val here = functionName()
+fun hereAndCaller(): Pair<String, String> {
+    val here = (Thread.currentThread().stackTrace[2]).getMethodName()
+    val caller = (Thread.currentThread().stackTrace[3]).getMethodName()
+    val result = Pair(here, caller)
+    return result
+}
+
+fun inputRead(): String {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 	
     val str = readLine().toString()
@@ -129,8 +142,8 @@ fun inputRead(caller: String): String {
     return str
 }
 
-fun isAlphabeticalOfChar(cha: Char, caller: String): Boolean {
-    val here = functionName()
+fun isAlphabeticalOfChar(cha: Char): Boolean {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
     
     val pattern = Regex("[a-zA-Z_]")
@@ -141,8 +154,8 @@ fun isAlphabeticalOfChar(cha: Char, caller: String): Boolean {
     return result
 }
 
-fun isAlphanumericalOfChar(cha: Char, caller: String): Boolean {
-    val here = functionName()
+fun isAlphanumericalOfChar(cha: Char): Boolean {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
     
     val pattern = Regex("[a-zA-Z_0-9]")
@@ -171,8 +184,8 @@ fun isLoop(here:String): Boolean {
   else {return false}
 }
 
-fun isNumericalOfChar(cha: Char, caller: String): Boolean {
-    val here = functionName()
+fun isNumericalOfChar(cha: Char): Boolean {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
     
     val pattern = Regex("[0-9]")
@@ -201,8 +214,8 @@ fun isWhen(here:String): Boolean {
   else {return false}
 }
 
-fun lineListOfFileName (nof: String, caller: String) : MutableList<String> {
-    val here = functionName()
+fun lineListOfFileName (nof: String) : MutableList<String> {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
     if (isTrace(here)) println("$here: input nof '$nof'")
@@ -224,8 +237,8 @@ fun lineStackOfLineList (str_l: List<String>) : Stack<String> {
     return stack
 }
 
-fun nextStringAndStackOfEndCharOfCharacterStack(del: Char, cha_s: Stack<Char>, caller: String): Pair<String, Stack<Char>> {
-    val here = functionName()
+fun nextStringAndStackOfEndCharOfCharacterStack(del: Char, cha_s: Stack<Char>): Pair<String, Stack<Char>> {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
     if (isTrace(here)) println("$here: input del '$del'")
@@ -255,8 +268,8 @@ fun nextStringAndStackOfEndCharOfCharacterStack(del: Char, cha_s: Stack<Char>, c
     return Pair (str, cha_s)
 }
 
-fun nextWordAndEndCharOfEndCharListOfString(cha_l: List<Char>, str: String, caller: String): Pair<String, Char> {
-    val here = functionName()
+fun nextWordAndEndCharOfEndCharListOfString(cha_l: List<Char>, str: String): Pair<String, Char> {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
     if (isTrace(here)) println("$here: input cha_l '$cha_l'")
@@ -280,8 +293,8 @@ fun nextWordAndEndCharOfEndCharListOfString(cha_l: List<Char>, str: String, call
     return Pair(word, end_cha)
 }
 
-fun nextWordAndStackOfEndCharOfCharacterStack(del: Char, cha_s: Stack<Char>, caller: String): Pair<String, Stack<Char>> {
-    val here = functionName()
+fun nextWordAndStackOfEndCharOfCharacterStack(del: Char, cha_s: Stack<Char>): Pair<String, Stack<Char>> {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
     if (isTrace(here)) println("$here: input del '$del'")
@@ -316,8 +329,8 @@ fun nextWordAndStackOfEndCharOfCharacterStack(del: Char, cha_s: Stack<Char>, cal
     return Pair (str, cha_s)
 }
 
-fun nextWordInBracketsOfString(str: String, caller: String): String {
-    val here = functionName()
+fun nextWordInBracketsOfString(str: String): String {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 // {someword}
 
@@ -338,8 +351,8 @@ fun nextWordInBracketsOfString(str: String, caller: String): String {
     return word
 }
 
-fun nextWordOfEndCharListOfString(cha_l: List<Char>, str: String, caller: String): String {
-    val here = functionName()
+fun nextWordOfEndCharListOfString(cha_l: List<Char>, str: String): String {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
     if (isTrace(here)) println("$here: input cha_l '$cha_l'")
@@ -359,8 +372,8 @@ fun nextWordOfEndCharListOfString(cha_l: List<Char>, str: String, caller: String
     return word
 }
 
-fun nextWordOfEndCharOfString(del: Char, str: String, caller: String): String {
-    val here = functionName()
+fun nextWordOfEndCharOfString(del: Char, str: String): String {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
     if (isTrace(here)) println("$here: input del '$del'")
@@ -383,8 +396,8 @@ fun nextWordOfEndCharOfString(del: Char, str: String, caller: String): String {
 fun notYetImplemented(fun_nam: String){
     throw Exception("Error: function '$fun_nam' is not yet implemented")}
 
-fun parameterMapOfArguments(args: Array<String>, caller: String): MutableMap<String, MutableList<String>> {
-  val here = functionName()
+fun parameterMapOfArguments(args: Array<String>): MutableMap<String, MutableList<String>> {
+  val (here, caller) = hereAndCaller()
   entering(here, caller)
 
   var stack = Stack<String>()
@@ -441,8 +454,8 @@ fun parameterMapOfArguments(args: Array<String>, caller: String): MutableMap<Str
    return ParameterMap
 }
 
-fun outputWrite(fileName: String, content: String, caller: String) {
-    val here = functionName()
+fun outputWrite(fileName: String, content: String) {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 	
     File(fileName).bufferedWriter().use { out -> out.write(content)}
@@ -456,8 +469,8 @@ fun printStringList (str_l: List<String>) {
     println (content)
 }
 
-fun provideAnyFileNameOfWhat(what: String, caller: String): String {
-    val here = functionName()
+fun provideAnyFileNameOfWhat(what: String): String {
+    val (here, caller) = hereAndCaller()
     entering(here, caller)
 
     if (isTrace(here)) println("$here: input what '$what'")

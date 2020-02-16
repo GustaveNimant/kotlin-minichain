@@ -5,7 +5,7 @@ import java.util.Stack
 import java.lang.Character.MIN_VALUE as nullChar
 
 fun main(args: Array<String>) {
-  val here = functionName()
+  val (here, caller) = hereAndCaller()
   entering(here, "Parser")
 
   ParameterMap = parameterMapOfArguments(args, here)
@@ -24,7 +24,10 @@ fun main(args: Array<String>) {
       } else {
         provideBlockGenesisTreeNode(here)
       }
-      
+
+  println("Parser tree:")
+  println(tree)
+  
   println("\nnormal termination")
   exiting(here)
 }

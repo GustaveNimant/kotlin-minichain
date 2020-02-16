@@ -16,5 +16,5 @@ include 'api'
 include 'services:webservice'
 */
 
-rootProject.name = 'ipfs-api-kotlin'
+rootProject.name = 'kotlin-minichain'
 rootProject.buildFileName = "build.gradle.kts"

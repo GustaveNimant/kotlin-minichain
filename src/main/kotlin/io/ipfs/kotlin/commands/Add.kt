@@ -1,5 +1,6 @@
 package io.ipfs.kotlin.commands
 
+import io.ipfs.kotlin.*
 import com.squareup.moshi.JsonAdapter
 import io.ipfs.kotlin.IPFSConnection
 import io.ipfs.kotlin.model.NamedHash
@@ -28,11 +29,15 @@ class Add(val ipfs: IPFSConnection) {
     fun directory(file: File, name: String = "file", filename: String = name) = addGeneric {
         addFile(it, file, name, filename)
     }
-
-
+    
     // this has to be outside the lambda because it is reentrant to handle subdirectory structures
     private fun addFile(builder: MultipartBody.Builder, file: File, name: String, filename: String) {
 
+    val (here, caller) = hereAndCaller()
+    entering(here, caller)
+
+    if(isDebug(here)) println ("name $name")
+    
         val encodedFileName = URLEncoder.encode(filename, "UTF-8")
         val headers = Headers.of("Content-Disposition", "file; filename=\"$encodedFileName\"", "Content-Transfer-Encoding", "binary")
         if (file.isDirectory) {
@@ -46,6 +51,7 @@ class Add(val ipfs: IPFSConnection) {
             builder.addPart(headers, RequestBody.create(MediaType.parse("application/octet-stream"), file))
         }
 
+    exiting(here)
     }
 
     fun string(text: String, name: String = "string", filename: String = name): NamedHash {
