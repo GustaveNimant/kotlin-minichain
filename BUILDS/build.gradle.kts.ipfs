@@ -1,0 +1,24 @@
+buildscript {
+    repositories {
+        jcenter()
+	mavenCentral()
+    }
+        
+}
+
+plugins {
+    kotlin("jvm") version "1.3.21"
+}
+group = "com.github.ligi"
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+dependencies {
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.3.21")
+    implementation("com.squareup.moshi:moshi:1.4.0")
+    implementation("com.squareup.okhttp3:okhttp:3.11.0")
+}
+

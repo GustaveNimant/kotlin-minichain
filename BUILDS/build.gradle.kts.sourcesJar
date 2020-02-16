@@ -1,0 +1,72 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
+extra["kotlinVersion"] = "1.2.70"
+extra["okhttpVersion"] = "3.11.0"
+
+println("Version ${extra["kotlinVersion"]}")
+
+buildscript {
+
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath(kotlin("gradle-plugin", version = "1.2.70"))   
+        extra["kotlinVersion"] = "1.2.70"
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${extra["kotlinVersion"]}")
+        classpath("com.github.ben-manes:gradle-versions-plugin:0.20.0")
+    }
+}
+
+plugins {
+    jacoco
+    "maven-publish"
+    java
+    application
+//    kotlin("jvm") version "1.2.70"
+    "com.github.ben-manes.versions"
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+    withSourcesJar()
+}
+
+jacoco {
+ toolVersion = "0.8.1"
+}
+
+group = "com.github.ligi"
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+        extra["kotlinVersion"] = "1.2.70"
+	extra["okhttpVersion"] = "3.11.0"
+
+	implementation("org.jetbrains.kotlin:kotlin-stdlib:1.2.70")
+	implementation("com.squareup.moshi:moshi:1.4.0")
+	implementation("com.squareup.okhttp3:okhttp:${extra["okhttpVersion"]}")
+
+	testImplementation("junit:junit:4.12")
+	testImplementation("org.mockito:mockito-core:2.12.0")
+	testImplementation("com.squareup.okhttp3:mockwebserver:${extra["okhttpVersion"]}")
+	testImplementation("org.assertj:assertj-core:3.10.0")
+}
+
+application {
+    mainClassName = "io.ipfs.kotlin.MainKt"
+}
+
+tasks {
+    // will need to import KotlinCompile or use the fully qualified name
+    withType<KotlinCompile> {
+        kotlinOptions.jvmTarget = "1.2.70"
+    }
+
+}
+

@@ -1,0 +1,102 @@
+# [http://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_Form Wikipedia]
+#
+#  a Block ends with an end.
+#  a Cell does not ends with
+#
+#  a variable_name is always substituable by the variable_kind_block it defines.
+#  an entity belongs to any external domain (figure, chemical, elementary ...).
+#  a property belongs to the property domain (operator, target)
+#
+# les mots clés et symboles terminaux ainsi.
+#
+# Dans les règles lexicales les trois points ..., situés entre deux caractères a et b,
+#                 indiquent l'ensemble des caractères entre a et b dans l'ordre du code ASCII.
+#
+# http://www.enseignement.polytechnique.fr/informatique/ARCHIVES/IF/poly/main004.html
+#
+# Principles of Compiler Design by Aho and Ullman
+# /keep/documents/TEXT/COMPILATION/Compilers_Principles_Techniques_and_Tools_by_Aho_Lam_Sethi_Ullman.djvu
+# http://caml.inria.fr/pub/docs/manual-ocaml/lex.html
+# http://www.enseignement.polytechnique.fr/informatique/ARCHIVES/IF/poly/main004.html
+#
+# Les Tokens sont des abstractions lexicales obtenues
+#     par application d'Expressions Regulières sur les Lexèmes
+#
+#  les keywords terminaux sont représentés tel-quels (Token == Lexeme).
+#  > < encadrent les pre-terminaux (Tokens)
+#  < > encadrent les non-terminaux. <non-terminal> ::= production
+#
+#  " " encadrent les symboles terminaux d’un seul caractère.
+#  ( ) servent au groupement.
+#  |   signifie l'alternative.
+#  [ ] indiquent une partie optionnelle.
+#  { } indiquent une partie qui peut être répétée un nombre quelconque de fois.
+#      tandis qu'un symbole + en exposant des accolades indique une partie répétée au moins une fois.
+# 
+# ------------------------------------------------------------------------------
+ <blockchain>                ::= <block_genesis> { <block_current> } <block_head>
+ 
+ <block>                     ::= <block_current> | <block_genesis> | <block_head> 
+ <block_current>             ::= <meta_data> <text_data>
+ <block_genesis>             ::= <meta_data_genesis> <head_data>  
+ <block_head>                ::= <meta_data_head> <head_data>
+ 
+ 
+ <meta_data>                 ::= { <meta_record> }
+ <meta_data_head>            ::= { <meta_data_head_record> }
+ 
+ <meta_record>               ::= { <sharp> <space> <keyword_token> <space> <keyword_value> <dollar> <eol>
+
+ <keyword_token>             ::= <dollar> <keyword_name> <colon>
+ <keyword_name>              ::= <keyword_with_date> | <keyword_with_file> | <keyword_with_hash> | <keyword_with_integer>| <keyword_with_person_name> | <keyword_with_string>
+
+ <meta_data_head_record>     ::= ???
+
+ <block_history>             ::= <title_history> <meta_data_history> <data_history>
+ <title_history>             ::= <hyphen><hyphen><hyphen><space><sharp><sapce>blocks
+ <meta_data_history>         ::= <sharp> <space> <dollar>mutable<hyphen><space>
+ <data_history>              ::= <hyphen> <space> <qm_hash> <space> <sharp> string
+  
+ <keyword_with_date>         ::= Date
+ <keyword_with_file>         ::= Source | mutable
+ <keyword_with_hash>         ::= previous | Previous | parents | qm
+ <keyword_with_integer>      ::= tic | spot
+ <keyword_with_person_name>  ::= Author
+ <keyword_with_string>       ::= next | Signature
+
+ <keyword_value>             ::= <file_path> <comma> <vee> | <hash> | integer | <person_name> | string
+
+ <file_path>                 ::= {<slash><directory_name>}<slash><file_name>
+ <directory_name>            ::= <alphabetical>{<alphanumerical>}
+ <file_name>                 ::= <alphabetical>{<alphanumerical>}[<dot><file_extension>}
+ <file_extension>            ::= { <alphabetical> }
+ 
+ <text_data>                 ::= [ <empty_block> ]  <text_block> [ <empty_block> ] 
+ <text_block>                ::= { <text_record> }
+ <empty_block>               ::= { <empty_line> }
+
+ <text_record>               ::= <text_record_substitutable> | <text_record_constant>
+ <text_substitutable>        ::= {<string>}<dollar><subtitutable_token><dollar>{<string>}<eol>
+
+ <date>                      ::=  <month> <slash> <day> <slash> <year> <space> <hour> <colon> <minute> <space> <day_period>
+ <hash_alone>                ::= <hash> [{<space>}] <eol>
+
+ <empty_block>               ::= { <empty_line> }
+ <day_period>                ::=  "AM" | "PM"
+ <day>                       ::=  integer integer
+ <hour>                      ::=  integer integer 
+ <minute>                    ::=  integer integer 
+ <month>                     ::=  integer integer
+ <year>                      ::=  integer integer integer integer
+ <vee>                       ::=  'v'
+ <colon>                     ::=  ':'
+ <dot>                       ::=  '.'
+ <comma>                     ::=  ';'
+ <eol>                       ::=  '\n'
+ <empty_line>                ::=  '\n'
+ <hyphen>                    ::=  '-'
+ <sharp>                     ::=  '#'
+ <dollar>                    ::=  '$'
+ <slash>                     ::=  '/'
+ <space>                     ::=  ' '
+ <semicolon>                 ::=  ';'

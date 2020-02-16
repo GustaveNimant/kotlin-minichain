@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.ipfs.kotlin.TestAdd" tests="3" skipped="0" failures="0" errors="0" timestamp="2020-02-16T08:43:09" hostname="iabloko" time="0.055">
+  <properties/>
+  <testcase name="testAddFile" classname="io.ipfs.kotlin.TestAdd" time="0.041"/>
+  <testcase name="testAddDirectory" classname="io.ipfs.kotlin.TestAdd" time="0.011"/>
+  <testcase name="testAddString" classname="io.ipfs.kotlin.TestAdd" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[févr. 16, 2020 9:43:09 AM okhttp3.mockwebserver.MockWebServer$2 execute
+INFOS: MockWebServer[58753] starting to accept connections
+févr. 16, 2020 9:43:09 AM okhttp3.mockwebserver.MockWebServer$3 processOneRequest
+INFOS: MockWebServer[58753] received request: POST /add?stream-channels=true&progress=false HTTP/1.1 and responded: HTTP/1.1 200 OK
+févr. 16, 2020 9:43:09 AM okhttp3.mockwebserver.MockWebServer$2 acceptConnections
+INFOS: MockWebServer[58753] done accepting connections: Socket closed
+févr. 16, 2020 9:43:09 AM okhttp3.mockwebserver.MockWebServer$2 execute
+INFOS: MockWebServer[48515] starting to accept connections
+févr. 16, 2020 9:43:09 AM okhttp3.mockwebserver.MockWebServer$3 processOneRequest
+INFOS: MockWebServer[48515] received request: POST /add?stream-channels=true&progress=false HTTP/1.1 and responded: HTTP/1.1 200 OK
+févr. 16, 2020 9:43:09 AM okhttp3.mockwebserver.MockWebServer$2 acceptConnections
+INFOS: MockWebServer[48515] done accepting connections: Socket closed
+févr. 16, 2020 9:43:09 AM okhttp3.mockwebserver.MockWebServer$2 execute
+INFOS: MockWebServer[52893] starting to accept connections
+févr. 16, 2020 9:43:09 AM okhttp3.mockwebserver.MockWebServer$3 processOneRequest
+INFOS: MockWebServer[52893] received request: POST /add?stream-channels=true&progress=false HTTP/1.1 and responded: HTTP/1.1 200 OK
+févr. 16, 2020 9:43:09 AM okhttp3.mockwebserver.MockWebServer$2 acceptConnections
+INFOS: MockWebServer[52893] done accepting connections: Socket closed
+]]></system-err>
+</testsuite>

@@ -1,0 +1,21 @@
+data class Version (val name : String)
+
+val version = Version("0.20.0")
+println("version "+version.name)
+val kotlinVersion by extra("1.2.70")
+
+println("Kotlin Version ${extra["kotlinVersion"]}")
+
+
+buildscript {
+  repositories {
+        jcenter()
+    }
+
+    dependencies {
+        val kotlinVersion by extra("1.2.70")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${extra["kotlinVersion"]}")
+        classpath("com.github.ben-manes:gradle-versions-plugin:"+version.name)
+    }
+}
+

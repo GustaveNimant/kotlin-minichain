@@ -1,0 +1,15 @@
+# $Source: /my/perl/script/kwextract.pl,v$
+# $Date: 30-03-1997$
+# $mutable: /.brings/system/bin/kwextract.pl$
+# $tic: 1579373044$
+# $spot: 1550698403$
+# $Signature: n/a$
+
+line 1 this is a genesis block
+line 2 with a $variable$ embedded
+line 3
+
+# $Author: michel$
+# $next: unknown$
+
+ 

@@ -1,0 +1,6 @@
+line 1 with space
+line 2 with a keyword in text $somekeyword: somevalue$  
+line 3 with a $variable$ embedded
+  line 4 starts with two spaces
+
+ 

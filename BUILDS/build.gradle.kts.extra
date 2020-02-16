@@ -1,0 +1,12 @@
+tasks.register("myTask") {
+    extra["kotlinVersion"] = "1.3.61"
+}
+
+tasks.register("printTaskProperties") {
+    doLast {
+        println("Version "+tasks["myTask"].extra["kotlinVersion"])
+    }
+}
+
+val Version = tasks["myTask"].extra["kotlinVersion"]
+println("Version "+Version)

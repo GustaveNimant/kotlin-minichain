@@ -1,0 +1,30 @@
+repositories {
+  jcenter {
+    artifactUrls = ["http://www.mycompany.com/artifacts1",
+		    "http://www.mycompany.com/artifacts2"]
+  }
+  jcenter {
+    name = "nonDefaultName"
+    artifactUrls = ["http://www.mycompany.com/artifacts1"]
+  }
+}
+
+
+repositories {
+    flatDir {
+        dirs("lib")
+    }
+    flatDir {
+        dirs("lib1", "lib2")
+    }
+}
+
+repositories {
+    maven {
+        // Look for POMs and artifacts, such as JARs, here
+        url = uri("http://repo2.mycompany.com/maven2")
+        // Look for artifacts here if not found at the above location
+        artifactUrls("http://repo.mycompany.com/jars")
+        artifactUrls("http://repo.mycompany.com/jars2")
+    }
+}

@@ -1,0 +1,70 @@
+buildscript {
+    extra["kotlinVersion"] = "1.2.70"
+    extra["okhttpVersion"] = "3.11.0"
+
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${extra["kotlinVersion"]}")
+        classpath("com.github.ben-manes:gradle-versions-plugin:0.20.0")
+    }
+}
+
+plugins {
+    jacoco
+    java
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+jacoco {
+ toolVersion = "0.8.1"
+}
+
+configure<ApplicationPluginConvention> {
+   mainClassName = "IPFSKt"
+}
+
+group = "minichain"
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:${extra["kotlinVersion"]}")
+    implementation("com.squareup.moshi:moshi:1.4.0")
+    implementation("com.squareup.okhttp3:okhttp:${extra["okhttpVersion"]}")
+
+    testImplementation("junit:junit:4.12")
+    testImplementation("org.mockito:mockito-core:2.12.0")
+    testImplementation("com.squareup.okhttp3:mockwebserver:${extra["okhttpVersion"]}")
+    testImplementation("org.assertj:assertj-core:3.10.0")
+}
+
+task.named<Jar>("jar") {
+  mainClassName = "io.ipfs.kotlin.IPFS"
+}
+
+artifacts {
+    archives sourcesJar
+}
+
+val label by project
+val answer by project
+
+task("compute") {
+
+  compileKotlin {
+    allWarningsAsErrors = true
+  }
+  
+  doLast {
+    println("The ${label ? : "answer"} is $answer.") 
+  }
+}

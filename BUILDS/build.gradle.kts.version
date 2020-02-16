@@ -1,0 +1,13 @@
+val kotlinVersion by extra("1.2.70")
+println("Kotlin Version ${extra["kotlinVersion"]}")
+
+buildscript {
+  repositories {jcenter()}
+
+  dependencies {
+        val kotlinVersion by extra("1.2.70")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${extra["kotlinVersion"]}")
+     }
+}
+
+
