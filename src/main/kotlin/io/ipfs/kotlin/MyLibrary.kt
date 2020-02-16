@@ -396,9 +396,12 @@ fun parameterMapOfArguments(args: Array<String>, caller: String): MutableMap<Str
   if (arg_siz < 2) {
     fatalErrorPrint("More than 1 argument", "Arguments are '$str'", "Add an argument", "main") 
   }
-  
+
+/*
+ initialize
+*/
   val arg_0 = stack.pop()
-  var command = arg_0.substring(1)
+  var command = arg_0.substring(1).toLowerCase()
   val arg_1 = stack.pop()
 
   try {
@@ -410,6 +413,10 @@ fun parameterMapOfArguments(args: Array<String>, caller: String): MutableMap<Str
       fatalErrorPrint("There were arguments", "No Arguments", "Set arguments to program", "main") 
   }
 
+/*
+ loop on all arguments
+*/
+
   var Done = false
   var arg_l = mutableListOf(arg_1)
   var ParameterMap = mutableMapOf (command to arg_l)
@@ -419,7 +426,7 @@ fun parameterMapOfArguments(args: Array<String>, caller: String): MutableMap<Str
        var arg = stack.pop()
        
        if (arg.startsWith('-')) {
-         command = arg.substring(1)
+         command = arg.substring(1).toLowerCase()
 	 arg_l = mutableListOf()
        }
        else {

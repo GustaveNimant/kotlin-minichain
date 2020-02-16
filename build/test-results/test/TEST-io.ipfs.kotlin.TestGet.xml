@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="io.ipfs.kotlin.TestGet" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-02-16T08:43:09" hostname="iabloko" time="0.003">
+<testsuite name="io.ipfs.kotlin.TestGet" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-02-16T10:46:01" hostname="iabloko" time="0.003">
   <properties/>
   <testcase name="testAddString" classname="io.ipfs.kotlin.TestGet" time="0.003"/>
   <system-out><![CDATA[result result
 ]]></system-out>
-  <system-err><![CDATA[févr. 16, 2020 9:43:09 AM okhttp3.mockwebserver.MockWebServer$2 execute
-INFOS: MockWebServer[56661] starting to accept connections
-févr. 16, 2020 9:43:09 AM okhttp3.mockwebserver.MockWebServer$3 processOneRequest
-INFOS: MockWebServer[56661] received request: GET /cat/hash HTTP/1.1 and responded: HTTP/1.1 200 OK
-févr. 16, 2020 9:43:09 AM okhttp3.mockwebserver.MockWebServer$2 acceptConnections
-INFOS: MockWebServer[56661] done accepting connections: Socket closed
+  <system-err><![CDATA[févr. 16, 2020 11:46:01 AM okhttp3.mockwebserver.MockWebServer$2 execute
+INFOS: MockWebServer[33821] starting to accept connections
+févr. 16, 2020 11:46:01 AM okhttp3.mockwebserver.MockWebServer$3 processOneRequest
+INFOS: MockWebServer[33821] received request: GET /cat/hash HTTP/1.1 and responded: HTTP/1.1 200 OK
+févr. 16, 2020 11:46:01 AM okhttp3.mockwebserver.MockWebServer$2 acceptConnections
+INFOS: MockWebServer[33821] done accepting connections: Socket closed
 ]]></system-err>
 </testsuite>

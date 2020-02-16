@@ -16,7 +16,15 @@ fun main(args: Array<String>) {
   }
 
   writeLexemeList (here)
-  
+
+  val lex_l = provideLexemeList (here)
+  val tree =
+      if (hasKeywordPreviousOfLexemeList(lex_l, here)) {
+        provideBlockCurrentTreeNode(here)
+      } else {
+        provideBlockGenesisTreeNode(here)
+      }
+      
   println("\nnormal termination")
   exiting(here)
 }
