@@ -30,8 +30,8 @@ fun buildAndStoreLexemeList() {
     val (here, caller) = hereAndCaller()
     entering(here, caller)
 
-    val ymlFileName = provideAnyFileNameOfWhat ("Yml", here)
-    var lex_l = lexemeListOfFileName(ymlFileName, here)
+    val ymlFileName = provideAnyFileNameOfWhat ("Yml")
+    var lex_l = lexemeListOfFileName(ymlFileName)
     lexemeListRegister.store (lex_l)
 
     if (isTrace(here)) println("$here: output lexeme List '$lex_l'")
@@ -43,10 +43,10 @@ fun provideLexemeList() : List<Lexeme> {
     entering(here, caller)
 
     if (lexemeListRegister.isEmpty()){
-       buildAndStoreLexemeList(here)
+       buildAndStoreLexemeList()
     }
     
-    val lex_l = lexemeListRegister.retrieve(here)
+    val lex_l = lexemeListRegister.retrieve()
 
     if (isTrace(here)) println("$here: output lexeme List '$lex_l'")
     exiting(here)
@@ -57,7 +57,7 @@ fun printLexemeList () {
     val (here, caller) = hereAndCaller()
     entering(here, caller)
 
-    val lex_l = provideLexemeList (here)
+    val lex_l = provideLexemeList ()
     val str_l = fullnameListOfLexemeList (lex_l)
     val content = stringOfGlueOfStringList ("\n", str_l)
 
@@ -70,12 +70,12 @@ fun writeLexemeList () {
     val (here, caller) = hereAndCaller()
     entering(here, caller)
 
-    val lex_l = provideLexemeList (here)
+    val lex_l = provideLexemeList ()
     val str_l = fullnameListOfLexemeList (lex_l)
     val content = stringOfGlueOfStringList ("\n", str_l)
 
-    val lexFileName = provideAnyFileNameOfWhat("Lexeme", here)
-    outputWrite (lexFileName, content, here)
+    val lexFileName = provideAnyFileNameOfWhat("Lexeme")
+    outputWrite (lexFileName, content)
 
     val siz = lex_l.size
     println("$here: $siz lexemes written to File '$lexFileName'")

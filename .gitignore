@@ -20,4 +20,6 @@ META-INF/
 *.xml
 *.html
 *.bin
+*.exec
 caches-jvm/
+build/

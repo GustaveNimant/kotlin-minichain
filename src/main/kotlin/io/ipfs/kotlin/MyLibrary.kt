@@ -91,7 +91,7 @@ fun countOfCharOfString (cha: Char, str: String) : Int {
     return count
 }
 
-fun entering(here: String):Unit {
+fun entering(here: String, caller: String):Unit {
     level = level + 1
     if (level > 70) {
        println ("Error maximum number of nesting levels reached")
@@ -126,9 +126,17 @@ fun functionName(): String {
 }
 
 fun hereAndCaller(): Pair<String, String> {
-    val here = (Thread.currentThread().stackTrace[2]).getMethodName()
-    val caller = (Thread.currentThread().stackTrace[3]).getMethodName()
-    val result = Pair(here, caller)
+    val sta = Thread.currentThread().stackTrace
+    val here = (sta[2]).getMethodName()
+
+    val caller = 
+    try {
+      (sta[3]).getMethodName()
+    }
+    catch (e: ArrayIndexOutOfBoundsException) {
+	"None"}
+
+    val result = Pair(here, caller) 
     return result
 }
 
@@ -201,6 +209,15 @@ fun isTrace(here:String): Boolean {
     val trace_l = ParameterMap.getValue("trace")
     val result = trace_l.contains("all") || trace_l.contains(here)
     return result
+  }
+  else {return false}
+}
+
+fun isVerbose(here:String): Boolean {
+  if (ParameterMap.containsKey("verbose")) { 
+    val verbose_l = ParameterMap.getValue("verbose")
+    val result = verbose_l.contains("all") || verbose_l.contains(here)
+    return result 
   }
   else {return false}
 }
@@ -483,7 +500,7 @@ fun provideAnyFileNameOfWhat(what: String): String {
         else -> what+".txt"
       }
     println("$here: enter file name for '$what'. Default '$anyFileName'")
-    val any_f = inputRead(here)
+    val any_f = inputRead()
     if (! (any_f.isNullOrBlank() || any_f.equals("null"))) {
         anyFileName = any_f
     }

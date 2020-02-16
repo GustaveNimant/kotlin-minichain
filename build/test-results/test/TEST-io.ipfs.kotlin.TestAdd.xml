@@ -1,39 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="io.ipfs.kotlin.TestAdd" tests="3" skipped="0" failures="0" errors="0" timestamp="2020-02-16T15:02:16" hostname="iabloko" time="0.063">
+<testsuite name="io.ipfs.kotlin.TestAdd" tests="3" skipped="0" failures="0" errors="0" timestamp="2020-02-16T16:40:12" hostname="iabloko" time="0.082">
   <properties/>
-  <testcase name="testAddFile" classname="io.ipfs.kotlin.TestAdd" time="0.048"/>
-  <testcase name="testAddDirectory" classname="io.ipfs.kotlin.TestAdd" time="0.012"/>
-  <testcase name="testAddString" classname="io.ipfs.kotlin.TestAdd" time="0.003"/>
-  <system-out><![CDATA[. Entering  in addFile called by access$addFile
-. Exiting from addFile
+  <testcase name="testAddFile" classname="io.ipfs.kotlin.TestAdd" time="0.061"/>
+  <testcase name="testAddDirectory" classname="io.ipfs.kotlin.TestAdd" time="0.015"/>
+  <testcase name="testAddString" classname="io.ipfs.kotlin.TestAdd" time="0.005"/>
+  <system-out><![CDATA[sta [Ljava.lang.StackTraceElement;@7fc452ab
+sta.size 59
 . Entering  in addFile called by access$addFile
+. Exiting from addFile
+sta [Ljava.lang.StackTraceElement;@68540ca8
+sta.size 59
+. Entering  in addFile called by access$addFile
+sta [Ljava.lang.StackTraceElement;@228d89ea
+sta.size 60
 .. Entering  in addFile called by addFile
 .. Exiting from addFile
+sta [Ljava.lang.StackTraceElement;@4ad1c87b
+sta.size 60
 .. Entering  in addFile called by addFile
+sta [Ljava.lang.StackTraceElement;@6324869c
+sta.size 61
 ... Entering  in addFile called by addFile
 ... Exiting from addFile
 .. Exiting from addFile
+sta [Ljava.lang.StackTraceElement;@2b5de71c
+sta.size 60
 .. Entering  in addFile called by addFile
 .. Exiting from addFile
 . Exiting from addFile
 ]]></system-out>
-  <system-err><![CDATA[févr. 16, 2020 4:02:16 PM okhttp3.mockwebserver.MockWebServer$2 execute
-INFOS: MockWebServer[33043] starting to accept connections
-févr. 16, 2020 4:02:16 PM okhttp3.mockwebserver.MockWebServer$3 processOneRequest
-INFOS: MockWebServer[33043] received request: POST /add?stream-channels=true&progress=false HTTP/1.1 and responded: HTTP/1.1 200 OK
-févr. 16, 2020 4:02:16 PM okhttp3.mockwebserver.MockWebServer$2 acceptConnections
-INFOS: MockWebServer[33043] done accepting connections: Socket closed
-févr. 16, 2020 4:02:16 PM okhttp3.mockwebserver.MockWebServer$2 execute
-INFOS: MockWebServer[36115] starting to accept connections
-févr. 16, 2020 4:02:16 PM okhttp3.mockwebserver.MockWebServer$3 processOneRequest
-INFOS: MockWebServer[36115] received request: POST /add?stream-channels=true&progress=false HTTP/1.1 and responded: HTTP/1.1 200 OK
-févr. 16, 2020 4:02:16 PM okhttp3.mockwebserver.MockWebServer$2 acceptConnections
-INFOS: MockWebServer[36115] done accepting connections: Socket closed
-févr. 16, 2020 4:02:16 PM okhttp3.mockwebserver.MockWebServer$2 execute
-INFOS: MockWebServer[60651] starting to accept connections
-févr. 16, 2020 4:02:16 PM okhttp3.mockwebserver.MockWebServer$3 processOneRequest
-INFOS: MockWebServer[60651] received request: POST /add?stream-channels=true&progress=false HTTP/1.1 and responded: HTTP/1.1 200 OK
-févr. 16, 2020 4:02:16 PM okhttp3.mockwebserver.MockWebServer$2 acceptConnections
-INFOS: MockWebServer[60651] done accepting connections: Socket closed
+  <system-err><![CDATA[févr. 16, 2020 5:40:12 PM okhttp3.mockwebserver.MockWebServer$2 execute
+INFOS: MockWebServer[59693] starting to accept connections
+févr. 16, 2020 5:40:12 PM okhttp3.mockwebserver.MockWebServer$3 processOneRequest
+INFOS: MockWebServer[59693] received request: POST /add?stream-channels=true&progress=false HTTP/1.1 and responded: HTTP/1.1 200 OK
+févr. 16, 2020 5:40:12 PM okhttp3.mockwebserver.MockWebServer$2 acceptConnections
+INFOS: MockWebServer[59693] done accepting connections: Socket closed
+févr. 16, 2020 5:40:12 PM okhttp3.mockwebserver.MockWebServer$2 execute
+INFOS: MockWebServer[56251] starting to accept connections
+févr. 16, 2020 5:40:12 PM okhttp3.mockwebserver.MockWebServer$3 processOneRequest
+INFOS: MockWebServer[56251] received request: POST /add?stream-channels=true&progress=false HTTP/1.1 and responded: HTTP/1.1 200 OK
+févr. 16, 2020 5:40:12 PM okhttp3.mockwebserver.MockWebServer$2 acceptConnections
+INFOS: MockWebServer[56251] done accepting connections: Socket closed
+févr. 16, 2020 5:40:12 PM okhttp3.mockwebserver.MockWebServer$2 execute
+INFOS: MockWebServer[59665] starting to accept connections
+févr. 16, 2020 5:40:12 PM okhttp3.mockwebserver.MockWebServer$3 processOneRequest
+INFOS: MockWebServer[59665] received request: POST /add?stream-channels=true&progress=false HTTP/1.1 and responded: HTTP/1.1 200 OK
+févr. 16, 2020 5:40:12 PM okhttp3.mockwebserver.MockWebServer$2 acceptConnections
+INFOS: MockWebServer[59665] done accepting connections: Socket closed
 ]]></system-err>
 </testsuite>

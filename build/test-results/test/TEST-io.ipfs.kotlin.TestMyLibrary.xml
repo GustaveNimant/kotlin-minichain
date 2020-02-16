@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="io.ipfs.kotlin.TestMyLibrary" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-02-16T15:02:16" hostname="iabloko" time="0.001">
+<testsuite name="io.ipfs.kotlin.TestMyLibrary" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-02-16T16:40:12" hostname="iabloko" time="0.004">
   <properties/>
-  <testcase name="testFunctionName" classname="io.ipfs.kotlin.TestMyLibrary" time="0.001"/>
+  <testcase name="testFunctionName" classname="io.ipfs.kotlin.TestMyLibrary" time="0.004"/>
   <system-out><![CDATA[My tests done
 ]]></system-out>
-  <system-err><![CDATA[févr. 16, 2020 4:02:16 PM okhttp3.mockwebserver.MockWebServer$2 execute
-INFOS: MockWebServer[49313] starting to accept connections
-févr. 16, 2020 4:02:16 PM okhttp3.mockwebserver.MockWebServer$2 acceptConnections
-INFOS: MockWebServer[49313] done accepting connections: Socket is closed
+  <system-err><![CDATA[févr. 16, 2020 5:40:12 PM okhttp3.mockwebserver.MockWebServer$2 execute
+INFOS: MockWebServer[35799] starting to accept connections
+févr. 16, 2020 5:40:12 PM okhttp3.mockwebserver.MockWebServer$2 acceptConnections
+INFOS: MockWebServer[35799] done accepting connections: Socket closed
 ]]></system-err>
 </testsuite>

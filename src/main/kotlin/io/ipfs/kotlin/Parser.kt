@@ -113,11 +113,11 @@ fun leafedNodeAndStackOfLexemeMetaStack (lex_met_s: Stack<Lexeme>): Pair<TreeNod
 	    node.addChild(leaf)
 	  }
 	  is TokenDollar, is TokenVee, is TokenSharp, is TokenSpace -> {
-	    println ("$here: lexeme skipped '$lex'")
+	    if(isVerbose(here)) println ("$here: lexeme skipped '$lex'")
 	    TreeNode<String>("skipped")
 	  }
 	  else -> {
-	    println ("$here: lexeme skipped '$lex'")
+	    if(isVerbose(here)) println ("$here: lexeme skipped '$lex'")
 	    TreeNode<String>("skipped")
 	  }
        }
@@ -139,8 +139,8 @@ fun provideBlockCurrentTreeNode () : TreeNode<String> {
 // <BlockCurrent> ::= <TreeMeta> <TreeText>
 
     val tree = TreeNode<String> ("block-current")
-    val treeMeta = provideBlockMetaTreeNode (here)
-    val treeText = provideBlockTextTreeNode (here)
+    val treeMeta = provideBlockMetaTreeNode ()
+    val treeText = provideBlockTextTreeNode ()
 
     tree.addChild (treeMeta)
     tree.addChild (treeText)
@@ -157,8 +157,8 @@ fun provideBlockGenesisTreeNode () : TreeNode<String> {
 // <BlockGenesis> ::= <TreeMeta> <TreeText>
 
     val tree = TreeNode<String> ("block-genesis")
-    val treeMeta = provideBlockMetaTreeNode (here)
-    val treeText = provideBlockTextTreeNode (here)
+    val treeMeta = provideBlockMetaTreeNode ()
+    val treeText = provideBlockTextTreeNode ()
 
 // Building 
     tree.addChild(treeMeta)
@@ -175,7 +175,7 @@ fun provideBlockMetaTreeNode () : TreeNode<String> {
 // <TreeMeta> ::= TreeMetaRecordList ::= { TreeMetaRecord }
 
     val tree = TreeNode<String> ("block-meta")
-    val nod_l = provideTreeMetaRecordList (here)
+    val nod_l = provideTreeMetaRecordList ()
 
     for (nod in nod_l) {
     	tree.addChild (nod)
@@ -193,7 +193,7 @@ fun provideBlockTextTreeNode () : TreeNode<String> {
 // <TreeText> ::= TreeTextRecordList
 
     val tree = TreeNode<String> ("block-text")
-    val nod_l = provideTreeTextRecordList (here)
+    val nod_l = provideTreeTextRecordList ()
 
     for (nod in nod_l) {
     	tree.addChild (nod)
@@ -208,7 +208,7 @@ fun provideMetaLexemeList () : List<Lexeme> {
     val (here, caller) = hereAndCaller()
     entering(here, caller)
 
-    val lex_l = provideLexemeList (here)
+    val lex_l = provideLexemeList ()
 
     var metaList = mutableListOf<Lexeme>()
     var is_meta = false
@@ -245,7 +245,7 @@ fun provideRecordTextList () : List<String> {
 // Record are rebuilt from Lexemes and Not Parsed Yet
 // Need to interpolate variables
 
-    val lex_l = provideTextLexemeList (here)
+    val lex_l = provideTextLexemeList ()
 
     var rec = ""
     var rec_l = mutableListOf<String>()
@@ -276,7 +276,7 @@ fun provideTextLexemeList () : List<Lexeme> {
     val (here, caller) = hereAndCaller()
     entering(here, caller)
 
-    val lex_l = provideLexemeList (here)
+    val lex_l = provideLexemeList ()
 
     var textList = mutableListOf<Lexeme>()
     var is_meta = false
@@ -316,7 +316,7 @@ fun provideTreeMetaRecordList () : List<TreeNode<String>> {
 //           |            |
 //        file_path   dd/mm/yyyy
 
-    val lex_met_l = provideMetaLexemeList (here)
+    val lex_met_l = provideMetaLexemeList ()
     var lex_met_s = teeStackOfTeeList (lex_met_l)
     
     var tree_l = mutableListOf<TreeNode<String>>()
@@ -327,7 +327,7 @@ fun provideTreeMetaRecordList () : List<TreeNode<String>> {
       	var lex = lex_met_s.pop()
       	if (isDebug(here)) println ("$here: while lex '$lex'")
       	if (lex is TokenSharp) {
-	  var (tree, lex_s) = leafedNodeAndStackOfLexemeMetaStack (lex_met_s, here)
+	  var (tree, lex_s) = leafedNodeAndStackOfLexemeMetaStack (lex_met_s)
 	  tree_l.add(tree)
 	  lex_met_s = lex_s
 	  if (isDebug(here)) println ("$here: while added tree '$tree")	
@@ -351,7 +351,7 @@ fun provideTreeTextRecordList () : List<TreeNode<String>> {
 
 // <TreeTextRecordList> ::= { <TreeTextRecord> }
 
-    val nam_l = provideRecordTextList (here)
+    val nam_l = provideRecordTextList ()
 
     var rec_tl = mutableListOf<TreeNode<String>>()   
     for (nam in nam_l) {
@@ -360,7 +360,7 @@ fun provideTreeTextRecordList () : List<TreeNode<String>> {
     }
 
     val tree_l = rec_tl.toList()
-    if (isTrace(here)) println ("$here: output tree_l '$tree_l'")	
+    if (isTrace(here)) println ("$here: output tree_l '$tree_l'")
 
     exiting(here)
     return tree_l

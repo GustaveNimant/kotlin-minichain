@@ -209,8 +209,8 @@ fun isMetaKeywordValueOfDollarStringDollar (dol_dol: String): Boolean {
   if (isDebug(here)) println("$here: keyword '$keyword'")
   if (isDebug(here)) println("$here: str '$str'")
 
-  val lex = lexemeOfWord (keyword, here)
-  val result = isKeywordWithOfLexeme (lex, here)
+  val lex = lexemeOfWord (keyword)
+  val result = isKeywordWithOfLexeme (lex)
   
   if (isTrace(here)) println("$here: output result $result")
 
@@ -365,7 +365,7 @@ fun nextWordOfString(pos:Int, lin: String): String {
     var word = ""    
     for (c in str){
 	  if (isDebug(here)) println("$here: c '$c'")
-	  if (isTokenOfChar(c, here)) {break}
+	  if (isTokenOfChar(c)) {break}
 	  word = word.plus(c.toString())
     }
 

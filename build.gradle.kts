@@ -4,6 +4,7 @@ buildscript {
     extra["assertjVersion"] = "3.10.0"
     extra["moshiVersion"] = "1.4.0"
     extra["junitVersion"] = "4.12"
+    extra["jacocoVersion"] = "0.8.1"
     extra["mockitoVersion"] = "2.12.0"
     
     repositories {
@@ -31,7 +32,7 @@ java {
 }
 
 jacoco {
- toolVersion = "0.8.1"
+ toolVersion = "${extra["jacocoVersion"]}"
 }
 
 group = "minichain"

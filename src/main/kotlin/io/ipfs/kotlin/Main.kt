@@ -6,23 +6,23 @@ import java.lang.Character.MIN_VALUE as nullChar
 
 fun main(args: Array<String>) {
   val (here, caller) = hereAndCaller()
-  entering(here, "Parser")
+  entering(here, caller)
 
-  ParameterMap = parameterMapOfArguments(args, here)
+  ParameterMap = parameterMapOfArguments(args)
 
   println ("Parameters are:")
   for ( (k, v) in ParameterMap) {
        println ("$k => $v")
   }
 
-  writeLexemeList (here)
+  writeLexemeList ()
 
-  val lex_l = provideLexemeList (here)
+  val lex_l = provideLexemeList ()
   val tree =
-      if (hasKeywordPreviousOfLexemeList(lex_l, here)) {
-        provideBlockCurrentTreeNode(here)
+      if (hasKeywordPreviousOfLexemeList(lex_l)) {
+        provideBlockCurrentTreeNode()
       } else {
-        provideBlockGenesisTreeNode(here)
+        provideBlockGenesisTreeNode()
       }
 
   println("Parser tree:")
