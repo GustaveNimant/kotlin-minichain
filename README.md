@@ -2,7 +2,8 @@
 
 ## sdkman (in order to install all the needed packages)
 ### installation of sdkman
-    https://sdkman.io/install
+    sudo apt install unzip
+    <https://sdkman.io/install>
     $ curl -s "https://get.sdkman.io" | bash
 
 ### usage of sdkman
