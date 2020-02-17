@@ -1,5 +1,4 @@
-Minichain : A blockchain in kotlin using a fork from (https://github.com/ligi/ipfs-api-kotlin) 
-==========
+# Minichain : A blockchain in kotlin using a fork from (https://github.com/ligi/ipfs-api-kotlin) 
 
 ## sdkman
 ### installation of sdkman
@@ -42,10 +41,12 @@ Minichain : A blockchain in kotlin using a fork from (https://github.com/ligi/ip
 
 ## Compiling
    cd ~/sources/kotlin-minichain
+   
    gradlew build 
 
 ## Running tests
    cd ~/sources/kotlin-minichain
+   
    gradlew test 
 
 ## License 
