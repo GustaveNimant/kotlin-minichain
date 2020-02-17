@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="io.ipfs.kotlin.TestRepo" tests="4" skipped="0" failures="0" errors="0" timestamp="2020-02-16T16:40:12" hostname="iabloko" time="0.102">
+<testsuite name="io.ipfs.kotlin.TestRepo" tests="4" skipped="0" failures="0" errors="0" timestamp="2020-02-17T12:19:06" hostname="iabloko" time="0.08">
   <properties/>
-  <testcase name="testEmptyGC" classname="io.ipfs.kotlin.TestRepo" time="0.085"/>
-  <testcase name="testGC" classname="io.ipfs.kotlin.TestRepo" time="0.009"/>
-  <testcase name="testDifferentSeparator" classname="io.ipfs.kotlin.TestRepo" time="0.005"/>
-  <testcase name="testNewGCResponseStyle" classname="io.ipfs.kotlin.TestRepo" time="0.003"/>
+  <testcase name="testEmptyGC" classname="io.ipfs.kotlin.TestRepo" time="0.067"/>
+  <testcase name="testGC" classname="io.ipfs.kotlin.TestRepo" time="0.006"/>
+  <testcase name="testDifferentSeparator" classname="io.ipfs.kotlin.TestRepo" time="0.003"/>
+  <testcase name="testNewGCResponseStyle" classname="io.ipfs.kotlin.TestRepo" time="0.002"/>
   <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[févr. 16, 2020 5:40:12 PM okhttp3.mockwebserver.MockWebServer$2 execute
-INFOS: MockWebServer[49573] starting to accept connections
-févr. 16, 2020 5:40:12 PM okhttp3.mockwebserver.MockWebServer$3 processOneRequest
-INFOS: MockWebServer[49573] received request: GET /repo/gc HTTP/1.1 and responded: HTTP/1.1 200 OK
-févr. 16, 2020 5:40:12 PM okhttp3.mockwebserver.MockWebServer$2 acceptConnections
-INFOS: MockWebServer[49573] done accepting connections: Socket closed
-févr. 16, 2020 5:40:12 PM okhttp3.mockwebserver.MockWebServer$2 execute
-INFOS: MockWebServer[46885] starting to accept connections
-févr. 16, 2020 5:40:12 PM okhttp3.mockwebserver.MockWebServer$3 processOneRequest
-INFOS: MockWebServer[46885] received request: GET /repo/gc HTTP/1.1 and responded: HTTP/1.1 200 OK
-févr. 16, 2020 5:40:12 PM okhttp3.mockwebserver.MockWebServer$2 acceptConnections
-INFOS: MockWebServer[46885] done accepting connections: Socket closed
-févr. 16, 2020 5:40:12 PM okhttp3.mockwebserver.MockWebServer$2 execute
-INFOS: MockWebServer[49481] starting to accept connections
-févr. 16, 2020 5:40:12 PM okhttp3.mockwebserver.MockWebServer$3 processOneRequest
-INFOS: MockWebServer[49481] received request: GET /repo/gc HTTP/1.1 and responded: HTTP/1.1 200 OK
-févr. 16, 2020 5:40:12 PM okhttp3.mockwebserver.MockWebServer$2 acceptConnections
-INFOS: MockWebServer[49481] done accepting connections: Socket closed
-févr. 16, 2020 5:40:12 PM okhttp3.mockwebserver.MockWebServer$2 execute
-INFOS: MockWebServer[37309] starting to accept connections
-févr. 16, 2020 5:40:12 PM okhttp3.mockwebserver.MockWebServer$3 processOneRequest
-INFOS: MockWebServer[37309] received request: GET /repo/gc HTTP/1.1 and responded: HTTP/1.1 200 OK
-févr. 16, 2020 5:40:12 PM okhttp3.mockwebserver.MockWebServer$2 acceptConnections
-INFOS: MockWebServer[37309] done accepting connections: Socket closed
+  <system-err><![CDATA[févr. 17, 2020 1:19:06 PM okhttp3.mockwebserver.MockWebServer$2 execute
+INFOS: MockWebServer[40425] starting to accept connections
+févr. 17, 2020 1:19:06 PM okhttp3.mockwebserver.MockWebServer$3 processOneRequest
+INFOS: MockWebServer[40425] received request: GET /repo/gc HTTP/1.1 and responded: HTTP/1.1 200 OK
+févr. 17, 2020 1:19:07 PM okhttp3.mockwebserver.MockWebServer$2 acceptConnections
+INFOS: MockWebServer[40425] done accepting connections: Socket closed
+févr. 17, 2020 1:19:07 PM okhttp3.mockwebserver.MockWebServer$2 execute
+INFOS: MockWebServer[51769] starting to accept connections
+févr. 17, 2020 1:19:07 PM okhttp3.mockwebserver.MockWebServer$3 processOneRequest
+INFOS: MockWebServer[51769] received request: GET /repo/gc HTTP/1.1 and responded: HTTP/1.1 200 OK
+févr. 17, 2020 1:19:07 PM okhttp3.mockwebserver.MockWebServer$2 acceptConnections
+INFOS: MockWebServer[51769] done accepting connections: Socket closed
+févr. 17, 2020 1:19:07 PM okhttp3.mockwebserver.MockWebServer$2 execute
+INFOS: MockWebServer[35865] starting to accept connections
+févr. 17, 2020 1:19:07 PM okhttp3.mockwebserver.MockWebServer$3 processOneRequest
+INFOS: MockWebServer[35865] received request: GET /repo/gc HTTP/1.1 and responded: HTTP/1.1 200 OK
+févr. 17, 2020 1:19:07 PM okhttp3.mockwebserver.MockWebServer$2 acceptConnections
+INFOS: MockWebServer[35865] done accepting connections: Socket closed
+févr. 17, 2020 1:19:07 PM okhttp3.mockwebserver.MockWebServer$2 execute
+INFOS: MockWebServer[40811] starting to accept connections
+févr. 17, 2020 1:19:07 PM okhttp3.mockwebserver.MockWebServer$3 processOneRequest
+INFOS: MockWebServer[40811] received request: GET /repo/gc HTTP/1.1 and responded: HTTP/1.1 200 OK
+févr. 17, 2020 1:19:07 PM okhttp3.mockwebserver.MockWebServer$2 acceptConnections
+INFOS: MockWebServer[40811] done accepting connections: Socket closed
 ]]></system-err>
 </testsuite>

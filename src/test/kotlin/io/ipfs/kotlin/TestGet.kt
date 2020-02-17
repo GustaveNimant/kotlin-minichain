@@ -7,10 +7,12 @@ import org.junit.Test
 class TestGet : BaseIPFSWebserverTest() {
 
     @Test
-    fun testAddString() {
+    fun testGetString() {
         // setup
         server.enqueue(MockResponse().setBody("result"))
-
+	val (here, caller) = hereAndCaller()
+	entering (here, caller)
+	
         // invoke
         val result = ipfs.get.cat("hash")
 
@@ -20,7 +22,8 @@ class TestGet : BaseIPFSWebserverTest() {
         val executedRequest = server.takeRequest()
         assertThat(executedRequest.path).startsWith("/cat/hash")
 
-println ("result $result")	
+	if(isTrace(here)) println ("$here: output result $result")
+	exiting (here)
     }
 
 }

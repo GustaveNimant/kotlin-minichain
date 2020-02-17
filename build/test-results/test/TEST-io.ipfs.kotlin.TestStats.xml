@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="io.ipfs.kotlin.TestStats" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-02-16T16:40:12" hostname="iabloko" time="0.011">
+<testsuite name="io.ipfs.kotlin.TestStats" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-02-17T12:19:07" hostname="iabloko" time="0.008">
   <properties/>
-  <testcase name="testBandWidthStats" classname="io.ipfs.kotlin.TestStats" time="0.011"/>
+  <testcase name="testBandWidthStats" classname="io.ipfs.kotlin.TestStats" time="0.008"/>
   <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[févr. 16, 2020 5:40:12 PM okhttp3.mockwebserver.MockWebServer$2 execute
-INFOS: MockWebServer[34617] starting to accept connections
-févr. 16, 2020 5:40:12 PM okhttp3.mockwebserver.MockWebServer$3 processOneRequest
-INFOS: MockWebServer[34617] received request: GET /stats/bw HTTP/1.1 and responded: HTTP/1.1 200 OK
-févr. 16, 2020 5:40:12 PM okhttp3.mockwebserver.MockWebServer$2 acceptConnections
-INFOS: MockWebServer[34617] done accepting connections: Socket closed
+  <system-err><![CDATA[févr. 17, 2020 1:19:07 PM okhttp3.mockwebserver.MockWebServer$2 execute
+INFOS: MockWebServer[50983] starting to accept connections
+févr. 17, 2020 1:19:07 PM okhttp3.mockwebserver.MockWebServer$3 processOneRequest
+INFOS: MockWebServer[50983] received request: GET /stats/bw HTTP/1.1 and responded: HTTP/1.1 200 OK
+févr. 17, 2020 1:19:07 PM okhttp3.mockwebserver.MockWebServer$2 acceptConnections
+INFOS: MockWebServer[50983] done accepting connections: Socket closed
 ]]></system-err>
 </testsuite>

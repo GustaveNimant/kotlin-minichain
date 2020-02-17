@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="io.ipfs.kotlin.TestPins" tests="2" skipped="0" failures="0" errors="0" timestamp="2020-02-16T16:40:12" hostname="iabloko" time="0.25">
+<testsuite name="io.ipfs.kotlin.TestPins" tests="2" skipped="0" failures="0" errors="0" timestamp="2020-02-17T12:19:06" hostname="iabloko" time="0.193">
   <properties/>
-  <testcase name="testAddPinFail" classname="io.ipfs.kotlin.TestPins" time="0.241"/>
-  <testcase name="testAddPin" classname="io.ipfs.kotlin.TestPins" time="0.009"/>
+  <testcase name="testAddPinFail" classname="io.ipfs.kotlin.TestPins" time="0.19"/>
+  <testcase name="testAddPin" classname="io.ipfs.kotlin.TestPins" time="0.003"/>
   <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[févr. 16, 2020 5:40:12 PM okhttp3.mockwebserver.MockWebServer$2 execute
-INFOS: MockWebServer[44115] starting to accept connections
-févr. 16, 2020 5:40:12 PM okhttp3.mockwebserver.MockWebServer$3 processOneRequest
-INFOS: MockWebServer[44115] received request: GET /pin/add/foo HTTP/1.1 and responded: HTTP/1.1 200 OK
-févr. 16, 2020 5:40:12 PM okhttp3.mockwebserver.MockWebServer$2 acceptConnections
-INFOS: MockWebServer[44115] done accepting connections: Socket closed
-févr. 16, 2020 5:40:12 PM okhttp3.mockwebserver.MockWebServer$2 execute
-INFOS: MockWebServer[58529] starting to accept connections
-févr. 16, 2020 5:40:12 PM okhttp3.mockwebserver.MockWebServer$3 processOneRequest
-INFOS: MockWebServer[58529] received request: GET /pin/add/QmPFDyWdL6yjz92jdc6bzWXHKVvydAhgTzhefSmmkDXzSZ HTTP/1.1 and responded: HTTP/1.1 200 OK
-févr. 16, 2020 5:40:12 PM okhttp3.mockwebserver.MockWebServer$2 acceptConnections
-INFOS: MockWebServer[58529] done accepting connections: Socket closed
+  <system-err><![CDATA[févr. 17, 2020 1:19:06 PM okhttp3.mockwebserver.MockWebServer$2 execute
+INFOS: MockWebServer[35329] starting to accept connections
+févr. 17, 2020 1:19:06 PM okhttp3.mockwebserver.MockWebServer$3 processOneRequest
+INFOS: MockWebServer[35329] received request: GET /pin/add/foo HTTP/1.1 and responded: HTTP/1.1 200 OK
+févr. 17, 2020 1:19:06 PM okhttp3.mockwebserver.MockWebServer$2 acceptConnections
+INFOS: MockWebServer[35329] done accepting connections: Socket closed
+févr. 17, 2020 1:19:06 PM okhttp3.mockwebserver.MockWebServer$2 execute
+INFOS: MockWebServer[45431] starting to accept connections
+févr. 17, 2020 1:19:06 PM okhttp3.mockwebserver.MockWebServer$3 processOneRequest
+INFOS: MockWebServer[45431] received request: GET /pin/add/QmPFDyWdL6yjz92jdc6bzWXHKVvydAhgTzhefSmmkDXzSZ HTTP/1.1 and responded: HTTP/1.1 200 OK
+févr. 17, 2020 1:19:06 PM okhttp3.mockwebserver.MockWebServer$2 acceptConnections
+INFOS: MockWebServer[45431] done accepting connections: Socket closed
 ]]></system-err>
 </testsuite>

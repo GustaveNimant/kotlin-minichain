@@ -11,11 +11,16 @@ class TestAdd :BaseIPFSWebserverTest() {
 
     @Test
     fun testAddString() {
+      val (here, caller) = hereAndCaller()
+      entering (here, caller)
+      
         // setup
         server.enqueue(MockResponse().setBody("{\"Hash\":\"hashprobe\",\"Name\":\"nameprobe\"}"))
 
         // invoke
         val addString = ipfs.add.string("foo")
+
+	if (isVerbose(here)) println ("in $here: addString $addString")
 
         // assert
         assertThat(addString.Hash).isEqualTo("hashprobe")
@@ -24,6 +29,7 @@ class TestAdd :BaseIPFSWebserverTest() {
         val executedRequest = server.takeRequest();
         assertThat(executedRequest.path).startsWith("/add")
 
+	exiting (here)
     }
 
     @Test
