@@ -7,10 +7,10 @@
  $ curl -s "https://get.sdkman.io" | bash
 
 ### usage of sdkman
-*  sdk list package
-*  sdk uninstall package x.y.z
-*  sdk install package
-*  sdk use gradle package x.y.z
+*  sdk list _package_
+*  sdk uninstall _package_ x.y.z
+*  sdk install _package_
+*  sdk use gradle _package_ x.y.z
 *  sdk flush archives
 
 ## gradle
