@@ -7,10 +7,12 @@ import org.junit.Test
 class TestInfo : BaseIPFSWebserverTest() {
 
     @Test
+
     fun testInfo() {
-    val (here, caller) = hereAndCaller()
-    entering(here, caller)
-    
+	val (here, caller) = hereAndCaller()
+	entering(here, caller)
+
+//	systemProperty args = System.getProperty("args")  
         // setup
 	val setup = "{\"Version\":\"0.4.2\",\"Commit\":\"1654bbf\",\"Repo\":\"3\"}\n"
 	if(isTrace(here)) println ("$here: input setup $setup")
@@ -21,13 +23,13 @@ class TestInfo : BaseIPFSWebserverTest() {
 	if(isVerbose(here)) println ("$here: addString $addString")
 
 	assertThat(addString).isNotNull()
-        assertThat(addString!!.Version).isEqualTo("0.4.2")
-        assertThat(addString.Commit).isEqualTo("1654bbf")
-        assertThat(addString.Repo).isEqualTo("3")
+	assertThat(addString!!.Version).isEqualTo("0.4.2")
+	assertThat(addString.Commit).isEqualTo("1654bbf")
+	assertThat(addString.Repo).isEqualTo("3")
 
         val executedRequest = server.takeRequest()
         assertThat(executedRequest.path).isEqualTo("/version")
 
-    exiting(here)
+	exiting(here)
     }
 }

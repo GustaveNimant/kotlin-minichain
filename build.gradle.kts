@@ -43,17 +43,20 @@ repositories {
 }
 
 dependencies {
-	implementation("org.jetbrains.kotlin:kotlin-stdlib:${extra["kotlinVersion"]}")
-	implementation("com.squareup.moshi:moshi:${extra["moshiVersion"]}")
-	implementation("com.squareup.okhttp3:okhttp:${extra["okhttpVersion"]}")
-
-	testImplementation("junit:junit:${extra["junitVersion"]}")
-	testImplementation("org.mockito:mockito-core:${extra["mockitoVersion"]}")
-	testImplementation("com.squareup.okhttp3:mockwebserver:${extra["okhttpVersion"]}")
-	testImplementation("org.assertj:assertj-core:${extra["assertjVersion"]}")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:${extra["kotlinVersion"]}")
+    implementation("com.squareup.moshi:moshi:${extra["moshiVersion"]}")
+    implementation("com.squareup.okhttp3:okhttp:${extra["okhttpVersion"]}")
+    
+    testImplementation("junit:junit:${extra["junitVersion"]}")
+    testImplementation("org.mockito:mockito-core:${extra["mockitoVersion"]}")
+    testImplementation("com.squareup.okhttp3:mockwebserver:${extra["okhttpVersion"]}")
+    testImplementation("org.assertj:assertj-core:${extra["assertjVersion"]}")
 }
 
 application {
-    mainClassName = "io.ipfs.kotlin.MainKt"
+    mainClassName = "io.ipfs.kotlin.MainParserKt"
 }
 
+//test {
+//    systemProperty "args", System.getProperty("args")
+//}

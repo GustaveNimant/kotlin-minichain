@@ -22,4 +22,4 @@ META-INF/
 *.bin
 *.exec
 caches-jvm/
-build/
+build/*
