@@ -32,23 +32,21 @@
 *  sdk install kotlin
   
 ## ipfs-api-kotlin
->  git clone https://github.com/ligi/ipfs-api-kotlin.git
+   git clone https://github.com/ligi/ipfs-api-kotlin.git
 
 ## kotlin-minichain
 
->  git clone https://github.com/GustaveNimant/kotlin-minichain.git
+   git clone https://github.com/GustaveNimant/kotlin-minichain.git
   
 ### installation of kotlin-minichain
 
 ## Compiling
->  cd ~/sources/kotlin-minichain
-
->  gradlew build 
+   cd ~/sources/kotlin-minichain
+   gradlew build 
 
 ## Running tests
->  cd ~/sources/kotlin-minichain
-
->  gradlew test 
+   cd ~/sources/kotlin-minichain
+   gradlew test 
 
 ## License 
 
