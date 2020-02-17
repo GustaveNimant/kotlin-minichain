@@ -1,13 +1,10 @@
 # Minichain : A blockchain in kotlin using a fork from (https://github.com/ligi/ipfs-api-kotlin) 
-
+# Linux 
 ## sdkman (in order to install all the needed packages)
 ### installation of sdkman
     sudo apt install unzip
-    <https://sdkman.io/install>
-    $ curl -s "https://get.sdkman.io" | bash
-
-### usage of sdkman
-*  sdk list _package_
+    sudo apt install zip
+    (https://sdkman.io/install)
 *  sdk uninstall _package_ x.y.z
 *  sdk install _package_
 *  sdk use gradle _package_ x.y.z
@@ -38,7 +35,8 @@
 ## java 
 ### installation of java
 *  sdk list java
-*  sdk use java 19.3.0.2.r8-grl (_to be coherent with jacoco_)
+*  sdk install java 19.3.0.2.r8-grl (_to be coherent with jacoco_)
+*  sdk use java 19.3.0.2.r8-grl 
 
 ## kotlin
 ### installation of kotlin
