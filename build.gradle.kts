@@ -1,11 +1,12 @@
 buildscript {
-    extra["kotlinVersion"] = "1.2.70"
-    extra["okhttpVersion"] = "3.11.0"
     extra["assertjVersion"] = "3.10.0"
-    extra["moshiVersion"] = "1.4.0"
-    extra["junitVersion"] = "4.12"
-    extra["jacocoVersion"] = "0.8.1"
+    extra["gradleVersion"]  = "0.20.0"
+    extra["jacocoVersion"]  = "0.8.1"
+    extra["junitVersion"]   = "4.12"
+    extra["kotlinVersion"]  = "1.2.70"
     extra["mockitoVersion"] = "2.12.0"
+    extra["moshiVersion"]   = "1.4.0"
+    extra["okhttpVersion"]  = "3.11.0"
     
     repositories {
         jcenter()
@@ -14,7 +15,7 @@ buildscript {
     dependencies {
         classpath(kotlin("gradle-plugin", version = "${extra["kotlinVersion"]}"))
 	classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${extra["kotlinVersion"]}")
-        classpath("com.github.ben-manes:gradle-versions-plugin:0.20.0")
+        classpath("com.github.ben-manes:gradle-versions-plugin:${extra["gradleVersion"]}")
     }
 }
 

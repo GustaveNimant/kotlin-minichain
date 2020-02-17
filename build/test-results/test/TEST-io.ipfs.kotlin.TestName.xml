@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="io.ipfs.kotlin.TestName" tests="4" skipped="0" failures="0" errors="0" timestamp="2020-02-17T12:19:07" hostname="iabloko" time="0.016">
+<testsuite name="io.ipfs.kotlin.TestName" tests="4" skipped="0" failures="0" errors="0" timestamp="2020-02-17T14:45:12" hostname="iabloko" time="0.017">
   <properties/>
   <testcase name="testPublishFail" classname="io.ipfs.kotlin.TestName" time="0.004"/>
-  <testcase name="testResolveSuccess" classname="io.ipfs.kotlin.TestName" time="0.003"/>
-  <testcase name="testPublishSuccess" classname="io.ipfs.kotlin.TestName" time="0.007"/>
-  <testcase name="testResolveFail" classname="io.ipfs.kotlin.TestName" time="0.002"/>
+  <testcase name="testResolveSuccess" classname="io.ipfs.kotlin.TestName" time="0.004"/>
+  <testcase name="testPublishSuccess" classname="io.ipfs.kotlin.TestName" time="0.006"/>
+  <testcase name="testResolveFail" classname="io.ipfs.kotlin.TestName" time="0.003"/>
   <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[févr. 17, 2020 1:19:07 PM okhttp3.mockwebserver.MockWebServer$2 execute
-INFOS: MockWebServer[57965] starting to accept connections
-févr. 17, 2020 1:19:07 PM okhttp3.mockwebserver.MockWebServer$3 processOneRequest
-INFOS: MockWebServer[57965] received request: GET /name/publish/hashname HTTP/1.1 and responded: HTTP/1.1 200 OK
-févr. 17, 2020 1:19:07 PM okhttp3.mockwebserver.MockWebServer$2 acceptConnections
-INFOS: MockWebServer[57965] done accepting connections: Socket closed
-févr. 17, 2020 1:19:07 PM okhttp3.mockwebserver.MockWebServer$2 execute
-INFOS: MockWebServer[42889] starting to accept connections
-févr. 17, 2020 1:19:07 PM okhttp3.mockwebserver.MockWebServer$3 processOneRequest
-INFOS: MockWebServer[42889] received request: GET /name/resolve/somehash HTTP/1.1 and responded: HTTP/1.1 200 OK
-févr. 17, 2020 1:19:07 PM okhttp3.mockwebserver.MockWebServer$2 acceptConnections
-INFOS: MockWebServer[42889] done accepting connections: Socket closed
-févr. 17, 2020 1:19:07 PM okhttp3.mockwebserver.MockWebServer$2 execute
-INFOS: MockWebServer[53633] starting to accept connections
-févr. 17, 2020 1:19:07 PM okhttp3.mockwebserver.MockWebServer$3 processOneRequest
-INFOS: MockWebServer[53633] received request: GET /name/publish/hashvalue HTTP/1.1 and responded: HTTP/1.1 200 OK
-févr. 17, 2020 1:19:07 PM okhttp3.mockwebserver.MockWebServer$2 acceptConnections
-INFOS: MockWebServer[53633] done accepting connections: Socket closed
-févr. 17, 2020 1:19:07 PM okhttp3.mockwebserver.MockWebServer$2 execute
-INFOS: MockWebServer[49205] starting to accept connections
-févr. 17, 2020 1:19:07 PM okhttp3.mockwebserver.MockWebServer$3 processOneRequest
-INFOS: MockWebServer[49205] received request: GET /name/resolve/somehash HTTP/1.1 and responded: HTTP/1.1 200 OK
-févr. 17, 2020 1:19:07 PM okhttp3.mockwebserver.MockWebServer$2 acceptConnections
-INFOS: MockWebServer[49205] done accepting connections: Socket closed
+  <system-err><![CDATA[févr. 17, 2020 3:45:12 PM okhttp3.mockwebserver.MockWebServer$2 execute
+INFOS: MockWebServer[55511] starting to accept connections
+févr. 17, 2020 3:45:12 PM okhttp3.mockwebserver.MockWebServer$3 processOneRequest
+INFOS: MockWebServer[55511] received request: GET /name/publish/hashname HTTP/1.1 and responded: HTTP/1.1 200 OK
+févr. 17, 2020 3:45:12 PM okhttp3.mockwebserver.MockWebServer$2 acceptConnections
+INFOS: MockWebServer[55511] done accepting connections: Socket closed
+févr. 17, 2020 3:45:12 PM okhttp3.mockwebserver.MockWebServer$2 execute
+INFOS: MockWebServer[57139] starting to accept connections
+févr. 17, 2020 3:45:12 PM okhttp3.mockwebserver.MockWebServer$3 processOneRequest
+INFOS: MockWebServer[57139] received request: GET /name/resolve/somehash HTTP/1.1 and responded: HTTP/1.1 200 OK
+févr. 17, 2020 3:45:12 PM okhttp3.mockwebserver.MockWebServer$2 acceptConnections
+INFOS: MockWebServer[57139] done accepting connections: Socket closed
+févr. 17, 2020 3:45:12 PM okhttp3.mockwebserver.MockWebServer$2 execute
+INFOS: MockWebServer[48471] starting to accept connections
+févr. 17, 2020 3:45:12 PM okhttp3.mockwebserver.MockWebServer$3 processOneRequest
+INFOS: MockWebServer[48471] received request: GET /name/publish/hashvalue HTTP/1.1 and responded: HTTP/1.1 200 OK
+févr. 17, 2020 3:45:12 PM okhttp3.mockwebserver.MockWebServer$2 acceptConnections
+INFOS: MockWebServer[48471] done accepting connections: Socket closed
+févr. 17, 2020 3:45:12 PM okhttp3.mockwebserver.MockWebServer$2 execute
+INFOS: MockWebServer[42203] starting to accept connections
+févr. 17, 2020 3:45:12 PM okhttp3.mockwebserver.MockWebServer$3 processOneRequest
+INFOS: MockWebServer[42203] received request: GET /name/resolve/somehash HTTP/1.1 and responded: HTTP/1.1 200 OK
+févr. 17, 2020 3:45:12 PM okhttp3.mockwebserver.MockWebServer$2 acceptConnections
+INFOS: MockWebServer[42203] done accepting connections: Socket closed
 ]]></system-err>
 </testsuite>

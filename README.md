@@ -15,12 +15,16 @@
 
 ## gradle
 ### installation of gradle
+  sdk list gradle
+  sdk install gradle 6.1.1
 
-  sdk install gradle
+### build.gradle.kts
+(https://github.com/GustaveNimant/kotlin-minichain/blob/master/build.gradle.kts)
 
 ## java 
 ### installation of java
-  sdk use java 19.3.0.2.r8-grl  (to be coherent with jacoco)
+  sdk list java
+  sdk use java 19.3.0.2.r8-grl (to be coherent with jacoco)
 
 ## kotlin
 ### installation of kotlin
@@ -30,7 +34,7 @@
 ## ipfs-api-kotlin
  (https://github.com/ligi/ipfs-api-kotlin) [ ligi / ipfs-api-kotlin ]
   git clone https://github.com/ligi/ipfs-api-kotlin.git
-  
+
 ## kotlin-minichain
 
   git clone https://github.com/GustaveNimant/kotlin-minichain.git
