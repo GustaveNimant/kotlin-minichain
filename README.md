@@ -51,18 +51,18 @@
 
 ## code structure
 
-*kotlin-minichain
-*  | src
-*     | main
-*       | kotlin
-*         | io
-*           | ipfs
-*             | kotlin
-*     | test
-*       | kotlin
-*         | io
-*           | ipfs
-*             | kotlin
+ kotlin-minichain
+   | src
+      | main
+        | kotlin
+          | io
+            | ipfs
+              | kotlin
+      | test
+        | kotlin
+          | io
+            | ipfs
+              | kotlin
 
 ### installation of kotlin-minichain
 
