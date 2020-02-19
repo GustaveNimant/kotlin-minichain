@@ -29,7 +29,7 @@ class Name(val ipfs: IPFSConnection) {
         val resultString = ipfs.callCmd("name/resolve/$hash").use { it.string() }
 
         return when {
-            resultString == null -> null
+// EA: 19 Feb 2020 : always false           resultString == null -> null
             resultString.contains("Path") -> pathAdapter.fromJson(resultString)?.Path
             else -> {
                 ipfs.setErrorByJSON(resultString)

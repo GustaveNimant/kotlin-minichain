@@ -140,6 +140,17 @@ fun hereAndCaller(): Pair<String, String> {
     return result
 }
 
+fun hostNameFromParameterMap(): String {
+    val result = 
+	if (ParameterMap.containsKey("host")) {
+	   (ParameterMap.getValue("host")).first()
+    }
+    else {
+	"127.0.0.1"
+    }
+    return result 
+}
+
 fun inputRead(): String {
     val (here, caller) = hereAndCaller()
     entering(here, caller)
@@ -413,6 +424,15 @@ fun nextWordOfEndCharOfString(del: Char, str: String): String {
 fun notYetImplemented(fun_nam: String){
     throw Exception("Error: function '$fun_nam' is not yet implemented")}
 
+fun outputWrite(fileName: String, content: String) {
+    val (here, caller) = hereAndCaller()
+    entering(here, caller)
+	
+    File(fileName).bufferedWriter().use { out -> out.write(content)}
+    
+    exiting(here)
+}
+
 fun parameterMapOfArguments(args: Array<String>): MutableMap<String, MutableList<String>> {
   val (here, caller) = hereAndCaller()
   entering(here, caller)
@@ -423,8 +443,13 @@ fun parameterMapOfArguments(args: Array<String>): MutableMap<String, MutableList
   val arg_siz = args.size
   val str = stringOfGlueOfStringList (" ", args.toList())
 
+  if (arg_siz == 0) {
+      exiting(here)
+      return mutableMapOf ()
+  }
   if (arg_siz < 2) {
-    fatalErrorPrint("More than 1 argument", "Arguments are '$str'", "Add an argument", "main") 
+      exiting(here)
+      return mutableMapOf ()
   }
 
 /*
@@ -471,13 +496,15 @@ fun parameterMapOfArguments(args: Array<String>): MutableMap<String, MutableList
    return ParameterMap
 }
 
-fun outputWrite(fileName: String, content: String) {
-    val (here, caller) = hereAndCaller()
-    entering(here, caller)
-	
-    File(fileName).bufferedWriter().use { out -> out.write(content)}
-    
-    exiting(here)
+fun portFromParameterMap(): String {
+    val result = 
+    if (ParameterMap.containsKey("port")) { 
+          ParameterMap.getValue("port").first()
+    }
+    else {
+	"5001"
+    }
+    return result 
 }
 
 fun printStringList (str_l: List<String>) {

@@ -11,7 +11,10 @@ import okhttp3.Request
 // The extension functions are in companion objects.
 // https://square.github.io/okhttp/upgrading_to_okhttp_4/#extension-functions
 import okhttp3.Headers.Companion.toHeaders
+//import okhttp3.ByteArray.Companion.toRequestBody
 import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.RequestBody.Companion.toRequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
 
 import java.io.File
 import java.net.URLEncoder
@@ -64,16 +67,18 @@ class Add(val ipfs: IPFSConnection) {
 	val headers = mapH.toHeaders()
 	
 	if (file.isDirectory) {
-	    val url = ("application/x-directory").toMediaType()
-            // add directory
-            builder.addPart(headers, RequestBody.create(url, ""))
-        // add files and subdirectories
-        for (f: File in file.listFiles()) {
-            addFile(builder, f, f.name, filename + "/" + f.name)
-        }
+	    // add directory
+	    val mediaType = ("application/x-directory").toMediaType()
+  	    val request = "".toRequestBody(mediaType)
+            builder.addPart(headers, request)
+            // add files and subdirectories
+            for (f: File in file.listFiles()) {
+		addFile(builder, f, f.name, filename + "/" + f.name)
+            }
 	} else {
-	    val url = ("application/octet-stream").toMediaType()
-            builder.addPart(headers, RequestBody.create(url, file))
+	    val mediaType = ("application/octet-stream").toMediaType()
+	    val request = file.asRequestBody(mediaType)
+            builder.addPart(headers, request)
         }
 	
 	exiting(here)
@@ -82,9 +87,9 @@ class Add(val ipfs: IPFSConnection) {
     fun string(text: String, name: String = "string", filename: String = name): NamedHash {
 	
         return addGeneric {
-	    val url = ("application/octet-stream").toMediaType()
-            val body = RequestBody.create(url, text)
-            it.addFormDataPart(name, filename, body)
+	    val mediaType = ("application/octet-stream").toMediaType()
+	    val request = text.toRequestBody(mediaType)
+            it.addFormDataPart(name, filename, request)
         }.last()
         // there can be only one
 	

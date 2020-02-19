@@ -1,10 +1,17 @@
 package io.ipfs.kotlin.defaults
 
 import io.ipfs.kotlin.IPFS
+import io.ipfs.kotlin.*
 import io.ipfs.kotlin.IPFSConfiguration
 
 val localIPFSConfig by lazy {
-    IPFSConfiguration("http://127.0.0.1:5001/api/v0/", createOKHTTP(), createMoshi())
+    val host = hostNameFromParameterMap()
+    val port = portFromParameterMap()
+    val url = host + ":" + port
+
+    println("url $url")
+
+    IPFSConfiguration("http://$url/api/v0/", createOKHTTP(), createMoshi())
 }
 
 open class LocalIPFS : IPFS(localIPFSConfig)
