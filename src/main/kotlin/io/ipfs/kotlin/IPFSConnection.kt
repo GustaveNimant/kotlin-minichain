@@ -2,8 +2,11 @@ package io.ipfs.kotlin
 
 import com.squareup.moshi.JsonAdapter
 import io.ipfs.kotlin.model.MessageWithCode
+
 import okhttp3.Request
 import okhttp3.ResponseBody
+
+// EA : 18 Feb 2020 : body()!! => body!!
 
 open class IPFSConnection(val config: IPFSConfiguration) {
 
@@ -18,7 +21,8 @@ open class IPFSConnection(val config: IPFSConfiguration) {
                 .url(config.base_url + cmd)
                 .build()
 
-        return config.okHttpClient.newCall(request).execute().body()!!
+	val result = config.okHttpClient.newCall(request).execute().body!! 
+        return result
     }
 
     fun setErrorByJSON(jsonString: String) {
