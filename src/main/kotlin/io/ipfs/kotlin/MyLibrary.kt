@@ -1,5 +1,5 @@
 package io.ipfs.kotlin
-
+import kotlin.system.exitProcess
 import java.io.File
 import java.io.InputStream
 import java.lang.Character.MIN_VALUE as nullChar
@@ -141,6 +141,41 @@ fun functionName(): String {
     val sta = Thread.currentThread().stackTrace[2]
     val str = sta.getMethodName()
     return str	
+}
+
+fun helpListOfStringList(str_l: List<String>): List<String> {
+    var hel_l = mutableListOf("list of commands:")
+    
+    for (str in str_l) {
+	var helps = when (str) {
+	    "run" -> listOf(
+		"gradlew run --args=\"-debug all\"",
+		"gradlew run --args=\"-verbose all\"",
+		"gradlew run --args=\"-trace all\"")
+	    "compile" -> listOf("gradlew -q build --info")
+	    "url" -> listOf("gradlew run --args=\"-port 5122 -verbose all\"")
+	    else -> listOf(
+		"gradlew -q build --info",
+		"gradlew run --args=\"-debug all\"",
+		"gradlew run --args=\"-verbose all\"",
+		"gradlew run --args=\"-trace all\"",
+		"gradlew run --args=\"-port 5122 -verbose all\""
+	    )
+	    
+	}
+	hel_l.addAll(helps)
+    }
+    return hel_l
+}
+
+fun helpFromParameters() {
+    if (ParameterMap.containsKey("help"))
+    { 
+      val str_l = ParameterMap.getValue("help")
+      val hel_l = helpListOfStringList(str_l)
+      printStringList (hel_l)
+      exitProcess(0)
+    }
 }
 
 fun hereAndCaller(): Pair<String, String> {

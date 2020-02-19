@@ -18,6 +18,8 @@ fun main(args: Array<String>) {
 	  println ("$k => $v")
       }
   }
+
+  helpFromParameters()
   
   try {
       val multihash = LocalIPFS().add.string("test-string").Hash
