@@ -8,6 +8,10 @@ data class Url (val host: String, val port:String) {
     fun isEmpty (): Boolean {
 	return host.isNullOrEmpty() || port.isNullOrEmpty()
     }
+
+    override fun toString (): String {
+       return host + ":" + port
+    }
 }
 
 object urlRegister {
@@ -21,7 +25,7 @@ object urlRegister {
          value = url
      }
      
-     fun retrieve (): Url {
+     fun retrieve(): Url {
          val (here, caller) = hereAndCaller()
     	 entering(here, caller)
 

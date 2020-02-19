@@ -9,13 +9,11 @@ val localIPFSConfig by lazy {
     val caller = callerName()
     entering (here, caller)
     
-    val host = hostNameFromParameterMap()
-    val port = portNameFromParameterMap()
-    val url = host + ":" + port
+    val url = provideUrl() 
+    val str = url.toString()
+    println("$here : url $str")
 
-    println("$here : url $url")
-
-    val result = IPFSConfiguration("http://$url/api/v0/", createOKHTTP(), createMoshi())
+    val result = IPFSConfiguration("http://$str/api/v0/", createOKHTTP(), createMoshi())
 
     if(isVerbose(here)) println("$here : output result $result")
     exiting (here)
