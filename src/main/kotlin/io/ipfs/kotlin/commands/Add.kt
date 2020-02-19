@@ -4,8 +4,12 @@ import io.ipfs.kotlin.*
 import com.squareup.moshi.JsonAdapter
 import io.ipfs.kotlin.IPFSConnection
 import io.ipfs.kotlin.model.NamedHash
-import okhttp3.*
-// The extension functions are in companion objects:
+
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.Request
+// The extension functions are in companion objects.
+// https://square.github.io/okhttp/upgrading_to_okhttp_4/#extension-functions
 import okhttp3.Headers.Companion.toHeaders
 import okhttp3.MediaType.Companion.toMediaType
 
