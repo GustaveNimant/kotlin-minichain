@@ -1,6 +1,6 @@
-package io.ipfs.kotlin.main
+package io.ipfs.kotlin
 
-import io.ipfs.kotlin.*
+//import io.ipfs.kotlin.*
 import io.ipfs.kotlin.defaults.LocalIPFS
 import java.io.File
 import java.util.Stack
@@ -13,7 +13,7 @@ fun main(args: Array<String>) {
   ParameterMap = parameterMapOfArguments(args)
 
   if (ParameterMap.size > 0) {
-      println ("Parameters are:")
+      println ("Parameter lists are:")
       for ( (k, v) in ParameterMap) {
 	  println ("$k => $v")
       }

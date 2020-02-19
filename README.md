@@ -51,8 +51,8 @@
 
 ## code structure
 
- kotlin-minichain
-   | src
+|-- kotlin-minichain
+|--- src
       | main
         | kotlin
           | io

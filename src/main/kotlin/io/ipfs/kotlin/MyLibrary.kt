@@ -1,9 +1,10 @@
 package io.ipfs.kotlin
 
 import java.io.File
+import java.io.InputStream
+import java.lang.Character.MIN_VALUE as nullChar
 import java.util.Base64
 import java.util.Stack
-import java.lang.Character.MIN_VALUE as nullChar
 
 class MyLibrary
 
@@ -65,10 +66,27 @@ fun <T> teeStackFromTeeOfTeeStack (tee:T, tee_s: Stack<T>): Stack<T> {
     return tee_s
 }
 
+fun byteArrayOfFilePath(fil_p: String): ByteArray {
+    val (here, caller) = hereAndCaller()
+    entering(here, caller)
+
+    val file = File(fil_p)
+    val result:ByteArray = file.readBytes()
+    
+    exiting(here)
+    return result
+}
+
 fun callerName(): String {
-    val sta = Thread.currentThread().stackTrace[3]
-    val str = sta.getMethodName()
-    return str	
+    val sta = Thread.currentThread().stackTrace
+    val result = 
+	try {
+	    (sta[3]).getMethodName()
+	}
+    catch (e: ArrayIndexOutOfBoundsException) {
+	"None"}
+
+    return result	
 }
 
 fun characterStackOfString (str: String) : Stack<Char> {
@@ -126,39 +144,22 @@ fun functionName(): String {
 }
 
 fun hereAndCaller(): Pair<String, String> {
-    val sta = Thread.currentThread().stackTrace
-    val here = (sta[2]).getMethodName()
-
-    val caller = 
-    try {
-      (sta[3]).getMethodName()
-    }
-    catch (e: ArrayIndexOutOfBoundsException) {
-	"None"}
+    val caller = callerName()
+    val here = functionName()
 
     val result = Pair(here, caller) 
     return result
 }
 
-fun hostNameFromParameterMap(): String {
-    val result = 
-	if (ParameterMap.containsKey("host")) {
-	   (ParameterMap.getValue("host")).first()
-    }
-    else {
-	"127.0.0.1"
-    }
-    return result 
-}
-
-fun inputRead(): String {
+fun inputStreamOfFilePath(fil_p: String): InputStream {
     val (here, caller) = hereAndCaller()
     entering(here, caller)
-	
-    val str = readLine().toString()
+
+    val file = File(fil_p)
+    val result:InputStream = file.inputStream()
     
     exiting(here)
-    return str
+    return result
 }
 
 fun isAlphabeticalOfChar(cha: Char): Boolean {
@@ -192,6 +193,18 @@ fun isDebug(here:String): Boolean {
     return result 
   }
   else {return false}
+}
+
+fun isIntegerOfString(str: String): Boolean {
+    val (here, caller) = hereAndCaller()
+    entering(here, caller)
+    
+    val pattern = Regex("[0-9][0-9]*")
+    if (isTrace(here)) println("$here: input str '$str'")
+    val result = pattern.matches(str)
+
+    exiting(here + " with result '$result'")
+    return result
 }
 
 fun isLoop(here:String): Boolean {
@@ -496,17 +509,6 @@ fun parameterMapOfArguments(args: Array<String>): MutableMap<String, MutableList
    return ParameterMap
 }
 
-fun portFromParameterMap(): String {
-    val result = 
-    if (ParameterMap.containsKey("port")) { 
-          ParameterMap.getValue("port").first()
-    }
-    else {
-	"5001"
-    }
-    return result 
-}
-
 fun printStringList (str_l: List<String>) {
     val content = stringOfGlueOfStringList ("\n", str_l)
 
@@ -527,7 +529,7 @@ fun provideAnyFileNameOfWhat(what: String): String {
         else -> what+".txt"
       }
     println("$here: enter file name for '$what'. Default '$anyFileName'")
-    val any_f = inputRead()
+    val any_f = standardInputRead()
     if (! (any_f.isNullOrBlank() || any_f.equals("null"))) {
         anyFileName = any_f
     }
@@ -535,6 +537,28 @@ fun provideAnyFileNameOfWhat(what: String): String {
 
     exiting(here)
     return anyFileName
+}
+
+fun standardInputRead(): String {
+    val (here, caller) = hereAndCaller()
+    entering(here, caller)
+	
+    val str = readLine().toString()
+    
+    exiting(here)
+    return str
+}
+
+fun stringListOfFilePath(fil_p: String): List<String> {
+    val (here, caller) = hereAndCaller()
+    entering(here, caller)
+
+    val file = File(fil_p)
+    val bufferedReader = file.bufferedReader()
+    val result:List<String> = bufferedReader.readLines()
+    
+    exiting(here)
+    return result
 }
 
 fun stringOfGlueOfStringList (glue: String, str_l: List<String>) : String {
@@ -545,6 +569,17 @@ fun stringOfGlueOfStringList (glue: String, str_l: List<String>) : String {
 fun stringOfStringList (str_l: List<String>) : String {
  val str = str_l.fold("", {acc, s -> acc + s })
  return str 
+}
+
+fun stringReadOfFilePath(fil_p: String): String {
+    val (here, caller) = hereAndCaller()
+    entering(here, caller)
+
+    val file = File(fil_p)
+    val result: String = file.readText() 
+    
+    exiting(here)
+    return result
 }
 
 fun wordListOfString (str: String): List<String> {

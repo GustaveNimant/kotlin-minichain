@@ -56,7 +56,7 @@ dependencies {
 }
 
 application {
-    mainClassName = "io.ipfs.kotlin.main.MainIPFSKt"
+    mainClassName = "io.ipfs.kotlin.MainIPFSKt"
 }
 
 //test {
