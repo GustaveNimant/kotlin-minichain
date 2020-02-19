@@ -12,11 +12,13 @@ fun main(args: Array<String>) {
 
   ParameterMap = parameterMapOfArguments(args)
 
-  println ("Parameters are:")
-  for ( (k, v) in ParameterMap) {
-       println ("$k => $v")
+  if (ParameterMap.size > 0) {
+      println ("Parameters are:")
+      for ( (k, v) in ParameterMap) {
+	  println ("$k => $v")
+      }
   }
-
+  
   try {
       val multihash = LocalIPFS().add.string("test-string").Hash
       println("$here: multihash $multihash")
