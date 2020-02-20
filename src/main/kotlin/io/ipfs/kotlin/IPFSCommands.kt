@@ -4,6 +4,7 @@ fun ipfsExecuteOfWordList(wor_l: List<String>) {
     val (here, caller) = hereAndCaller()
     entering(here, caller)
 
+// Ex.: -ipfs add truc much
     var done = false
     if(isTrace(here)) println ("$here: input wor_l '$wor_l'")
     var wor_s = wordStackOfWordList(wor_l)
@@ -16,8 +17,14 @@ fun ipfsExecuteOfWordList(wor_l: List<String>) {
 	    
 	    when (wor_3) {
 		"add" -> {
-		    val path = wor_s.pop()
-		    val hash = provideIpfsHash(path)
+		    val word = 
+			if (wor_s.size > 1) {
+			    (stringOfGlueOfWordStack(" ", wor_s))
+			}
+		    else {
+			wor_s.toString()
+		    }
+		    val hash = provideIpfsHash(word)
 		    println("$here: hash $hash")
 		}
 		else -> {

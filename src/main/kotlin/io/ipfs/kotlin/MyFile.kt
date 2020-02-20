@@ -25,6 +25,18 @@ fun inputStreamOfFilePath(fil_p: String): InputStream {
     return result
 }
 
+fun isFilePathOfWord(wor: String): Boolean {
+    val (here, caller) = hereAndCaller()
+    entering(here, caller)
+
+    val pattern = Regex("""^(/(\.)?\w[a-zA-Z_0-9]*)(/([a-zA-Z_0-9]+))*\.\w+$""")
+    if (isTrace(here)) println("$here: input wor '$wor'")
+    val result = pattern.matches(wor)
+
+    exiting(here + " with result '$result'")
+    return result
+}
+
 fun provideAnyFileNameOfWhat(what: String): String {
     val (here, caller) = hereAndCaller()
     entering(here, caller)

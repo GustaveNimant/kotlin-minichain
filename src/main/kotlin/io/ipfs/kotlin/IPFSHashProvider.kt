@@ -36,10 +36,18 @@ fun buildOfPath (path: String): String {
     val (here, caller) = hereAndCaller()
     entering(here, caller)
 
-    val str = stringReadOfFilePath(path)
+    println("$here: input path '$path'")
     
+    val str =
+    if (isFilePathOfWord(path)) {
+	stringReadOfFilePath(path)
+    }
+    else {
+	path
+    }
+
     val result = LocalIPFS().add.string(str).Hash
-    println("$here: result $result")
+    println("$here: output result $result")
     
     exiting(here)
     return result 

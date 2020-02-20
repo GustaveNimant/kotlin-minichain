@@ -564,7 +564,13 @@ fun printStringList (str_l: List<String>) {
 
 fun stringOfGlueOfStringList (glue: String, str_l: List<String>) : String {
  val str = str_l.fold("", {acc, s -> acc + s + glue })
- return str 
+ return str.trim() 
+}
+
+fun stringOfGlueOfWordStack (glue: String, str_s: Stack<String>) : String {
+    val str_l = wordListOfWordStack(str_s).reversed()
+    val str = stringOfGlueOfStringList (glue, str_l)
+    return str.trim() 
 }
 
 fun stringOfStringList (str_l: List<String>) : String {
@@ -579,6 +585,12 @@ fun wordListOfString (str: String): List<String> {
     val result = trimedString.split(regex)
 
     return result
+}
+
+fun wordListOfWordStack (wor_s: Stack<String>): List<String> {
+    var wor_l = mutableListOf("")
+    wor_s.forEach {w -> wor_l.add (w) }
+    return wor_l
 }
 
 fun wordStackOfString (lin: String) : Stack<String> {
