@@ -17,12 +17,16 @@ open class IPFSConnection(val config: IPFSConfiguration) {
     }
 
     fun callCmd(cmd: String): ResponseBody {
+	val (here, caller) = hereAndCaller()
+	entering (here, caller)
+	
         val request = Request.Builder()
                 .url(config.base_url + cmd)
                 .build()
-
-	val result = config.okHttpClient.newCall(request).execute().body!! 
-        return result
+	    
+	    val result = config.okHttpClient.newCall(request).execute().body!!
+	    exiting (here)
+            return result
     }
 
     fun setErrorByJSON(jsonString: String) {

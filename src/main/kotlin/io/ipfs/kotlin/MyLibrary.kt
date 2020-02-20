@@ -96,6 +96,18 @@ fun characterStackOfString (str: String) : Stack<Char> {
     return stack
 }
 
+fun commandSetOfParameterMap (parM: Map<String, List<String>>): Set<String> {
+    val (here, caller) = hereAndCaller()
+    entering(here, caller)
+
+    if(isTrace(here)) println ("$here: input parM $parM")
+    val result = parM.keys
+
+    if(isTrace(here)) println ("$here: output result $result")
+    exiting(here)
+    return result 
+    }
+
 fun countOfCharOfString (cha: Char, str: String) : Int {
     val (here, caller) = hereAndCaller()
     entering(here, caller)
@@ -149,6 +161,8 @@ fun helpList(): List<String> {
 	"gradlew [-q] build [--info]",
 	"gradlew run --args=\"-help ''|all|compile|host|port|run|url",
 	"gradlew run --args=\"-debug <function name>|all\"",
+	"gradlew run --args=\"-ipfs add [Options] <path> add a file or a directory to IPFS https://docs.ipfs.io/reference/api/cli/#ipfs-add",
+	"gradlew run --args=\"-ipfs add <path> add a file or a directory to IPFS",
 	"gradlew run --args=\"-trace <function name>|all\" print input and output data",
 	"gradlew run --args=\"-verbose<function name>|all\"",
 	"gradlew run --args=\"-loop<function name>|all\" print message inside a loop",
@@ -168,6 +182,7 @@ fun helpListOfStringList(str_l: List<String>): List<String> {
 	val helps =
 	    when (str) {
 		"all" -> hel_l
+		"ipfs" -> hel_l.filter({h -> h.contains("-ipfs ")})
 		"run" -> hel_l.filter({h -> h.contains(" run ")})
 		"compile" -> listOf("gradlew -q build --info")
 		"host" -> listOf("gradlew run --args=\"-host 127.0.0.1|<host name>\" defines host with port default (5001)")
