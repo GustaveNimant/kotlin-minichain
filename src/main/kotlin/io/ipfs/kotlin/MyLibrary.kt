@@ -1,4 +1,5 @@
 package io.ipfs.kotlin
+
 import kotlin.system.exitProcess
 import java.io.File
 import java.io.InputStream
@@ -143,29 +144,41 @@ fun functionName(): String {
     return str	
 }
 
-fun helpListOfStringList(str_l: List<String>): List<String> {
-    var hel_l = mutableListOf("list of commands:")
-    
-    for (str in str_l) {
-	var helps = when (str) {
-	    "run" -> listOf(
-		"gradlew run --args=\"-debug all\"",
-		"gradlew run --args=\"-verbose all\"",
-		"gradlew run --args=\"-trace all\"")
-	    "compile" -> listOf("gradlew -q build --info")
-	    "url" -> listOf("gradlew run --args=\"-port 5122 -verbose all\"")
-	    else -> listOf(
-		"gradlew -q build --info",
-		"gradlew run --args=\"-debug all\"",
-		"gradlew run --args=\"-verbose all\"",
-		"gradlew run --args=\"-trace all\"",
-		"gradlew run --args=\"-port 5122 -verbose all\""
-	    )
-	    
-	}
-	hel_l.addAll(helps)
-    }
+fun helpList(): List<String> {
+    var hel_l = listOf(
+	"gradlew [-q] build [--info]",
+	"gradlew run --args=\"-help ''|all|compile|host|port|run|url",
+	"gradlew run --args=\"-debug <function name>|all\"",
+	"gradlew run --args=\"-trace <function name>|all\" print input and output data",
+	"gradlew run --args=\"-verbose<function name>|all\"",
+	"gradlew run --args=\"-loop<function name>|all\" print message inside a loop",
+	"gradlew run --args=\"-when<function name>|all\" print message inside a when",
+	"gradlew run --args=\"-port 5122\" defines port with host default (127.0.0.1)",
+	"gradlew run --args=\"-host 127.0.0.1|<host name>\" defines host with port default (5001)",
+	"gradlew run --args=\"-url 127.0.0.1|<host name>:5001<port>\" defines an url"
+	)
     return hel_l
+}
+
+fun helpListOfStringList(str_l: List<String>): List<String> {
+    var hel_l = helpList()
+    var mut_l = mutableListOf<String>()
+
+    for (str in str_l) {
+	val helps =
+	    when (str) {
+		"all" -> hel_l
+		"run" -> hel_l.filter({h -> h.contains(" run ")})
+		"compile" -> listOf("gradlew -q build --info")
+		"host" -> listOf("gradlew run --args=\"-host 127.0.0.1|<host name>\" defines host with port default (5001)")
+		"port" -> listOf("gradlew run --args=\"-port 5122\" defines port with host default (127.0.0.1)")
+		"url" -> listOf("gradlew run --args=\"-url 127.0.0.1|<host name>:5001<port>\" defines an url")
+		else -> hel_l
+		
+	    }
+	mut_l.addAll(helps)
+    }
+    return mut_l
 }
 
 fun helpFromParameters() {
@@ -179,9 +192,15 @@ fun helpFromParameters() {
 }
 
 fun hereAndCaller(): Pair<String, String> {
-    val caller = callerName()
-    val here = functionName()
-
+    val sta = Thread.currentThread().stackTrace
+    val here = (sta[2]).getMethodName()
+    val caller = 
+	try {
+	    (sta[3]).getMethodName()
+	}
+    catch (e: ArrayIndexOutOfBoundsException) {
+	"None"}
+    
     val result = Pair(here, caller) 
     return result
 }

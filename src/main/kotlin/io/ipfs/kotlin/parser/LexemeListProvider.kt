@@ -1,5 +1,6 @@
-package io.ipfs.kotlin
+package io.ipfs.kotlin.parser
 
+import io.ipfs.kotlin.*
 import java.io.File
 import java.util.Stack
 

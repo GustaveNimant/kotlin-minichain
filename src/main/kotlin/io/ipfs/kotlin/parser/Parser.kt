@@ -1,6 +1,7 @@
-package io.ipfs.kotlin
+package io.ipfs.kotlin.parser
 // The Parser : List of Lexemes => Tree of Domain Entities
 
+import io.ipfs.kotlin.*
 import java.io.File
 import java.util.Stack
 import java.lang.Character.MIN_VALUE as nullChar

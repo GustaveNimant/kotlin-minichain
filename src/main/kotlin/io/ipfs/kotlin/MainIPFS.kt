@@ -1,7 +1,7 @@
 package io.ipfs.kotlin
 
-//import io.ipfs.kotlin.*
-import io.ipfs.kotlin.defaults.LocalIPFS
+import kotlin.system.exitProcess
+import io.ipfs.kotlin.defaults.*
 import java.io.File
 import java.util.Stack
 import java.lang.Character.MIN_VALUE as nullChar
@@ -11,6 +11,15 @@ fun main(args: Array<String>) {
   entering(here, caller)
 
   ParameterMap = parameterMapOfArguments(args)
+
+  if (ParameterMap.size == 0) {
+      println ("List of commands:")
+      val hel_l = helpList()
+      for (hel in hel_l) {
+	  println (hel)
+      }
+      exitProcess(0)
+  }
 
   if (ParameterMap.size > 0) {
       println ("Parameter lists are:")
@@ -33,7 +42,7 @@ fun main(args: Array<String>) {
       
   }
   catch (e: java.net.ConnectException) {
-      fatalErrorPrint ("Connection to 127.0.0.1:5001", "Connection refused", "Check", here)
+      fatalErrorPrint ("Connection to 127.0.0.1:5122", "Connection refused", "launch IPFS : go to minichain; . config.sh; ipmsd.sh", here)
   }
   
   println("\nnormal termination")

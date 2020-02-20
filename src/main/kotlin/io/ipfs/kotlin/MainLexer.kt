@@ -1,5 +1,6 @@
 package io.ipfs.kotlin
 
+import io.ipfs.kotlin.parser.*
 import java.io.File
 import java.util.Stack
 import java.lang.Character.MIN_VALUE as nullChar
