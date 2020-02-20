@@ -6,77 +6,82 @@ import java.io.File
 import java.util.Stack
 import java.lang.Character.MIN_VALUE as nullChar
 
-fun ipfsExecuteOfString(lin: String) {
+fun endProgram () {
     val (here, caller) = hereAndCaller()
     entering(here, caller)
 
-    if(isTrace(here)) println ("$here: input lin '$lin'")
-    try {
-	val multihash = LocalIPFS().add.string("test-string").Hash
-	println("$here: multihash $multihash")
-	
-	val content = LocalIPFS().get.cat(multihash)
-	println("$here: content $content")
-	
-	val commit = LocalIPFS().info.version()!!.Commit
-	println("$here: commit $commit")
-	
-    }
-    catch (e: java.net.ConnectException) {
-	fatalErrorPrint ("Connection to 127.0.0.1:5122", "Connection refused", "launch IPFS : go to minichain; . config.sh; ipmsd.sh", here)
-  }
-
-  exiting(here)
+    println("\nnormal termination")
+    exiting(here)
 }
 
+fun mainMenu () {
+    val (here, caller) = hereAndCaller()
+    entering(here, caller)
+    val command_set = commandSetOfParameterMap (ParameterMap)
+  
+    var command_sta = Stack<String>()
+    command_set.reversed().forEach {com -> command_sta.push(com) }
+    var done = false
+    
+    while (!done){
+	try {
+	    val com = command_sta.pop()
+	    println("$here: com '$com'")
+	    val com_3 = com.substring(0,3)
+	    
+	    val wor_ml = ParameterMap.get(com)
+	    val wor_l = wor_ml!!.map({w -> w.toString()}) 
+	    println("$here: wor_l '$wor_l'")
+	    
+	    when (com_3) {
+		"end", "exi" -> {endProgram()}
+		"hel" -> {printStringList (helpList())}
+		"ipf" -> {
+		    try {
+			ipfsExecuteOfWordList(wor_l)
+		    }
+		    catch (e: java.net.ConnectException){
+			fatalErrorPrint ("Connection to 127.0.0.1:5122", "Connection refused", "launch IPFS : go to minichain jsm; . config.sh; ipmsd.sh", here)
+		}
+		}
+		else -> {
+		    fatalErrorPrint ("command were one of hel[p], ipf[s], run", "'"+com+"'", "re Run", here)
+	    }//catch
+	    }
+	} // try 
+	catch (e: java.util.EmptyStackException) {
+	    done = true
+	}
+    } // while
+    
+    exiting(here)
+}
+
+
 fun main(args: Array<String>) {
-  val (here, caller) = hereAndCaller()
-  entering(here, caller)
-
-  ParameterMap = parameterMapOfArguments(args)
-
-  if (ParameterMap.size == 0) {
-      println ("Commands are:")
-      val hel_l = helpList()
-      for (hel in hel_l) {
-	  println (hel)
-      }
-      exitProcess(0)
-  }
-
-  if (ParameterMap.size > 0) {
-      println ("Parameter lists are:")
+    val (here, caller) = hereAndCaller()
+    entering(here, caller)
+    
+    ParameterMap = parameterMapOfArguments(args)
+    
+    if (ParameterMap.size == 0) {
+	println ("Commands are:")
+	val hel_l = helpList()
+	for (hel in hel_l) {
+	    println (hel)
+	}
+	exitProcess(0)
+    }
+    
+    if (ParameterMap.size > 0) {
+	println ("Parameter lists are:")
       for ( (k, v) in ParameterMap) {
 	  println ("$k => $v")
       }
-  }
-
-  val command_set = commandSetOfParameterMap (ParameterMap)
-  
-  var command_sta = Stack<String>()
-  command_set.reversed().forEach {com -> command_sta.push(com) }
-  var done = false
-  
-  while (!done){
-      val com = command_sta.pop()
-      println("$here: com '$com'")
-      val com_3 = com.substring(0,3)
-
-      val lin = ParameterMap.get(com).toString()
-      println("$here: lin '$lin'")
-
-      when (com_3) {
-	  "hel" -> {printStringList (helpList())}
-	  "ipf" -> {
-	      ipfsExecuteOfString(lin)
-	      }
-	  else -> {
-	      fatalErrorPrint ("command were one of hel[p], ipf[s], run", "'"+com+"'", "re Run", here)
-	      }//catch
-      }
-      } // while
-
-
-  println("\nnormal termination")
-  exiting(here)
+    }
+    
+    mainMenu()
+    
+    println("\nnormal termination")
+    exiting(here)
 }

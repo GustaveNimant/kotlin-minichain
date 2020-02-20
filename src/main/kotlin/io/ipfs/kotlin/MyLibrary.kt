@@ -67,17 +67,6 @@ fun <T> teeStackFromTeeOfTeeStack (tee:T, tee_s: Stack<T>): Stack<T> {
     return tee_s
 }
 
-fun byteArrayOfFilePath(fil_p: String): ByteArray {
-    val (here, caller) = hereAndCaller()
-    entering(here, caller)
-
-    val file = File(fil_p)
-    val result:ByteArray = file.readBytes()
-    
-    exiting(here)
-    return result
-}
-
 fun callerName(): String {
     val sta = Thread.currentThread().stackTrace
     val result = 
@@ -217,17 +206,6 @@ fun hereAndCaller(): Pair<String, String> {
 	"None"}
     
     val result = Pair(here, caller) 
-    return result
-}
-
-fun inputStreamOfFilePath(fil_p: String): InputStream {
-    val (here, caller) = hereAndCaller()
-    entering(here, caller)
-
-    val file = File(fil_p)
-    val result:InputStream = file.inputStream()
-    
-    exiting(here)
     return result
 }
 
@@ -584,52 +562,6 @@ fun printStringList (str_l: List<String>) {
     println (content)
 }
 
-fun provideAnyFileNameOfWhat(what: String): String {
-    val (here, caller) = hereAndCaller()
-    entering(here, caller)
-
-    if (isTrace(here)) println("$here: input what '$what'")
-    val whatLc = what.toLowerCase()
-    var anyFileName =
-      when (whatLc) {
-        "lexeme" -> "test.lex"
-	"block" -> what+".yml"
-	"yml" -> "test.yml"
-        else -> what+".txt"
-      }
-    println("$here: enter file name for '$what'. Default '$anyFileName'")
-    val any_f = standardInputRead()
-    if (! (any_f.isNullOrBlank() || any_f.equals("null"))) {
-        anyFileName = any_f
-    }
-    println("$here: input File name is '$anyFileName'")
-
-    exiting(here)
-    return anyFileName
-}
-
-fun standardInputRead(): String {
-    val (here, caller) = hereAndCaller()
-    entering(here, caller)
-	
-    val str = readLine().toString()
-    
-    exiting(here)
-    return str
-}
-
-fun stringListOfFilePath(fil_p: String): List<String> {
-    val (here, caller) = hereAndCaller()
-    entering(here, caller)
-
-    val file = File(fil_p)
-    val bufferedReader = file.bufferedReader()
-    val result:List<String> = bufferedReader.readLines()
-    
-    exiting(here)
-    return result
-}
-
 fun stringOfGlueOfStringList (glue: String, str_l: List<String>) : String {
  val str = str_l.fold("", {acc, s -> acc + s + glue })
  return str 
@@ -638,17 +570,6 @@ fun stringOfGlueOfStringList (glue: String, str_l: List<String>) : String {
 fun stringOfStringList (str_l: List<String>) : String {
  val str = str_l.fold("", {acc, s -> acc + s })
  return str 
-}
-
-fun stringReadOfFilePath(fil_p: String): String {
-    val (here, caller) = hereAndCaller()
-    entering(here, caller)
-
-    val file = File(fil_p)
-    val result: String = file.readText() 
-    
-    exiting(here)
-    return result
 }
 
 fun wordListOfString (str: String): List<String> {
@@ -660,9 +581,15 @@ fun wordListOfString (str: String): List<String> {
     return result
 }
 
-fun wordStackOfLine (lin: String) : Stack<String> {
+fun wordStackOfString (lin: String) : Stack<String> {
     var stack = Stack<String>()
     var wor_l = wordListOfString (lin)
+    wor_l.reversed().forEach { w -> stack.push(w)}
+    return stack
+}
+
+fun wordStackOfWordList (wor_l: List<String>) : Stack<String> {
+    var stack = Stack<String>()
     wor_l.reversed().forEach { w -> stack.push(w)}
     return stack
 }
