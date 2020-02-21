@@ -22,16 +22,18 @@ fun mainMenu () {
     var command_sta = Stack<String>()
     command_set.reversed().forEach {com -> command_sta.push(com) }
     var done = false
-    
+    var step = 0 
     while (!done){
 	try {
+	    step = step + 1
+	    if (isLoop(here)) println("$here: -------------- step # $step --------------")
 	    val com = command_sta.pop()
-	    println("$here: com '$com'")
+	    if (isLoop(here)) println("$here: com '$com'")
 	    val com_3 = com.substring(0,3)
 	    
 	    val wor_ml = ParameterMap.get(com)
 	    val wor_l = wor_ml!!.map({w -> w.toString()}) 
-	    println("$here: wor_l '$wor_l'")
+	    if (isLoop(here)) println("$here: wor_l '$wor_l'")
 	    
 	    when (com_3) {
 		"end", "exi" -> {endProgram()}
@@ -45,7 +47,8 @@ fun mainMenu () {
 		}
 		}
 		"deb", "loo", "tra", "whe" -> {
-		    println("$here: comman '$com' set")
+		    val str = stringOfStringList(wor_ml)
+		    println("$here: '$com' activated for '$str' functions")
 		}
 		else -> {
 		    fatalErrorPrint ("command were one of hel[p], ipf[s], run", "'"+com+"'", "re Run", here)

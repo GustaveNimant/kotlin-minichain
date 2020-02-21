@@ -76,7 +76,7 @@ fun writeLexemeList () {
     val content = stringOfGlueOfStringList ("\n", str_l)
 
     val lexFileName = provideAnyFileNameOfWhat("Lexeme")
-    outputWrite (lexFileName, content)
+    outputWriteOfFilePath (lexFileName, content)
 
     val siz = lex_l.size
     println("$here: $siz lexemes written to File '$lexFileName'")

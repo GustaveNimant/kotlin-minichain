@@ -14,6 +14,12 @@ fun byteArrayOfFilePath(fil_p: String): ByteArray {
     return result
 }
 
+fun fileExtensionOfFilePath (fil_p:String): String {
+    val file = File(fil_p)
+    val ext = file.extension
+    return ext
+}
+
 fun inputStreamOfFilePath(fil_p: String): InputStream {
     val (here, caller) = hereAndCaller()
     entering(here, caller)
@@ -35,6 +41,23 @@ fun isFilePathOfWord(wor: String): Boolean {
 
     exiting(here + " with result '$result'")
     return result
+}
+
+fun lineListOfFileName (nof: String) : MutableList<String> {
+    val (here, caller) = hereAndCaller()
+    entering(here, caller)
+
+    if (isTrace(here)) println("$here: input nof '$nof'")
+
+    val result = mutableListOf<String>()
+ 
+    File(nof).useLines {
+    	lines -> lines.forEach { result.add(it)}
+	}
+
+  if (isTrace(here)) println ("$here: output result '$result'")	
+  exiting(here)
+  return result
 }
 
 fun provideAnyFileNameOfWhat(what: String): String {
@@ -92,5 +115,14 @@ fun stringReadOfFilePath(fil_p: String): String {
     
     exiting(here)
     return result
+}
+
+fun outputWriteOfFilePath(fil_p: String, content: String) {
+    val (here, caller) = hereAndCaller()
+    entering(here, caller)
+	
+    File(fil_p).bufferedWriter().use { out -> out.write(content)}
+    
+    exiting(here)
 }
 

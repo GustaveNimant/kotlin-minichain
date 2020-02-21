@@ -736,7 +736,7 @@ fun lexemeListOfFileName(fil_nam: String) : List<Lexeme> {
     val (here, caller) = hereAndCaller()
     entering(here, caller)
 
-    val ext = fileExtensionOfFileName(fil_nam)
+    val ext = fileExtensionOfFilePath(fil_nam)
     val lex_l =
       when (ext) {
       "yml" -> lexemeListOfYmlFile (fil_nam)

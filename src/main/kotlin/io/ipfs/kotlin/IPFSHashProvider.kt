@@ -11,25 +11,40 @@ data class IpfsHash (val path: String, val hash:String) {
 }
 
 object IpfsHashRegister {
-     var value: IpfsHash = IpfsHash ("", "")
-	 
-     fun isEmpty (): Boolean {
-     	 return value.isEmpty()
-     }
+    var value: IpfsHash = IpfsHash ("", "")
+    
+    fun isEmpty (): Boolean {
+	val (here, caller) = hereAndCaller()
+	entering(here, caller)
 
-     fun store (ipfsH:IpfsHash) {
-	 value = ipfsH
-     }
-     
-     fun retrieve(): IpfsHash {
-         val (here, caller) = hereAndCaller()
-    	 entering(here, caller)
+	if(isTrace(here)) println ("$here: input value $value")
 
-	 var result = value
+     	val result = value.isEmpty()
 
-	 exiting(here)
-	 return result
+	if(isTrace(here)) println ("$here: output result $result")
+		
+     	return result
+    }
+    
+    fun store (ipfsH:IpfsHash) {
+	val (here, caller) = hereAndCaller()
+	entering(here, caller)
+
+	if(isTrace(here)) println ("$here: input ipfsH '$ipfsH'")
+	value = ipfsH
+	if(isTrace(here)) println ("$here: ipfsH stored as value")
      }
+    
+    fun retrieve(): IpfsHash {
+        val (here, caller) = hereAndCaller()
+    	entering(here, caller)
+
+	var result = value
+	if(isTrace(here)) println ("$here: output result '$result'")
+	
+	exiting(here)
+	return result
+    }
 }
 
 fun buildOfPath (path: String): String {
@@ -69,6 +84,8 @@ fun buildAndStoreOfPath(path: String){
     val (here, caller) = hereAndCaller()
     entering(here, caller)
 
+    println("$here: input path '$path'")
+    
     val hash =  buildOfPath (path)
     println("$here: hash $hash")
     storeOfPathOfHash(path, hash)
@@ -79,6 +96,8 @@ fun buildAndStoreOfPath(path: String){
 fun provideIpfsHash(path: String) : IpfsHash {
     val (here, caller) = hereAndCaller()
     entering(here, caller)
+
+    println("$here: input path '$path'")
 
     if (IpfsHashRegister.isEmpty()){
        buildAndStoreOfPath(path)
@@ -96,7 +115,7 @@ fun printIpfsHash (path: String) {
     entering(here, caller)
 
     val hash = provideIpfsHash (path)
-    println ("Hash $hash")
+    println ("Hash: $hash")
     exiting(here)
 }
 

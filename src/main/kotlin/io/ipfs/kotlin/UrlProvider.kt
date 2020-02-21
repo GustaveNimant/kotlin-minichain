@@ -21,8 +21,13 @@ object urlRegister {
      	 return value.isEmpty()
      }
      
-     fun store (url:Url) {
-         value = url
+     fun store (url: Url) {
+	val (here, caller) = hereAndCaller()
+	entering(here, caller)
+
+	if(isTrace(here)) println ("$here: input url '$url'")
+	value = url
+	if(isTrace(here)) println ("$here: url stored as value")
      }
      
      fun retrieve(): Url {
@@ -30,7 +35,8 @@ object urlRegister {
     	 entering(here, caller)
 
 	 var result = value
-
+	 if(isTrace(here)) println ("$here: output result '$result'")
+	 
 	 exiting(here)
 	 return result
      }
@@ -69,7 +75,6 @@ fun buildAndStoreUrl() {
 	fatalErrorPrint("an Integer", port, "Check", here)
     }
     var result: Url = Url(host, port)
-    
     urlRegister.store (result)
 
     exiting(here)
