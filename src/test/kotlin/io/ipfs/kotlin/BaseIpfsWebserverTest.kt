@@ -1,15 +1,15 @@
 package io.ipfs.kotlin
 
-import io.ipfs.kotlin.defaults.localIPFSConfig
+import io.ipfs.kotlin.defaults.localIpfsConfig
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
 import org.junit.Before
 
-abstract class BaseIPFSWebserverTest {
+abstract class BaseIpfsWebserverTest {
 
     val server = MockWebServer()
-    val ipfs: IPFS by lazy {
-        IPFS(localIPFSConfig.copy(base_url = server.url("").toString()))
+    val ipfs: Ipfs by lazy {
+        Ipfs(localIpfsConfig.copy(base_url = server.url("").toString()))
     }
 
     @Before

@@ -1,9 +1,9 @@
 package io.ipfs.kotlin.commands
 
-import io.ipfs.kotlin.IPFSConnection
+import io.ipfs.kotlin.IpfsConnection
 import io.ipfs.kotlin.model.BandWidthInfo
 
-class Stats(val ipfs: IPFSConnection) {
+class Stats(val ipfs: IpfsConnection) {
 
     private val bandWidthAdapter = ipfs.config.moshi.adapter(BandWidthInfo::class.java)
 

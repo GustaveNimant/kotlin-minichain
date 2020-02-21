@@ -1,10 +1,10 @@
 package io.ipfs.kotlin.defaults
 
-import io.ipfs.kotlin.IPFS
-import io.ipfs.kotlin.IPFSConfiguration
+import io.ipfs.kotlin.Ipfs
+import io.ipfs.kotlin.IpfsConfiguration
 
-val infuraIPFSConfig by lazy {
-    IPFSConfiguration("https://ipfs.infura.io:5001/api/v0/", createOKHTTP(), createMoshi())
+val infuraIpfsConfig by lazy {
+    IpfsConfiguration("https://ipfs.infura.io:5001/api/v0/", createOKHTTP(), createMoshi())
 }
 
-open class InfuraIPFS : IPFS(infuraIPFSConfig)
+open class InfuraIpfs : Ipfs(infuraIpfsConfig)

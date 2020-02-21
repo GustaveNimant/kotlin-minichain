@@ -1,9 +1,9 @@
 package io.ipfs.kotlin.commands
 
-import io.ipfs.kotlin.IPFSConnection
+import io.ipfs.kotlin.IpfsConnection
 import io.ipfs.kotlin.model.VersionInfo
 
-class Info(val ipfs: IPFSConnection) {
+class Info(val ipfs: IpfsConnection) {
 
     private val versionAdapter= ipfs.config.moshi.adapter(VersionInfo::class.java)
 

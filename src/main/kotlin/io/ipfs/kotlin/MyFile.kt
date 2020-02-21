@@ -60,6 +60,15 @@ fun lineListOfFileName (nof: String) : MutableList<String> {
   return result
 }
 
+fun outputWriteOfFilePath(fil_p: String, content: String) {
+    val (here, caller) = hereAndCaller()
+    entering(here, caller)
+	
+    File(fil_p).bufferedWriter().use { out -> out.write(content)}
+    
+    exiting(here)
+}
+
 fun provideAnyFileNameOfWhat(what: String): String {
     val (here, caller) = hereAndCaller()
     entering(here, caller)
@@ -115,14 +124,5 @@ fun stringReadOfFilePath(fil_p: String): String {
     
     exiting(here)
     return result
-}
-
-fun outputWriteOfFilePath(fil_p: String, content: String) {
-    val (here, caller) = hereAndCaller()
-    entering(here, caller)
-	
-    File(fil_p).bufferedWriter().use { out -> out.write(content)}
-    
-    exiting(here)
 }
 

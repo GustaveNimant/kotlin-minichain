@@ -8,7 +8,7 @@ import okhttp3.ResponseBody
 
 // EA : 18 Feb 2020 : body()!! => body!!
 
-open class IPFSConnection(val config: IPFSConfiguration) {
+open class IpfsConnection(val config: IpfsConfiguration) {
 
     var lastError: MessageWithCode? = null
 

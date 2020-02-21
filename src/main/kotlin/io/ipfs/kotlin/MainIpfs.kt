@@ -43,7 +43,7 @@ fun mainMenu () {
 			ipfsExecuteOfWordList(wor_l)
 		    }
 		    catch (e: java.net.ConnectException){
-			fatalErrorPrint ("Connection to 127.0.0.1:5122", "Connection refused", "launch IPFS : go to minichain jsm; . config.sh; ipmsd.sh", here)
+			fatalErrorPrint ("Connection to 127.0.0.1:5122", "Connection refused", "launch Ipfs : go to minichain jsm; . config.sh; ipmsd.sh", here)
 		}
 		}
 		"deb", "loo", "tra", "whe" -> {

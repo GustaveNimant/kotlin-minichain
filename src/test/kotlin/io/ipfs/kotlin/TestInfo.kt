@@ -4,7 +4,7 @@ import okhttp3.mockwebserver.MockResponse
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 
-class TestInfo : BaseIPFSWebserverTest() {
+class TestInfo : BaseIpfsWebserverTest() {
 
     @Test
 

@@ -1,11 +1,11 @@
 package io.ipfs.kotlin.defaults
 
 import io.ipfs.kotlin.*
-import io.ipfs.kotlin.IPFS
-import io.ipfs.kotlin.IPFSConfiguration
+import io.ipfs.kotlin.Ipfs
+import io.ipfs.kotlin.IpfsConfiguration
 
-val localIPFSConfig by lazy {
-    val here = "localIPFSConfig"
+val localIpfsConfig by lazy {
+    val here = "localIpfsConfig"
     val caller = callerName()
     entering (here, caller)
     
@@ -13,11 +13,11 @@ val localIPFSConfig by lazy {
     val str = url.toString()
     println("$here : url $str")
 
-    val result = IPFSConfiguration("http://$str/api/v0/", createOKHTTP(), createMoshi())
+    val result = IpfsConfiguration("http://$str/api/v0/", createOKHTTP(), createMoshi())
 
     if(isVerbose(here)) println("$here : output result $result")
     exiting (here)
     result
 }
 
-open class LocalIPFS : IPFS(localIPFSConfig)
+open class LocalIpfs : Ipfs(localIpfsConfig)

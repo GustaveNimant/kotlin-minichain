@@ -1,12 +1,12 @@
 package io.ipfs.kotlin.commands
 
 import com.squareup.moshi.JsonDataException
-import io.ipfs.kotlin.IPFSConnection
+import io.ipfs.kotlin.IpfsConnection
 import io.ipfs.kotlin.model.Key
 import io.ipfs.kotlin.model.KeyV2
 import okio.BufferedSource
 
-class Repo(val ipfs: IPFSConnection) {
+class Repo(val ipfs: IpfsConnection) {
 
     fun gc() = ipfs.callCmd("repo/gc").use { listFromNDJson(it.source()) }
 

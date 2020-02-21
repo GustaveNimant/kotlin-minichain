@@ -144,8 +144,8 @@ fun helpList(): List<String> {
 	"gradlew [-q] build [--info]",
 	"gradlew run --args=\"-help ''|all|compile|host|port|run|url",
 	"gradlew run --args=\"-debug <function name>|all\"",
-	"gradlew run --args=\"-ipfs add [Options] <path> add a file or a directory to IPFS https://docs.ipfs.io/reference/api/cli/#ipfs-add",
-	"gradlew run --args=\"-ipfs add <path> add a file or a directory to IPFS",
+	"gradlew run --args=\"-ipfs add [Options] <path> add a file or a directory to Ipfs https://docs.ipfs.io/reference/api/cli/#ipfs-add",
+	"gradlew run --args=\"-ipfs add <path> add a file or a directory to Ipfs",
 	"gradlew run --args=\"-trace <function name>|all\" print input and output data",
 	"gradlew run --args=\"-verbose<function name>|all\"",
 	"gradlew run --args=\"-loop<function name>|all\" print message inside a loop",
@@ -255,6 +255,8 @@ fun parameterMapOfArguments(args: Array<String>): MutableMap<String, MutableList
   val (here, caller) = hereAndCaller()
   entering(here, caller)
 
+//  printOfStringArray(args)
+  
   var stack = Stack<String>()
   args.reversed().forEach ({s -> stack.push(s)})
 

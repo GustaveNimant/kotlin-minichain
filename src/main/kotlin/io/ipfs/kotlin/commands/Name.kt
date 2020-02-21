@@ -1,11 +1,11 @@
 package io.ipfs.kotlin.commands
 
 import com.squareup.moshi.JsonAdapter
-import io.ipfs.kotlin.IPFSConnection
+import io.ipfs.kotlin.IpfsConnection
 import io.ipfs.kotlin.model.NameValue
 import io.ipfs.kotlin.model.Path
 
-class Name(val ipfs: IPFSConnection) {
+class Name(val ipfs: IpfsConnection) {
 
     private val adapter: JsonAdapter<NameValue> by lazy {
         ipfs.config.moshi.adapter(NameValue::class.java)

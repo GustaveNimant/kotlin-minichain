@@ -27,7 +27,7 @@ fun ipfsExecuteOfWordList(wor_l: List<String>) {
 		    wor_s.clear()
 
 		    println("$here: word '$word'")
-		    val hash = provideIpfsHash(word)
+		    val hash = provide(word)
 		    println("$here: hash '$hash'")
 		}
 		else -> {

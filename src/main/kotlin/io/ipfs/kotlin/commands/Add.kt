@@ -2,7 +2,7 @@ package io.ipfs.kotlin.commands
 
 import io.ipfs.kotlin.*
 import com.squareup.moshi.JsonAdapter
-import io.ipfs.kotlin.IPFSConnection
+import io.ipfs.kotlin.IpfsConnection
 import io.ipfs.kotlin.model.NamedHash
 
 import okhttp3.MultipartBody
@@ -22,7 +22,7 @@ import java.net.URLEncoder
 // EA : 19 Feb 2020 : Headers.of(Map) =>  Map.toHeaders()
 // EA : 19 Feb 2020 : MediaType.parse(String) => String.toMediaType()
 
-class Add(val ipfs: IPFSConnection) {
+class Add(val ipfs: IpfsConnection) {
 
     private val adapter: JsonAdapter<NamedHash> by lazy {
         ipfs.config.moshi.adapter(NamedHash::class.java)

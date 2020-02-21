@@ -7,13 +7,13 @@ import io.ipfs.kotlin.defaults.createOKHTTP
 import io.ipfs.kotlin.model.MessageWithCode
 import okhttp3.OkHttpClient
 
-data class IPFSConfiguration(val base_url: String = "http://127.0.0.1:5001/api/v0/",
+data class IpfsConfiguration(val base_url: String = "http://127.0.0.1:5001/api/v0/",
                              val okHttpClient: OkHttpClient = createOKHTTP(),
                              val moshi: Moshi = createMoshi())
 
-open class IPFS(configuration: IPFSConfiguration) {
+open class Ipfs(configuration: IpfsConfiguration) {
 
-    private val connection = IPFSConnection(configuration)
+    private val connection = IpfsConnection(configuration)
 
     val add by lazy { Add(connection) }
     val get by lazy { Get(connection) }

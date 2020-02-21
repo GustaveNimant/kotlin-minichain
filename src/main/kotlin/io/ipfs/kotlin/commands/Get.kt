@@ -1,27 +1,27 @@
 package io.ipfs.kotlin.commands
 
-import io.ipfs.kotlin.IPFSConnection
+import io.ipfs.kotlin.IpfsConnection
 import okhttp3.ResponseBody
 import java.io.InputStream
 
-class Get(val ipfs: IPFSConnection) {
+class Get(val ipfs: IpfsConnection) {
 
     /**
-     * Cat IPFS content and return it as string.
+     * Cat Ipfs content and return it as string.
      *
      * @param hash The hash of the content in base58.
      */
     fun cat(hash: String): String = ipfs.callCmd("cat/$hash").use(ResponseBody::string)
 
     /**
-     * Cat IPFS content and return it as ByteArray.
+     * Cat Ipfs content and return it as ByteArray.
      *
      * @param hash The hash of the content in base58.
      */
     fun catBytes(hash: String): ByteArray = ipfs.callCmd("cat/$hash").use(ResponseBody::bytes)
 
     /**
-     * Cat IPFS content and process it using InputStream.
+     * Cat Ipfs content and process it using InputStream.
      *
      * @param hash The hash of the content in base58.
      * @param handler Callback which handle processing the input stream. When the callback return the stream and the request body will be closed.
