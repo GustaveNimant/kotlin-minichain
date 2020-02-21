@@ -44,6 +44,9 @@ fun mainMenu () {
 			fatalErrorPrint ("Connection to 127.0.0.1:5122", "Connection refused", "launch IPFS : go to minichain jsm; . config.sh; ipmsd.sh", here)
 		}
 		}
+		"deb", "loo", "tra", "whe" -> {
+		    println("$here: comman '$com' set")
+		}
 		else -> {
 		    fatalErrorPrint ("command were one of hel[p], ipf[s], run", "'"+com+"'", "re Run", here)
 	    }//catch

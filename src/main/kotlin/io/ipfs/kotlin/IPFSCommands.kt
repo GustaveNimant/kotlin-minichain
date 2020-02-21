@@ -24,8 +24,11 @@ fun ipfsExecuteOfWordList(wor_l: List<String>) {
 		    else {
 			wor_s.toString()
 		    }
+		    wor_s.clear()
+
+		    println("$here: word '$word'")
 		    val hash = provideIpfsHash(word)
-		    println("$here: hash $hash")
+		    println("$here: hash '$hash'")
 		}
 		else -> {
 		    fatalErrorPrint ("command were 'add'","'"+wor+"'", "Check input", here)

@@ -558,7 +558,6 @@ fun parameterMapOfArguments(args: Array<String>): MutableMap<String, MutableList
 
 fun printStringList (str_l: List<String>) {
     val content = stringOfGlueOfStringList ("\n", str_l)
-
     println (content)
 }
 
