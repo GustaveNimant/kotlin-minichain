@@ -4,7 +4,10 @@
 ### installation of sdkman
     sudo apt install unzip
     sudo apt install zip
-    (https://sdkman.io/install)
+curl -s "https://get.sdkman.io" | bash
+source "$HOME/.sdkman/bin/sdkman-init.sh"
+    (see also: https://sdkman.io/install)
+   
 *  sdk uninstall _package_ x.y.z
 *  sdk install _package_
 *  sdk use gradle _package_ x.y.z
