@@ -1,5 +1,9 @@
 package io.ipfs.kotlin
 
+/**
+ * gradlew run --args="-ipfs get QmTzX91dhqHRunjCtrt4LdTErREUA5Gg1wFMiJz1bEiQxp"
+ *
+ */
 fun ipfsExecuteOfWordList(wor_l: List<String>) {
     val (here, caller) = hereAndCaller()
     entering(here, caller)
@@ -31,8 +35,18 @@ fun ipfsExecuteOfWordList(wor_l: List<String>) {
 		    val hash = proIpH.provide(word)
 		    println("$here: hash '$hash'")
 		}
+		"get" -> {
+		    val qmH = wor_s.toString()
+		    wor_s.clear()
+		    val ipfsH = IpfsHash(qmH)
+		    println("$here: ipfsH '$ipfsH'")
+		    val proImm = IpfsImmutableProvider()
+		    val immCon = proImm.provide(ipfsH)
+		    println ("Content:")
+		    println (immCon.toString())
+		}
 		else -> {
-		    fatalErrorPrint ("command were 'add'","'"+wor+"'", "Check input", here)
+		    fatalErrorPrint ("command were 'add', 'get'","'"+wor+"'", "Check input", here)
 		} // else
 	    } // when
 	} // try

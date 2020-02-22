@@ -65,12 +65,4 @@ class IpfsImmutableProvider {
 	return result
     }
     
-    fun print (ipfsH: IpfsHash) {
-	val (here, caller) = hereAndCaller()
-	entering(here, caller)
-	
-	val hash = provide (ipfsH)
-	println ("Hash: $hash")
-	exiting(here)
-    }
 }

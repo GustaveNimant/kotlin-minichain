@@ -7,4 +7,8 @@ package io.ipfs.kotlin
 
 class IpfsImmutableContent (val str: String) {
 
+    override fun toString(): String {
+	return str
+    }
+    
 }

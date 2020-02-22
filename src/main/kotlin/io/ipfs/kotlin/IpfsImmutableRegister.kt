@@ -32,7 +32,7 @@ fun store (ipfsH: IpfsHash, immCon: IpfsImmutableContent) {
     if (isStored(ipfsH)) {
 	val con = retrieve(ipfsH)
 	if (con != immCon) {
-	    fatalErrorPrint("IpfsImmutable already stored for ipfsH '$ipfsH' were equal to new one", immCon.toString(), "Check", here)
+	    fatalErrorPrint("IpfsImmutableContent already stored for ipfsH '$ipfsH' were equal to new one", immCon.toString(), "Check", here)
 		}
     }
     else {
