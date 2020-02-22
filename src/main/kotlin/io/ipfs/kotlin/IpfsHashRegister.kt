@@ -10,7 +10,7 @@ import io.ipfs.kotlin.defaults.*
 
 class IpfsHashRegister
     
-    var register : MutableMap<String, String> = mutableMapOf<String, String>()
+    var register : MutableMap<String, IpfsHash> = mutableMapOf<String, IpfsHash>()
 
 fun isEmpty (): Boolean {
     val (here, caller) = hereAndCaller()
@@ -23,21 +23,21 @@ fun isEmpty (): Boolean {
     return result
 }
 
-fun store (path: String, hash: String) {
+fun store (path: String, ipfsH: IpfsHash) {
     val (here, caller) = hereAndCaller()
     entering(here, caller)
     
     if(isTrace(here)) println ("$here: input path '$path'")
-    if(isTrace(here)) println ("$here: input hash '$hash'")
+    if(isTrace(here)) println ("$here: input ipfsH '$ipfsH'")
     
     if (isStored(path)) {
 	val value = retrieve(path)
-	if (value != hash) {
-	    fatalErrorPrint("hash already stored for path '$path' were equal to new one", hash, "Check", here)
+	if (value != ipfsH) {
+	    fatalErrorPrint("IpfsHash already stored for path '$path' were equal to new one", ipfsH.toString(), "Check", here)
 		}
     }
     else {
-	register.put(path, hash)
+	register.put(path, ipfsH)
     }
     if(isTrace(here)) println ("$here: ipfsH couple has been stored")
 }
@@ -47,18 +47,28 @@ fun isStored (path: String): Boolean {
     entering(here, caller)
     
     if(isTrace(here)) println ("$here: input path '$path'")
-    val result = register.contains(path) && (! (register.get(path)).isNullOrEmpty())
+
+    val ipfsH = register.get(path)
+    val result = when (ipfsH) {
+	is IpfsHash -> register.contains(path) 
+	else -> false
+    }
+
     if(isTrace(here)) println ("$here: output result '$result'")
 
     exiting(here)
     return result
 }
 
-fun retrieve (path: String): String {
+fun retrieve (path: String): IpfsHash {
     val (here, caller) = hereAndCaller()
     entering(here, caller)
     
-    val result = register.get(path).toString()
+    val ipfsH = register.get(path)
+    val result = when (ipfsH) {
+	is IpfsHash -> ipfsH 
+	else -> {fatalErrorPrint ("", "", "", here)}
+    }
     if(isTrace(here)) println ("$here: output result '$result'")
     
     exiting(here)

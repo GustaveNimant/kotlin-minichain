@@ -10,7 +10,7 @@ import io.ipfs.kotlin.defaults.*
 
 class IpfsHashProvider
 
-    fun build (path: String): String {
+    fun build (path: String): IpfsHash {
 	val (here, caller) = hereAndCaller()
 	entering(here, caller)
 	
@@ -24,7 +24,9 @@ class IpfsHashProvider
 	    path
 	}
 	
-	val result = LocalIpfs().add.string(str).Hash
+	val hash = LocalIpfs().add.string(str).Hash
+
+	val result = IpfsHash(hash)
 	println("$here: output result $result")
 	
 	exiting(here)
@@ -37,13 +39,13 @@ class IpfsHashProvider
 	
 	println("$here: input path '$path'")
 	
-	val hash = build(path)
-	store(path, hash)
+	val ipfsH = build(path)
+	store(path, ipfsH)
 	
 	exiting(here)
     }
     
-    fun provide(path: String) : String {
+    fun provide(path: String) : IpfsHash {
 	val (here, caller) = hereAndCaller()
 	entering(here, caller)
 	

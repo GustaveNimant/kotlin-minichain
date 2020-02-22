@@ -17,4 +17,8 @@ class IpfsHash (val hash: String) {
 	val result = hash.substring(0,2) == "z2"
 	return result
     }
+
+    override fun toString (): String {
+	return hash
+    }
 }
