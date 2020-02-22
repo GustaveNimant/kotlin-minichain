@@ -6,19 +6,46 @@ package io.ipfs.kotlin
 
  */
 
-class IpfsHash (val hash: String) {
+sealed class IpfsHash ()
 
-    fun isQmHash (hash: String): Boolean {
-	val result = hash.substring(0,2) == "Qm"
+    data class IpfsHashQm (val strH: String) : IpfsHash ()
+    data class IpfsHashZ2 (val strH: String) : IpfsHash ()
+    
+    fun isQmHash (strH: String): Boolean {
+	val result = strH.substring(0,2) == "Qm"
 	return result
 	}
 
-    fun isZ2Hash (hash: String): Boolean {
-	val result = hash.substring(0,2) == "z2"
+    fun isZ2Hash (strH: String): Boolean {
+	val result = strH.substring(0,2) == "z2"
 	return result
     }
 
-    override fun toString (): String {
-	return hash
+    fun stringOfIpfsHash (ipfsH: IpfsHash): String {
+	val result = when (ipfsH) {
+	    is IpfsHashQm -> ipfsH.strH
+	    is IpfsHashZ2 -> ipfsH.strH
+	    }
+	return result
     }
-}
+
+    fun ipfsHashOfString (str: String): IpfsHash {
+	val (here, caller) = hereAndCaller()
+	entering(here, caller)
+
+	if (isTrace(here)) println("$here: input str '$str'")
+	
+	val str_2 = str.substring(0, 2)
+	val result = when (str_2) {
+	    "Qm" -> IpfsHashQm(str)
+	    "Z2" -> IpfsHashZ2(str)
+	    else -> {
+		fatalErrorPrint("hash starts with 'Qm' or 'Z2'", str, "Check", here)
+	    }
+	}
+
+	if(isTrace(here)) println ("$here: output result '$result'")
+	
+	exiting(here)
+	return result
+    }

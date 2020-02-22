@@ -28,9 +28,8 @@ class IpfsHashProvider {
 	    path
 	}
 	
-	val hash = LocalIpfs().add.string(str).Hash
-
-	val result = IpfsHash(hash)
+	val strH = LocalIpfs().add.string(str).Hash
+	val result = ipfsHashOfString(strH)
 	println("$here: output result $result")
 	
 	exiting(here)
