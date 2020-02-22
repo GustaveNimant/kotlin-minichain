@@ -8,7 +8,7 @@ import io.ipfs.kotlin.defaults.*
  *
  */
 
-class IpfsHashRegister
+class IpfsHashRegister {
     
     var register : MutableMap<String, IpfsHash> = mutableMapOf<String, IpfsHash>()
 
@@ -73,4 +73,5 @@ fun retrieve (path: String): IpfsHash {
     
     exiting(here)
     return result
+}
 }

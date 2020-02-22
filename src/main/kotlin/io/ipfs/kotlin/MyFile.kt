@@ -69,6 +69,11 @@ fun outputWriteOfFilePath(fil_p: String, content: String) {
     exiting(here)
 }
 
+fun printOfStringList(str_l : List<String>) {
+    val str = stringOfGlueOfStringList("\n", str_l)
+    println (str)
+}
+
 fun provideAnyFileNameOfWhat(what: String): String {
     val (here, caller) = hereAndCaller()
     entering(here, caller)

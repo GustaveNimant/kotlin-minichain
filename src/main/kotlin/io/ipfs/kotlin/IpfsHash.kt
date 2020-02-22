@@ -1,9 +1,9 @@
 package io.ipfs.kotlin
 
 /**
- * 
- * 
- *
+ * What    : Any Hash used on IPFS.
+ * Author  : François Colonna 22 février 2020 at 10:38:18+01:00
+
  */
 
 class IpfsHash (val hash: String) {

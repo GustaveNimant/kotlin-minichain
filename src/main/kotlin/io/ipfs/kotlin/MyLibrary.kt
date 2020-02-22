@@ -184,7 +184,7 @@ fun helpFromParameters() {
     { 
       val str_l = ParameterMap.getValue("help")
       val hel_l = helpListOfStringList(str_l)
-      printStringList (hel_l)
+      printOfStringList(hel_l)
       exitProcess(0)
     }
 }
