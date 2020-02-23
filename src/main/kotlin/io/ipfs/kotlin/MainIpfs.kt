@@ -17,7 +17,8 @@ fun endProgram () {
 fun ipfsExecute (wor_l: List<String>) {
     val (here, caller) = hereAndCaller()
     entering(here, caller)
-    
+
+    if (isLoop(here)) println("$here: input wor_l '$wor_l'")
     try {
 	ipfsExecuteOfWordList(wor_l)
     }

@@ -66,7 +66,15 @@ fun multiHashOfAddWordStack (wor_s: Stack<String>): MultiHashType {
     wor_s.clear()
     if(isTrace(here)) println ("$here: input word '$word'")
 
-    val strH = LocalIpfs().add.string(word).Hash
+    val filCon = // file path case
+	if (isFilePathOfWord(word)) {
+	    stringReadOfFilePath(word)
+	}
+    else {
+	word
+    }
+	
+    val strH = LocalIpfs().add.string(filCon).Hash
     val result = multiHashTypeOfString(strH)
     if(isTrace(here)) println ("$here: output result '$result'")
 
