@@ -85,18 +85,6 @@ fun characterStackOfString (str: String) : Stack<Char> {
     return stack
 }
 
-fun commandSetOfParameterMap (parM: Map<String, List<String>>): Set<String> {
-    val (here, caller) = hereAndCaller()
-    entering(here, caller)
-
-    if(isTrace(here)) println ("$here: input parM $parM")
-    val result = parM.keys
-
-    if(isTrace(here)) println ("$here: output result $result")
-    exiting(here)
-    return result 
-    }
-
 fun countOfCharOfString (cha: Char, str: String) : Int {
     val (here, caller) = hereAndCaller()
     entering(here, caller)
@@ -250,83 +238,4 @@ fun isWhen(here:String): Boolean {
 
 fun notYetImplemented(fun_nam: String){
     throw Exception("Error: function '$fun_nam' is not yet implemented")}
-
-fun parameterMapOfArguments(args: Array<String>): MutableMap<String, MutableList<String>> {
-  val (here, caller) = hereAndCaller()
-  entering(here, caller)
-
-//   printOfStringArray(args)
-  
-  var stack = Stack<String>()
-  args.reversed().forEach ({s -> stack.push(s)})
-
-  val arg_siz = args.size
-  val str = stringOfGlueOfStringList (" ", args.toList())
-
-  if (arg_siz == 0) {
-      exiting(here)
-      return mutableMapOf ()
-  }
-  if (arg_siz < 2) {
-      exiting(here)
-      return mutableMapOf ()
-  }
-
-/*
- initialize
-*/
-  val arg_0 = stack.pop()
-  var command = arg_0.substring(1).toLowerCase()
-  val arg_1 = stack.pop()
-
-  try {
-    if (! arg_0.startsWith('-')) {
-      fatalErrorPrint("First character in arguments were '-'", "Arguments are '$str'", "Reset arguments", "main") 
-    }
-  }
-  catch (e: java.lang.ArrayIndexOutOfBoundsException) {
-      fatalErrorPrint("There were arguments", "No Arguments", "Set arguments to program", "main") 
-  }
-
-/*
- loop on all arguments
-*/
-   
-// println("arg_l:")
-
-  var Done = false
-  var arg_l = mutableListOf(arg_1)
-  printOfStringList(arg_l)
-
-  var ParameterMap = mutableMapOf (command to arg_l)
-
-  while (!Done) {
-     try {
-       var arg = stack.pop()
-       println("$here: while arg '$arg'")
-       
-       if (arg.startsWith('-')) {
-           command = arg.substring(1).toLowerCase()
-	   println("$here: while command '$command'")
-	   
-	   arg_l = mutableListOf()
-       }
-       else {
-	   if(ParameterMap.contains(command)) {
-	       val str_ = command.substring(3)
-	       println("$here: Warning: command '$command' is repeated")
-	       println("$here: Warning: to avoid this, modify the end command name '$command' from its 4th character (i.e. modify '$str_')")
-	       command = command + "_"
-	       println("$here: Warning: command has been currently modified to '$command'") 
-	       }
-	       arg_l.add (arg)
-	       ParameterMap.set(command, arg_l)
-       }
-     }
-     catch (e: java.util.EmptyStackException) {Done=true}
-   }
-
-   exiting(here)
-   return ParameterMap
-}
 
