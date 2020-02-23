@@ -3,77 +3,69 @@ package io.ipfs.kotlin
 import io.ipfs.kotlin.defaults.*
 
 /**
- * Provide : the QmHash for a file path or string
- * Done    : LocalIpfs().add.string(str).Hash
+ * Provide : the MultiHashValue for a 
+ * Done    : LocalIpfs().add.string(str).MultiHash
  * Command : gradlew run --args="-ipfs add truc much" 
  * Command : gradlew run --args="-ipfs add /home/achadde/profile_achadde"
  * Author  : François Colonna 22 février 2020 at 10:32:18+01:00;
  */
 
-class IpfsHashProvider {
+class MultiHashProvider {
 
-    val register = IpfsHashRegister()
+    val register = MultiHashRegister()
     
-    fun build (path: String): IpfsHash {
+    fun build (str: String): MultiHashType {
 	val (here, caller) = hereAndCaller()
 	entering(here, caller)
 	
-	println("$here: input path '$path'")
-	
-	val str =
-	    if (isFilePathOfWord(path)) {
-		stringReadOfFilePath(path)
-	    }
-	else {
-	    path
-	}
+	println("$here: input str '$str'")
 	
 	val strH = LocalIpfs().add.string(str).Hash
-	val result = ipfsHashOfString(strH)
+	val result = multiHashTypeOfString(strH)
 	println("$here: output result $result")
 	
 	exiting(here)
 	return result 
     }
     
-    fun buildAndStore(path: String){
+    fun buildAndStore(str: String){
 	val (here, caller) = hereAndCaller()
 	entering(here, caller)
 	
-	println("$here: input path '$path'")
+	println("$here: input str '$str'")
 	
-	val ipfsH = build(path)
-	register.store(path, ipfsH)
+	val mulH = build(str)
+	register.store(str, mulH)
 	
 	exiting(here)
     }
     
-    fun provide(path: String) : IpfsHash {
+    fun provide(str: String) : MultiHashType {
 	val (here, caller) = hereAndCaller()
 	entering(here, caller)
 	
-	println("$here: input path '$path'")
+	println("$here: input str '$str'")
 	
-	if (register.isStored(path)){
-	    register.retrieve(path)
+	if (register.isStored(str)){
+	    register.retrieve(str)
 	}
 	else {
-	    buildAndStore(path)
+	    buildAndStore(str)
 	}
 	
-	val result = register.retrieve(path)
+	val result = register.retrieve(str)
 	if (isTrace(here)) println("$here: output result '$result'")
 	
 	exiting(here)
 	return result
     }
     
-    fun print (path: String) {
+    fun print (str: String) {
 	val (here, caller) = hereAndCaller()
 	entering(here, caller)
 	
-	val hash = provide (path)
-	println ("Hash: $hash")
+	val hash = provide (str)
+	println ("MultiHashType: $hash")
 	exiting(here)
     }
 

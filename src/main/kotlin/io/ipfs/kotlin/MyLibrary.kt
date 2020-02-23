@@ -255,7 +255,7 @@ fun parameterMapOfArguments(args: Array<String>): MutableMap<String, MutableList
   val (here, caller) = hereAndCaller()
   entering(here, caller)
 
-//  printOfStringArray(args)
+//   printOfStringArray(args)
   
   var stack = Stack<String>()
   args.reversed().forEach ({s -> stack.push(s)})
@@ -291,22 +291,36 @@ fun parameterMapOfArguments(args: Array<String>): MutableMap<String, MutableList
 /*
  loop on all arguments
 */
+   
+// println("arg_l:")
 
   var Done = false
   var arg_l = mutableListOf(arg_1)
+  printOfStringList(arg_l)
+
   var ParameterMap = mutableMapOf (command to arg_l)
 
   while (!Done) {
      try {
        var arg = stack.pop()
+       println("$here: while arg '$arg'")
        
        if (arg.startsWith('-')) {
-         command = arg.substring(1).toLowerCase()
-	 arg_l = mutableListOf()
+           command = arg.substring(1).toLowerCase()
+	   println("$here: while command '$command'")
+	   
+	   arg_l = mutableListOf()
        }
        else {
-	 arg_l.add (arg)
-	 ParameterMap.set(command, arg_l)
+	   if(ParameterMap.contains(command)) {
+	       val str_ = command.substring(3)
+	       println("$here: Warning: command '$command' is repeated")
+	       println("$here: Warning: to avoid this, modify the end command name '$command' from its 4th character (i.e. modify '$str_')")
+	       command = command + "_"
+	       println("$here: Warning: command has been currently modified to '$command'") 
+	       }
+	       arg_l.add (arg)
+	       ParameterMap.set(command, arg_l)
        }
      }
      catch (e: java.util.EmptyStackException) {Done=true}

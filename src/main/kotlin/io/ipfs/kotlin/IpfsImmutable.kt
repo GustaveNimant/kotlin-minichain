@@ -1,13 +1,28 @@
 package io.ipfs.kotlin
 
 /**
- * What    : The different kind of Immutable stored on IPFS
- * Author  : François Colonna 22 février 2020 at 10:38:18+01:00
+ * What       : The different Types of Immutable
+ * Definition : An Immutable is a file adressed by its content (its hash or CID).
+ * Definition : IpfsImmutableBlock
+ * Definition : IpfsImmutableCode
+ * Definition : IpfsImmutableFriends
+ * Definition : IpfsImmutableIdentity
+ * Definition : IpfsImmutableLabel
+ * Definition : IpfsImmutableSmartContract
+ * Definition : IpfsImmutableSymbol
+ * Definition : IpfsImmutableTag
+ * Definition : IpfsImmutableText
+ * Author : Emile Achadde 23 février 2020 at 09:33:04+01:00
  */
 
 sealed class IpfsImmutable {
     object IpfsImmutableBlock
     object IpfsImmutableCode
-    object IpfsImmutableText
+    object IpfsImmutableFriends
+    object IpfsImmutableIdentity
+    object IpfsImmutableLabel
     object IpfsImmutableSmartContract
+    object IpfsImmutableSymbol
+    object IpfsImmutableTag
+    object IpfsImmutableText
 }

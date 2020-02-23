@@ -214,7 +214,12 @@ fun nextWordOfEndCharOfString(del: Char, str: String): String {
     return word
 }
 
-fun printStringList (str_l: List<String>) {
+fun printOfStringArray (str_a: Array<String>) {
+    val content = stringOfGlueOfStringList ("\n", str_a.toList())
+    println (content)
+}
+
+fun printOfStringList (str_l: List<String>) {
     val content = stringOfGlueOfStringList ("\n", str_l)
     println (content)
 }
