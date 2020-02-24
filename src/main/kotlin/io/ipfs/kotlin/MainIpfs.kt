@@ -69,86 +69,68 @@ fun mainMenu () {
     exiting(here)
 }
 
-fun parameterMapOfArguments(args: Array<String>): MutableMap<String, MutableList<String>> {
+fun helpFromParameters() {
+    if (ParameterMap.containsKey("help"))
+    { 
+      val str_l = ParameterMap.getValue("help")
+      val hel_l = helpListOfStringList(str_l)
+      printOfStringList(hel_l)
+      exitProcess(0)
+    }
+}
+
+fun commandAndParametersOfStringList(str_l: List<String>): Pair<String, List<String>> {
   val (here, caller) = hereAndCaller()
   entering(here, caller)
 
-  println("$here: input args:")
+  if(isTrace(here)) println("$here: input str_l $str_l")
+
+  val str = str_l.first()
+  println("$here: for str $str")
+
+  val result = 
+      if (str.startsWith('-')) {
+	  val command = str.substring(1).toLowerCase()
+	  println("\n$here: while command set as '$command'")
+	  val arg_l = str_l.drop(1)
+	  Pair (command, arg_l)
+      }
+      else {
+	  fatalErrorPrint("command starts with '-'",str, "Check", here) 
+      }
+
+  if(isTrace(here)) println("$here: output result $result")
+
+  exiting(here)
+  return result
+}
+
+fun parameterMapOfArguments(args: Array<String>): MutableMap<String, List<String>> {
+  val (here, caller) = hereAndCaller()
+  entering(here, caller)
+
+  if(isTrace(here)) println("$here: input args:")
   printOfStringArray(args)
+
+  var ParameterMap = mutableMapOf<String, List<String>>()
+
+  val str_ll = stringListListOfDelimiterOfStringList ("-", args.toList())
+
+  for (str_l in str_ll) {
+       println("$here: for str_l $str_l")
+       var (command, par_l) = commandAndParametersOfStringList(str_l)
+       ParameterMap.put (command, par_l)
+       if(ParameterMap.contains(command)) {
+	   val str_ = command.substring(3)
+	   println("$here: Warning: command '$command' is repeated")
+	   println("$here: Warning: to avoid this, modify the end command name '$command' from its 4th character (i.e. modify '$str_')")
+	   command = command + "_"
+	   println("$here: Warning: command has been currently modified to '$command'") 
+       }
+    } // for arg_l
   
-  var stack = Stack<String>()
-  args.reversed().forEach ({s -> stack.push(s)})
-
-  val arg_siz = args.size
-  val str = stringOfGlueOfStringList (" ", args.toList())
-
-  if (arg_siz == 0) {
-      exiting(here)
-      return mutableMapOf ()
-  }
-  if (arg_siz < 2) {
-      exiting(here)
-      return mutableMapOf ()
-  }
-
-/*
- initialize
-*/
-  val arg_0 = stack.pop()
-  var command = arg_0.substring(1).toLowerCase()
-  val arg_one = stack.pop()
-
-  try {
-    if (! arg_0.startsWith('-')) {
-      fatalErrorPrint("First character in arguments were '-'", "Arguments are '$str'", "Reset arguments", "main") 
-    }
-  }
-  catch (e: java.lang.ArrayIndexOutOfBoundsException) {
-      fatalErrorPrint("There were arguments", "No Arguments", "Set arguments to program", "main") 
-  }
-
-/*
- loop on all arguments
-*/
-   
-  println("$here: after first step command '$command'")
-
-  var Done = false
-  var arg_l = mutableListOf(arg_one)
-  println("$here: after first step arg_l:")
-  printOfStringList(arg_l)
-
-  var ParameterMap = mutableMapOf (command to arg_l)
-
-  while (!Done) {
-     try {
-       var arg = stack.pop()
-       println("$here: while arg '$arg'")
-       
-       if (arg.startsWith('-')) {
-           command = arg.substring(1).toLowerCase()
-	   println("\n$here: while command  set as '$command'")
-	   if(ParameterMap.contains(command)) {
-	       val str_ = command.substring(3)
-	       println("$here: Warning: command '$command' is repeated")
-	       println("$here: Warning: to avoid this, modify the end command name '$command' from its 4th character (i.e. modify '$str_')")
-	       command = command + "_"
-	       println("$here: Warning: command has been currently modified to '$command'") 
-	   }
-	   
-	   arg_l = mutableListOf()
-       }
-       else {
-	   arg_l.add (arg)
-	   ParameterMap.set(command, arg_l)
-	   println("$here: command '$command' as been stored with arg_l '$arg_l'")
-       }
-     }
-     catch (e: java.util.EmptyStackException) {Done=true}
-   }
-
-   exiting(here)
-   return ParameterMap
+  exiting(here)
+  return ParameterMap
 }
 
 fun wrapperIpfsExecuteOfWordList (wor_l: List<String>) {
@@ -160,7 +142,7 @@ fun wrapperIpfsExecuteOfWordList (wor_l: List<String>) {
 	ipfsExecuteOfWordList(wor_l)
     }
     catch (e: java.net.ConnectException){
-	fatalErrorPrint ("Connection to 127.0.0.1:5122", "Connection refused", "launch Ipfs : go to minichain jsm; . config.sh; ipmsd.sh", here)}
+	fatalErrorPrint ("Connection to 127.0.0.1:5122", "Connection refused", "launch Ipfs :\n\tgo to minichain jsm; . config.sh; ipmsd.sh", here)}
     
     exiting(here)
 }
@@ -168,8 +150,8 @@ fun wrapperIpfsExecuteOfWordList (wor_l: List<String>) {
 fun main(args: Array<String>) {
     val (here, caller) = hereAndCaller()
     entering(here, caller)
-    
-    ParameterMap = parameterMapOfArguments(args)
+
+    val ParameterMap = parameterMapOfArguments(args)
     
     if (ParameterMap.size == 0) {
 	println ("Commands are:")

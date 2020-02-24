@@ -167,16 +167,6 @@ fun helpListOfStringList(str_l: List<String>): List<String> {
     return mut_l
 }
 
-fun helpFromParameters() {
-    if (ParameterMap.containsKey("help"))
-    { 
-      val str_l = ParameterMap.getValue("help")
-      val hel_l = helpListOfStringList(str_l)
-      printOfStringList(hel_l)
-      exitProcess(0)
-    }
-}
-
 fun hereAndCaller(): Pair<String, String> {
     val sta = Thread.currentThread().stackTrace
     val here = (sta[2]).getMethodName()

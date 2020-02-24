@@ -9,7 +9,7 @@ fun main(args: Array<String>) {
   val (here, caller) = hereAndCaller()
   entering(here, caller)
 
-  ParameterMap = parameterMapOfArguments(args)
+  val ParameterMap = parameterMapOfArguments(args)
 
   println ("Parameters are:")
   for ( (k, v) in ParameterMap) {
