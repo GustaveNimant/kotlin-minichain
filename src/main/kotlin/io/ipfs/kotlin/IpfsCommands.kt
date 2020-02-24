@@ -2,6 +2,7 @@ package io.ipfs.kotlin
 
 import io.ipfs.kotlin.defaults.*
 import java.util.Stack
+import kotlin.system.exitProcess
 
 /**
  * Execution : gradlew run --args="-ipfs get QmTzX91dhqHRunjCtrt4LdTErREUA5Gg1wFMiJz1bEiQxp"
@@ -41,6 +42,12 @@ fun ipfsExecuteOfWordList(wor_l: List<String>) {
 			val immCon = ipfsImmutableContentOfGetWordList(wor_l)
 			println ("Content:")
 			println (immCon.toString())
+    		}
+		"hel" -> {
+		        wor_s.clear()
+			val hel_l = helpList()
+			val h_l = hel_l.filter({h -> h.contains("-ipfs ")})
+			printOfStringList(h_l)
     		}
 		else -> {
 		    fatalErrorPrint ("command were 'add', 'get'","'"+wor+"'", "Check input", here)

@@ -127,46 +127,6 @@ fun functionName(): String {
     return str	
 }
 
-fun helpList(): List<String> {
-    var hel_l = listOf(
-	"gradlew [-q] build [--info]",
-	"gradlew run --args=\"-help ''|all|compile|host|port|run|url",
-	"gradlew run --args=\"-debug <function name>|all\"",
-	"gradlew run --args=\"-ipfs add [Options] <path> add a file or a directory to Ipfs https://docs.ipfs.io/reference/api/cli/#ipfs-add",
-	"gradlew run --args=\"-ipfs add <path> add a file or a directory to Ipfs",
-	"gradlew run --args=\"-trace <function name>|all\" print input and output data",
-	"gradlew run --args=\"-verbose<function name>|all\"",
-	"gradlew run --args=\"-loop<function name>|all\" print message inside a loop",
-	"gradlew run --args=\"-when<function name>|all\" print message inside a when",
-	"gradlew run --args=\"-port 5122\" defines port with host default (127.0.0.1)",
-	"gradlew run --args=\"-host 127.0.0.1|<host name>\" defines host with port default (5001)",
-	"gradlew run --args=\"-url 127.0.0.1|<host name>:5001<port>\" defines an url"
-	)
-    return hel_l
-}
-
-fun helpListOfStringList(str_l: List<String>): List<String> {
-    var hel_l = helpList()
-    var mut_l = mutableListOf<String>()
-
-    for (str in str_l) {
-	val helps =
-	    when (str) {
-		"all" -> hel_l
-		"ipfs" -> hel_l.filter({h -> h.contains("-ipfs ")})
-		"run" -> hel_l.filter({h -> h.contains(" run ")})
-		"compile" -> listOf("gradlew -q build --info")
-		"host" -> listOf("gradlew run --args=\"-host 127.0.0.1|<host name>\" defines host with port default (5001)")
-		"port" -> listOf("gradlew run --args=\"-port 5122\" defines port with host default (127.0.0.1)")
-		"url" -> listOf("gradlew run --args=\"-url 127.0.0.1|<host name>:5001<port>\" defines an url")
-		else -> hel_l
-		
-	    }
-	mut_l.addAll(helps)
-    }
-    return mut_l
-}
-
 fun hereAndCaller(): Pair<String, String> {
     val sta = Thread.currentThread().stackTrace
     val here = (sta[2]).getMethodName()
