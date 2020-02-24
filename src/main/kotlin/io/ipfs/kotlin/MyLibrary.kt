@@ -34,7 +34,7 @@ class TreeNode<T>(value:T){
 
 data class pairString (val first: String, val second: String)
 
-var ParameterMap = mutableMapOf<String, MutableList<String>>() 
+var ParameterMap = mapOf<String, List<String>>() // Global Immutable
 
 var level = 0
 var dots = "........|........|........|........|........|........|........|"

@@ -129,9 +129,10 @@ fun main(args: Array<String>) {
     val (here, caller) = hereAndCaller()
     entering(here, caller)
 
-    val ParameterMap = parameterMapOfArguments(args)
- 
-    if (ParameterMap.size == 0) {
+    val parM = parameterMapOfArguments(args)
+    ParameterMap = parM.toMap() // Globalization for Trace ...
+    
+    if (parM.size == 0) {
 	println ("Commands are:")
 	val hel_l = helpList()
 	for (hel in hel_l) {
@@ -141,15 +142,15 @@ fun main(args: Array<String>) {
     }
 
     if(false) {
-	if (ParameterMap.size > 0) {
+	if (parM.size > 0) {
 	    println ("Commands with their parameter list:")
-	    for ( (k, v) in ParameterMap) {
+	    for ( (k, v) in parM) {
 		println ("$k => $v")
 	    }
 	}
     }
     
-    mainMenu(ParameterMap)
+    mainMenu(parM)
     
     println("\nnormal termination")
     exiting(here)
@@ -196,7 +197,7 @@ fun parameterMapOfArguments(args: Array<String>): Map<String, List<String>> {
 
   if(false) println("$here: input args $args")
 
-  var ParameterMap = mutableMapOf<String, List<String>>()
+  var parM = mutableMapOf<String, List<String>>()
 
   val arg_l = args.toList()
   val str_ll = stringListListOfDelimiterOfStringList ("-", arg_l)
@@ -205,18 +206,18 @@ fun parameterMapOfArguments(args: Array<String>): Map<String, List<String>> {
   for (str_l in str_ll) {
       if(false) println("$here: for str_l $str_l")
       var (command, par_l) = commandAndParametersOfStringList(str_l)
-      if(ParameterMap.contains(command)) {
+      if(parM.contains(command)) {
 	  val str_ = command.substring(3)
 	  if(false) println("$here: Warning: command '$command' is repeated")
 	  if(false) println("$here: Warning: to avoid this, modify the end command name '$command' from its 4th character (i.e. modify '$str_')")
 	  command = command + "_"
 	  if(false) println("$here: Warning: command has been currently modified to '$command'") 
       }
-      ParameterMap.put (command, par_l)
+      parM.put (command, par_l)
       if(false) println("$here: command '$command' added with par_l $par_l") 
   } // for arg_l
 
-  val result = ParameterMap.toMap()
+  val result = parM.toMap()
   if(false) println("$here: output result $result")
 
   exiting(here)

@@ -64,12 +64,7 @@ fun multiHashOfAddWordStack (wor_s: Stack<String>): MultiHashType {
     val (here, caller) = hereAndCaller()
     entering(here, caller)
 
-    val word = if (wor_s.size > 1) {
-	(stringOfGlueOfWordStack(" ", wor_s))
-    }
-    else {
-	wor_s.toString()
-    }
+    val word = stringOfGlueOfWordStack(" ", wor_s)
     wor_s.clear()
     if(isTrace(here)) println ("$here: input word '$word'")
 
