@@ -8,9 +8,9 @@ import io.ipfs.kotlin.defaults.*
  *
  */
 
-class IpfsHashRegister {
+class MultiHashRegister {
     
-    var register : MutableMap<String, IpfsHash> = mutableMapOf<String, IpfsHash>()
+    var register : MutableMap<String, MultiHashType> = mutableMapOf<String, MultiHashType>()
 
 fun isEmpty (): Boolean {
     val (here, caller) = hereAndCaller()
@@ -23,23 +23,23 @@ fun isEmpty (): Boolean {
     return result
 }
 
-fun store (path: String, ipfsH: IpfsHash) {
+fun store (path: String, mulH: MultiHashType) {
     val (here, caller) = hereAndCaller()
     entering(here, caller)
     
     if(isTrace(here)) println ("$here: input path '$path'")
-    if(isTrace(here)) println ("$here: input ipfsH '$ipfsH'")
+    if(isTrace(here)) println ("$here: input mulH '$mulH'")
     
     if (isStored(path)) {
 	val value = retrieve(path)
-	if (value != ipfsH) {
-	    fatalErrorPrint("IpfsHash already stored for path '$path' were equal to new one", ipfsH.toString(), "Check", here)
+	if (value != mulH) {
+	    fatalErrorPrint("MultiHashType already stored for path '$path' were equal to new one", mulH.toString(), "Check", here)
 		}
     }
     else {
-	register.put(path, ipfsH)
+	register.put(path, mulH)
     }
-    if(isTrace(here)) println ("$here: ipfsH couple has been stored")
+    if(isTrace(here)) println ("$here: mulH couple has been stored")
 }
 
 fun isStored (path: String): Boolean {
@@ -48,9 +48,9 @@ fun isStored (path: String): Boolean {
     
     if(isTrace(here)) println ("$here: input path '$path'")
 
-    val ipfsH = register.get(path)
-    val result = when (ipfsH) {
-	is IpfsHash -> register.contains(path) 
+    val mulH = register.get(path)
+    val result = when (mulH) {
+	is MultiHashType -> register.contains(path) 
 	else -> false
     }
 
@@ -60,13 +60,13 @@ fun isStored (path: String): Boolean {
     return result
 }
 
-fun retrieve (path: String): IpfsHash {
+fun retrieve (path: String): MultiHashType {
     val (here, caller) = hereAndCaller()
     entering(here, caller)
     
-    val ipfsH = register.get(path)
-    val result = when (ipfsH) {
-	is IpfsHash -> ipfsH 
+    val mulH = register.get(path)
+    val result = when (mulH) {
+	is MultiHashType -> mulH 
 	else -> {fatalErrorPrint ("", "", "", here)}
     }
     if(isTrace(here)) println ("$here: output result '$result'")

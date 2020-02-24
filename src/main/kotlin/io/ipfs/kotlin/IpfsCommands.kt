@@ -1,29 +1,83 @@
 package io.ipfs.kotlin
 
+import io.ipfs.kotlin.defaults.*
 import java.util.Stack
+import kotlin.system.exitProcess
 
 /**
  * Execution : gradlew run --args="-ipfs get QmTzX91dhqHRunjCtrt4LdTErREUA5Gg1wFMiJz1bEiQxp"
- *
+ * val multihash = LocalIpfs().add.string("test-string").Hash
+ * val content = LocalIpfs().get.cat(multihash)
+ * val commit = LocalIpfs().info.version()!!.Commit
  * Author : François Colonna 22 février 2020 at 15:32:44+01:00
  */
 
-fun ipfsHashOfAddWordStack (wor_s: Stack<String>): IpfsHash {
+fun ipfsExecuteOfWordList(wor_l: List<String>) {
+    val (here, caller) = hereAndCaller()
+    entering(here, caller)
+    
+    // Ex.: -ipfs add truc much
+    var done = false
+    if(isTrace(here)) println ("$here: input wor_l '$wor_l'")
+    var wor_s = wordStackOfWordList(wor_l)
+    
+    while (!done) {
+	try {
+	    val wor = wor_s.pop()
+	    val wor_3 = wor.substring(0,3)
+	    if(isLoop(here)) println("$here: wor '$wor'")
+	    
+	    when (wor_3) {
+		"add" -> {
+		    val mulH = multiHashOfAddWordStack(wor_s)
+		    println ("MultiHashType: $mulH")
+		    wor_s.clear()
+		}
+		"com" -> {
+		        wor_s.clear()
+                        ipfsCommit()
+    		}
+		"get" -> {
+		        wor_s.clear()
+			val immCon = ipfsImmutableContentOfGetWordList(wor_l)
+			println ("Content:")
+			println (immCon.toString())
+    		}
+		"hel" -> {
+		        wor_s.clear()
+			val hel_l = helpList()
+			val h_l = hel_l.filter({h -> h.contains("-ipfs ")})
+			printOfStringList(h_l)
+    		}
+		else -> {
+		    fatalErrorPrint ("command were 'add', 'get'","'"+wor+"'", "Check input", here)
+		} // else
+	    } // when
+	} // try
+	catch (e: java.util.EmptyStackException) {done = true} // catch
+	
+    } // while
+    exiting(here)
+}
+
+fun multiHashOfAddWordStack (wor_s: Stack<String>): MultiHashType {
     val (here, caller) = hereAndCaller()
     entering(here, caller)
 
-    val word = if (wor_s.size > 1) {
-	(stringOfGlueOfWordStack(" ", wor_s))
-    }
-    else {
-	wor_s.toString()
-    }
+    val word = stringOfGlueOfWordStack(" ", wor_s)
     wor_s.clear()
-    
-    println("$here: word '$word'")
-    val proIpH = IpfsHashProvider()
-    val result = proIpH.provide(word)
+    if(isTrace(here)) println ("$here: input word '$word'")
 
+    val filCon = // file path case
+	if (isFilePathOfWord(word)) {
+	    stringReadOfFilePath(word)
+	}
+    else {
+	word
+    }
+	
+    val strH = LocalIpfs().add.string(filCon).Hash
+    val result = multiHashTypeOfString(strH)
     if(isTrace(here)) println ("$here: output result '$result'")
 
     exiting(here)
@@ -44,10 +98,10 @@ fun ipfsImmutableContentOfGetWordList (wor_l: List<String>): IpfsImmutableConten
 	fatalErrorPrint ("one element in get input", str, "Check input", here)
     }
     
-    val ipfsH = ipfsHashOfString(worH)
-    println("$here: ipfsH '$ipfsH'")
+    val mulTyp = multiHashTypeOfString(worH)
+    println("$here: mulTyp '$mulTyp'")
     val proImm = IpfsImmutableProvider()
-    val result = proImm.provide(ipfsH)
+    val result = proImm.provide(mulTyp)
 
     if(isTrace(here)) println ("$here: output result '$result'")
     
@@ -55,40 +109,16 @@ fun ipfsImmutableContentOfGetWordList (wor_l: List<String>): IpfsImmutableConten
     return result
 }
 
-fun ipfsExecuteOfWordList(wor_l: List<String>) {
+fun ipfsCommit (): String {
     val (here, caller) = hereAndCaller()
     entering(here, caller)
-    
-    // Ex.: -ipfs add truc much
-    var done = false
-    if(isTrace(here)) println ("$here: input wor_l '$wor_l'")
-    var wor_s = wordStackOfWordList(wor_l)
-    
-    while (!done) {
-	try {
-	    val wor = wor_s.pop()
-	    val wor_3 = wor.substring(0,3)
-	    println("$here: wor '$wor'")
-	    
-	    when (wor_3) {
-		"add" -> {
-		    val hash = ipfsHashOfAddWordStack(wor_s)
-		    println ("Hash: $hash")
-		}
-		"get" -> {
-		        wor_s.clear()
-			val immCon = ipfsImmutableContentOfGetWordList(wor_l)
-			println ("Content:")
-			println (immCon.toString())
-    		}
-		else -> {
-		    fatalErrorPrint ("command were 'add', 'get'","'"+wor+"'", "Check input", here)
-		} // else
-	    } // when
-	} // try
-	catch (e: java.util.EmptyStackException) {done = true} // catch
+
+    val result = LocalIpfs().info.version()!!.Commit
+    if(isTrace(here)) println ("$here: output result '$result'")
 	
-    } // while
     exiting(here)
+    return result
 }
+
+
 

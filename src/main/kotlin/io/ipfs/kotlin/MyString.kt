@@ -214,7 +214,12 @@ fun nextWordOfEndCharOfString(del: Char, str: String): String {
     return word
 }
 
-fun printStringList (str_l: List<String>) {
+fun printOfStringArray (str_a: Array<String>) {
+    val content = stringOfGlueOfStringList ("\n", str_a.toList())
+    println (content)
+}
+
+fun printOfStringList (str_l: List<String>) {
     val content = stringOfGlueOfStringList ("\n", str_l)
     println (content)
 }
@@ -222,6 +227,52 @@ fun printStringList (str_l: List<String>) {
 fun stringOfGlueOfStringList (glue: String, str_l: List<String>) : String {
  val str = str_l.fold("", {acc, s -> acc + s + glue })
  return str.trim() 
+}
+
+fun stringListListOfDelimiterOfStringList (del: String, str_l: List<String>): List<List<String>> {
+// Ex.: args=["-debug", "all", "-verbose", "all", "-trace", "all", "-loop"]
+    val (here, caller) = hereAndCaller()
+    entering(here, caller)
+
+    if(false) println("$here: input del '$del'")
+    if(false) println("$here: input str_l $str_l")
+
+    val lenDel = del.length
+    var from_l: MutableList<Int> = mutableListOf()
+    var to_l : List<Int>
+    var i_l : List<Int>
+
+    // from_l array of indices where command starts with del. (ex: '-')
+    // to_l array of indices where command ends to (excluded)
+    var ind = -1
+    for (str in str_l) {
+	if(false) println("$here: for str '$str'")
+	ind = ind + 1
+	if (str.substring(0, lenDel) == del) {
+	    from_l.add (ind)
+	    if(false) println("added ind '$ind'")
+	}
+    }
+
+    i_l = from_l.plus (str_l.size)
+    to_l = i_l.minus (0)
+
+// Split from to
+    var res_l = mutableListOf(listOf(""))
+
+    for (i in 0 .. (from_l.size-1)) {
+	val ind_from = from_l [i]
+	val ind_to = to_l[i]
+	val sub = str_l.subList(ind_from, ind_to)
+	if(false) println("$here: for i $i from $ind_from to $ind_to sub $sub res_l $res_l")
+	res_l.add(sub)
+    }
+    
+    val result = (res_l.toList()).drop(1)
+    if(false) println("$here: output result $result")
+
+    exiting (here)
+    return result
 }
 
 fun stringOfGlueOfWordStack (glue: String, str_s: Stack<String>) : String {
