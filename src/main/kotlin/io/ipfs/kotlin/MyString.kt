@@ -230,30 +230,32 @@ fun stringOfGlueOfStringList (glue: String, str_l: List<String>) : String {
 }
 
 fun stringListListOfDelimiterOfStringList (del: String, str_l: List<String>): List<List<String>> {
+// Ex.: args=["-debug", "all", "-verbose", "all", "-trace", "all", "-loop"]
     val (here, caller) = hereAndCaller()
     entering(here, caller)
 
-    if(isTrace(here)) println("$here: input del '$del'")
-    if(isTrace(here)) println("$here: input str_l $str_l")
+    if(false) println("$here: input del '$del'")
+    if(false) println("$here: input str_l $str_l")
 
     val lenDel = del.length
     var from_l: MutableList<Int> = mutableListOf()
     var to_l : List<Int>
-    var s_l : List<Int>
+    var i_l : List<Int>
 
-// Arrays of sublist limits
+    // from_l array of indices where command starts with del. (ex: '-')
+    // to_l array of indices where command ends to (excluded)
     var ind = -1
     for (str in str_l) {
-	println("loop str '$str'")
+	if(false) println("$here: for str '$str'")
 	ind = ind + 1
 	if (str.substring(0, lenDel) == del) {
 	    from_l.add (ind)
-	    if(isLoop(here)) println("added ind '$ind'")
+	    if(false) println("added ind '$ind'")
 	}
     }
 
-    s_l = from_l.plus (str_l.size)
-    to_l = s_l.minus (0)
+    i_l = from_l.plus (str_l.size)
+    to_l = i_l.minus (0)
 
 // Split from to
     var res_l = mutableListOf(listOf(""))
@@ -262,13 +264,12 @@ fun stringListListOfDelimiterOfStringList (del: String, str_l: List<String>): Li
 	val ind_from = from_l [i]
 	val ind_to = to_l[i]
 	val sub = str_l.subList(ind_from, ind_to)
-	if(isLoop(here)) println("$here: loop i $i from $ind_from to $ind_to sub $sub res_l $res_l")
+	if(false) println("$here: for i $i from $ind_from to $ind_to sub $sub res_l $res_l")
 	res_l.add(sub)
-	
     }
     
     val result = (res_l.toList()).drop(1)
-    if(isTrace(here)) println("$here: output result $result")
+    if(false) println("$here: output result $result")
 
     exiting (here)
     return result
