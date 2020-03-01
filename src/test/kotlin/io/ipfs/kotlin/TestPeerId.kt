@@ -16,14 +16,14 @@ class TestPeerid : BaseIpfsWebserverTest() {
     @Test
     fun testPeerid() {
         // setup
-        server.enqueue(MockResponse().setBody("{\"Key\":\"QmZYVoscbWWJJZWy7Ue19iGXC5SRh3kune3gKSYHv3kzKn\"}\n"))
+        server.enqueue(MockResponse().setBody("{\"Key\":\"QmUfbdU5125Rdwc7pS1wrTwvPDkfyB2jra6xU78TRbeP37\"}\n"))
 
         // invoke
-        val peeId = ipfs.peerid.peerId()
+        val peerIdInfo = ipfs.peerid.peerId()
 
         // assert
-        assertThat(peeId).isNotNull()
-        assertThat(peeId!!.Key).isEqualTo("QmZYVoscbWWJJZWy7Ue19iGXC5SRh3kune3gKSYHv3kzKn")
+        assertThat(peerIdInfo).isNotNull()
+        assertThat(peerIdInfo!!.Key).isEqualTo("QmUfbdU5125Rdwc7pS1wrTwvPDkfyB2jra6xU78TRbeP37")
 
         val executedRequest = server.takeRequest()
         assertThat(executedRequest.path).isEqualTo("/config/Identity.PeerID")

@@ -18,6 +18,7 @@ open class Ipfs(configuration: IpfsConfiguration) {
     val add by lazy { Add(connection) }
     val get by lazy { Get(connection) }
     val info by lazy { Info(connection) }
+    val peerid by lazy { PeerId(connection) }
     val stats by lazy { Stats(connection) }
     val peerid by lazy { PeerId(connection) }
     val pins by lazy { Pins(connection) }
