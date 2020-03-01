@@ -7,21 +7,31 @@ import java.lang.Character.MIN_VALUE as nullChar
 import java.util.Base64
 import java.util.Stack
 
-class MyLibrary
+/**
+ * What is it : some basic tools
+ * Done : 25 février 2020 MutableTree => Tree
+ * Remark : need to define TrreNode as data class to get non empty results.
+ * Author : Emile Achadde 25 février 2020 at 16:31:52+01:00
+ */
 
-// beginning of library
-
-class TreeNode<T>(value:T){
+class MutableTreeNode<T>(value:T){
     var value:T = value
 
-    var parent:TreeNode<T>? = null
+    var parent:MutableTreeNode<T>? = null
 
-    var children:MutableList<TreeNode<T>> = mutableListOf()
+    var children:MutableList<MutableTreeNode<T>> = mutableListOf()
 
-    fun addChild(node:TreeNode<T>){
+    fun addChild(node:MutableTreeNode<T>){
         children.add(node)
         node.parent = this
     }
+
+    fun toTreeNode(): TreeNode<T> {
+
+	val sib_l = children.toList()
+	val nodImm = TreeNode(value, sib_l.map { sib -> sib.toTreeNode()})
+	return nodImm
+	}
 
     override fun toString(): String {
         var s = "${value}"
@@ -32,11 +42,16 @@ class TreeNode<T>(value:T){
     }
 }
 
-data class PairString (val first: String, val second: String)
+// data class LeafNode<T>(val value:T):TreeNode<T>
+
+data class TreeNode<T>(val value:T, val children : List<TreeNode<T>>)
+
+data class pairString (val first: String, val second: String)
 
 var ParameterMap = mapOf<String, List<String>>() // Global Immutable
 
 var level = 0
+
 var dots = "........|........|........|........|........|........|........|"
 
 fun <T> teeStackOfTeeList (tee_l: List<T>): Stack<T> {
@@ -127,6 +142,21 @@ fun functionName(): String {
     return str	
 }
 
+fun moduleName(): String {
+    val sta = Thread.currentThread().stackTrace[2]
+    val str = sta.getFileName()
+    val result = str.replace(".kt", "")  
+    return result
+}
+
+fun moduleAndfunctionName(): Pair<String, String> {
+    val sta = Thread.currentThread().stackTrace[2]
+    val strFun = sta.getMethodName()
+    val strFil = sta.getFileName()
+    val strMod = strFil.replace(".kt", "")  
+    return Pair(strMod, strFun)
+}
+
 fun hereAndCaller(): Pair<String, String> {
     val sta = Thread.currentThread().stackTrace
     val here = (sta[2]).getMethodName()
@@ -138,6 +168,38 @@ fun hereAndCaller(): Pair<String, String> {
 	"None"}
     
     val result = Pair(here, caller) 
+    return result
+}
+
+fun moduleAndHereAndCaller(): Triple<String, String, String> {
+    val sta = Thread.currentThread().stackTrace
+    val strFil = (sta[2]).getFileName()
+    val module = strFil.replace(".kt", "")  
+    val here = (sta[2]).getMethodName()
+    val caller = 
+	try {
+	    (sta[3]).getMethodName()
+	}
+    catch (e: ArrayIndexOutOfBoundsException) {
+	"None"}
+    
+    val result = Triple(module, here, caller) 
+    return result
+}
+
+fun moduleHereAndCaller(): Pair<String, String> {
+    val sta = Thread.currentThread().stackTrace
+    val strFil = (sta[2]).getFileName()
+    val module = strFil.replace(".kt", "")  
+    val here = (sta[2]).getMethodName()
+    val caller = 
+	try {
+	    (sta[3]).getMethodName()
+	}
+    catch (e: ArrayIndexOutOfBoundsException) {
+	"None"}
+    
+    val result = Pair(module+"."+here, caller) 
     return result
 }
 
