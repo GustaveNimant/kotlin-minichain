@@ -11,10 +11,10 @@ import org.junit.Test
  * Revision : Emile Achadde 27 février 2020 at 08:22:18+01:00
  */
 
-class TestPeerid : BaseIpfsWebserverTest() {
+class TestPeerId : BaseIpfsWebserverTest() {
 
     @Test
-    fun testPeerid() {
+    fun testPeerId() {
         // setup
         server.enqueue(MockResponse().setBody("{\"Key\":\"QmUfbdU5125Rdwc7pS1wrTwvPDkfyB2jra6xU78TRbeP37\"}\n"))
 
