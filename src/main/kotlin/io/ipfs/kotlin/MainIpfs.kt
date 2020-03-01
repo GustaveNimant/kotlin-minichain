@@ -115,7 +115,8 @@ fun executeIpfsOfWordList(wor_l: List<String>) {
 		    val result =
 			try {
 			    val peeId = LocalIpfs().peerid.peerId()
-			    peeId!!.Key
+			    val result = peeId!!.Key
+			    println ("Ipfs PeerID: '$result'")
 			}
 		    catch (e: java.net.UnknownHostException) {
 			fatalErrorPrint ("Connection to 127.0.0.1:5122", "Connection refused", "launch Host :\n\tgo to minichain jsm; . config.sh; ipmsd.sh", here)
