@@ -115,7 +115,7 @@ fun executeIpfsOfWordList(wor_l: List<String>) {
 		    val result =
 			try {
 			    val peeId = LocalIpfs().peerid.peerId()
-			    val result = peeId!!.Key
+			    val result = peeId!!.Value
 			    println ("Ipfs PeerID: '$result'")
 			}
 		    catch (e: java.net.UnknownHostException) {
