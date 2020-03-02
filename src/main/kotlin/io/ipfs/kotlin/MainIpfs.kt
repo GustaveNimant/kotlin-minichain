@@ -31,39 +31,6 @@ fun commandAndParametersOfStringList(str_l: List<String>): Pair<String, List<Str
   return result
 }
 
-fun parameterMapOfArguments(args: Array<String>): Map<String, List<String>> {
-  val (here, caller) = moduleHereAndCaller()
-  entering(here, caller)
-
-  if(false) println("$here: input args $args")
-
-  var parM = mutableMapOf<String, List<String>>()
-
-  val arg_l = args.toList()
-  val str_ll = stringListListOfDelimiterOfStringList ("-", arg_l)
-  if(false) println("$here: str_ll $str_ll")
-  
-  for (str_l in str_ll) {
-      if(false) println("$here: for str_l $str_l")
-      var (command, par_l) = commandAndParametersOfStringList(str_l)
-      if(parM.contains(command)) {
-	  val str_ = command.substring(3)
-	  if(false) println("$here: Warning: command '$command' is repeated")
-	  if(false) println("$here: Warning: to avoid this, modify the end command name '$command' from its 4th character (i.e. modify '$str_')")
-	  command = command + "_"
-	  if(false) println("$here: Warning: command has been currently modified to '$command'") 
-      }
-      parM.put (command, par_l)
-      if(false) println("$here: command '$command' added with par_l $par_l") 
-  } // for arg_l
-
-  val result = parM.toMap()
-  if(false) println("$here: output result $result")
-
-  exiting(here)
-  return result
-}
-
 fun executeIpfsOfWordList(wor_l: List<String>) {
     val (here, caller) = moduleHereAndCaller()
     entering(here, caller)
@@ -92,7 +59,12 @@ fun executeIpfsOfWordList(wor_l: List<String>) {
 			 else {
 			     word
 			 }
-	
+
+			  //   val filJav = File(directoryPath)
+			  //   val namedHashList = LocalIpfs().add.directory(filJav)
+
+			  //   val filJav = File(filePath)
+			 //    val namedHash = LocalIpfs().add.file(filJav).Hash
 			 val strH = LocalIpfs().add.string(filCon).Hash
  			 println ("MultiHash: $strH")
 			 wor_s.clear()
@@ -111,17 +83,22 @@ fun executeIpfsOfWordList(wor_l: List<String>) {
 			   println ("Ipfs Commit: '$result'")
 	
     		}
+		"inf" -> { // (-ipfs inf) QmdKAX85S5uVKWx4ds5NdznJPjgsqAATnnkA8nE2bXQSSa
+		           wor_s.clear()
+        		   val str = LocalIpfs().info.version()
+			   println ("Version:")
+			   println (str)
+    		}
 		"pee" -> {
 		    val result =
 			try {
 			    val peeId = LocalIpfs().peerid.peerId()
-			    peeId!!.Key
+			    val result = peeId!!.Value
+			    println ("Ipfs Peerid: '$result'")
 			}
 		    catch (e: java.net.UnknownHostException) {
 			fatalErrorPrint ("Connection to 127.0.0.1:5122", "Connection refused", "launch Host :\n\tgo to minichain jsm; . config.sh; ipmsd.sh", here)
 		    }
-		    
-		    println("Peerid '$result'")
 		}
 		else -> {
 		    fatalErrorPrint ("command were 'add' 'cat' 'com'mmit 'con'fig 'get' 'hel'p 'pee'rid","'"+wor+"'", "Check input", here)
@@ -138,17 +115,17 @@ fun main(args: Array<String>) {
     val (here, caller) = moduleHereAndCaller()
     entering(here, caller)
 
-    val parM = parameterMapOfArguments(args)
-    ParameterMap = parM.toMap() // Globalization for Trace ...
+    val parMap = parameterMapOfArguments(args)
+    ParameterMap = parMap.toMap() // Globalization for Trace ...
     
-    if (parM.size > 0) {
+    if (parMap.size > 0) {
 	println ("Commands with their parameter list:")
-	for ( (k, v) in parM) {
+	for ( (k, v) in parMap) {
 	    println ("$k => $v")
 	}
     }
 
-    val com_s = parM.keys
+    val com_s = parMap.keys
     var step = 0
     
     for (com in com_s) { 
@@ -156,7 +133,7 @@ fun main(args: Array<String>) {
       println("$here: ----- command # $step '$com' -----")
       val com_3 = com.substring(0,3)
       
-      val wor_ml = parM.get(com)
+      val wor_ml = parMap.get(com)
       val wor_l = wor_ml!!.map({w -> w.toString()}) 
       if (isLoop(here)) println("$here: wor_l '$wor_l'")
       
@@ -166,6 +143,7 @@ fun main(args: Array<String>) {
 	      println("$here: '$com' activated for '$str' functions")
 	  }
 	  "end", "exi" -> {println("\nnormal termination") }
+	  "hel" -> {helpOfParameterMap(parMap)}
           "ipf" -> {
 	      try {
 		  executeIpfsOfWordList(wor_l)
@@ -180,6 +158,39 @@ fun main(args: Array<String>) {
     } // for
     
 
+}
+
+fun parameterMapOfArguments(args: Array<String>): Map<String, List<String>> {
+  val (here, caller) = moduleHereAndCaller()
+  entering(here, caller)
+
+  if(false) println("$here: input args $args")
+
+  var parMap = mutableMapOf<String, List<String>>()
+
+  val arg_l = args.toList()
+  val str_ll = stringListListOfDelimiterOfStringList ("-", arg_l)
+  if(false) println("$here: str_ll $str_ll")
+  
+  for (str_l in str_ll) {
+      if(false) println("$here: for str_l $str_l")
+      var (command, par_l) = commandAndParametersOfStringList(str_l)
+      if(parMap.contains(command)) {
+	  val str_ = command.substring(3)
+	  if(false) println("$here: Warning: command '$command' is repeated")
+	  if(false) println("$here: Warning: to avoid this, modify the end command name '$command' from its 4th character (i.e. modify '$str_')")
+	  command = command + "_"
+	  if(false) println("$here: Warning: command has been currently modified to '$command'") 
+      }
+      parMap.put (command, par_l)
+      if(false) println("$here: command '$command' added with par_l $par_l") 
+  } // for arg_l
+
+  val result = parMap.toMap()
+  if(false) println("$here: output result $result")
+
+  exiting(here)
+  return result
 }
 
 

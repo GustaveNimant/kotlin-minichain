@@ -9,7 +9,10 @@ class PeerId(val ipfs: IpfsConnection) {
 
     fun peerId(): PeerIdInfo? {
         val response = ipfs.callCmd("config/Identity.PeerID")
-        return response.use { peeridAdapter.fromJson(it.source()) }
+	println("response $response")
+	val adapter = peeridAdapter
+	println("adapter $adapter")
+        return response.use { peeridAdapter.fromJson(it.string()) }
     }
 
 }
