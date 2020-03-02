@@ -90,7 +90,6 @@ fun executeIpfsOfWordList(wor_l: List<String>) {
 			   println (str)
     		}
 		"pee" -> {
-		    val result =
 			try {
 			    val peeId = LocalIpfs().peerid.peerId()
 			    val result = peeId!!.Value
