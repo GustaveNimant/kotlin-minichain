@@ -48,6 +48,7 @@ data class TreeNode<T>(val value:T, val children : List<TreeNode<T>>)
 
 data class pairString (val first: String, val second: String)
 
+// var InputValueMap = mutableMapOf<String, String>() // Global Mutable
 var ParameterMap = mapOf<String, List<String>>() // Global Immutable
 
 var level = 0

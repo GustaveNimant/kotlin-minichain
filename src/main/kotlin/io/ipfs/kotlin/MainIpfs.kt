@@ -5,9 +5,13 @@ import io.ipfs.kotlin.defaults.*
 import java.io.File
 import java.util.Stack
 
+/**
+ * Author : Emile Achadde 05 mars 2020 at 11:47:43+01:00
+ */
+
 fun commandAndParametersOfStringList(str_l: List<String>): Pair<String, List<String>> {
-  val (here, caller) = moduleHereAndCaller()
-  entering(here, caller)
+    val (here, caller) = moduleHereAndCaller()
+    entering(here, caller)
 
   if(false) println("$here: input str_l $str_l")
 
@@ -96,7 +100,7 @@ fun executeIpfsOfWordList(wor_l: List<String>) {
 			    println ("Ipfs PeerID: '$result'")
 			}
 		    catch (e: java.net.UnknownHostException) {
-			fatalErrorPrint ("Connection to 127.0.0.1:5122", "Connection refused", "launch Host :\n\tgo to minichain jsm; . config.sh; ipmsd.sh", here)
+			fatalErrorPrint ("Connection to 127.0.0.1:5001", "Connection refused", "launch Host :\n\tgo to minichain jsm; . config.sh; ipmsd.sh", here)
 		    }
 		}
 		else -> {
@@ -143,20 +147,32 @@ fun main(args: Array<String>) {
 	  }
 	  "end", "exi" -> {println("\nnormal termination") }
 	  "hel" -> {helpOfParameterMap(parMap)}
-          "ipf" -> {
+          "inp" -> {// -input <file-path>
+		    val inpFilPat = (ParameterMap.getValue("input")).first()
+		    println("$here: input file path '$inpFilPat'")
+	  }
+	  "ipf" -> { 
 	      try {
 		  executeIpfsOfWordList(wor_l)
 	      }
 	      catch (e: java.net.ConnectException){
-		  fatalErrorPrint ("Connection to 127.0.0.1:5122", "Connection refused", "launch Ipfs :\n\tgo to minichain jsm; . config.sh; ipmsd.sh", here)}
+		  fatalErrorPrint ("Connection to 127.0.0.1:5001", "Connection refused", "launch Ipfs :\n\tgo to minichain jsm; . config.sh; ipmsd.sh", here)}
 	  } // ipfs
+	  "kwe" -> {val inpFilPat = try { (ParameterMap.getValue("input")).first()}
+		    catch(e:java.util.NoSuchElementException){
+			fatalErrorPrint("an input file path were given","there are none","add '-input <file-name>' to command line",here)
+		    }
+		    val keyValMap = kwextract(inpFilPat)
+		    println ("Extracted (key, value) from input")
+		    for ( (k, v) in keyValMap) {
+			println ("$k => $v")
+		    }
+	  }
 	  else -> {
 	      fatalErrorPrint ("command were one of end, exi[t], hel[p], ipf[s], run", "'"+com+"'", "re Run", here)
 	    } // else
       } // when
     } // for
-    
-
 }
 
 fun parameterMapOfArguments(args: Array<String>): Map<String, List<String>> {
