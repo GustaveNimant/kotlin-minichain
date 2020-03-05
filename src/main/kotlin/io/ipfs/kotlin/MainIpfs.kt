@@ -141,7 +141,7 @@ fun main(args: Array<String>) {
       if (isLoop(here)) println("$here: wor_l '$wor_l'")
       
       when (com_3) {
-	  "deb", "loo", "tra", "ver", "whe" -> {
+	  "deb", "ent", "loo", "tra", "ver", "whe" -> {
 	      val str = stringOfStringList(wor_ml)
 	      println("$here: '$com' activated for '$str' functions")
 	  }

@@ -23,8 +23,8 @@ fun kwextract(filPat: String): MutableMap<String, String> {
     var result = mutableMapOf<String, String>()
     for (line in lin_l) {
 	if(isLoop(here)) println("$here: line $line")
-	
-	val pattern = Regex("""\$(qm|source|parents|mutable|previous|next|tic|spot):\s*([^\\\$]*?)\s*\$""")
+
+	var pattern = Regex("""\$(qm|source|parents|mutable|previous|next|tic|spot):\s*([^\\\$]*?)\s*\$""")
 	if (pattern.containsMatchIn(line)) {
 	    var matRes = pattern.find(line)
 	    var (key, value) = matRes!!.destructured
@@ -34,7 +34,7 @@ fun kwextract(filPat: String): MutableMap<String, String> {
     }
     
     if(isTrace(here)) println("$here: output result $result")
-
+    exiting(here)
     return result
     }
     

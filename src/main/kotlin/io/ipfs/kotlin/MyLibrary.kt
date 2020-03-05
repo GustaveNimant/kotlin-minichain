@@ -116,19 +116,23 @@ fun countOfCharOfString (cha: Char, str: String) : Int {
 }
 
 fun entering(here: String, caller: String):Unit {
-    level = level + 1
-    if (level > 70) {
-       println ("Error maximum number of nesting levels reached")
-    } else {
-        var points = dots.substring(0, level)
-        println("$points Entering  in $here called by $caller")
+    if(isEnterExit(here)) {
+	level = level + 1
+	if (level > 70) {
+	    println ("Error maximum number of nesting levels reached")
+	} else {
+            var points = dots.substring(0, level)
+            println("$points Entering  in $here called by $caller")
+	}
     }
 }
 
 fun exiting(here: String):Unit {
-    var points = dots.substring(0, level)
-    println("$points Exiting from $here")
-    level = level - 1	
+    if(isEnterExit(here)) {
+	var points = dots.substring(0, level)
+	println("$points Exiting from $here")
+	level = level - 1	
+    }
 }
 
 fun fatalErrorPrint (expecting: String, found: String, cure: String, where: String): Nothing {
@@ -172,43 +176,20 @@ fun hereAndCaller(): Pair<String, String> {
     return result
 }
 
-fun moduleAndHereAndCaller(): Triple<String, String, String> {
-    val sta = Thread.currentThread().stackTrace
-    val strFil = (sta[2]).getFileName()
-    val module = strFil.replace(".kt", "")  
-    val here = (sta[2]).getMethodName()
-    val caller = 
-	try {
-	    (sta[3]).getMethodName()
-	}
-    catch (e: ArrayIndexOutOfBoundsException) {
-	"None"}
-    
-    val result = Triple(module, here, caller) 
-    return result
-}
-
-fun moduleHereAndCaller(): Pair<String, String> {
-    val sta = Thread.currentThread().stackTrace
-    val strFil = (sta[2]).getFileName()
-    val module = strFil.replace(".kt", "")  
-    val here = (sta[2]).getMethodName()
-    val caller = 
-	try {
-	    (sta[3]).getMethodName()
-	}
-    catch (e: ArrayIndexOutOfBoundsException) {
-	"None"}
-    
-    val result = Pair(module+"."+here, caller) 
-    return result
-}
-
 fun isDebug(here:String): Boolean {
   if (ParameterMap.containsKey("debug")) { 
     val debug_l = ParameterMap.getValue("debug")
     val result = debug_l.contains("all") || debug_l.contains(here)
     return result 
+  }
+  else {return false}
+}
+
+fun isEnterExit(here:String): Boolean {
+  if (ParameterMap.containsKey("enterexit")) { 
+    val entexi_l = ParameterMap.getValue("enterexit")
+    val result = entexi_l.contains("all") || entexi_l.contains(here)
+    return result
   }
   else {return false}
 }
@@ -247,6 +228,38 @@ fun isWhen(here:String): Boolean {
     return result
   }
   else {return false}
+}
+
+fun moduleAndHereAndCaller(): Triple<String, String, String> {
+    val sta = Thread.currentThread().stackTrace
+    val strFil = (sta[2]).getFileName()
+    val module = strFil.replace(".kt", "")  
+    val here = (sta[2]).getMethodName()
+    val caller = 
+	try {
+	    (sta[3]).getMethodName()
+	}
+    catch (e: ArrayIndexOutOfBoundsException) {
+	"None"}
+    
+    val result = Triple(module, here, caller) 
+    return result
+}
+
+fun moduleHereAndCaller(): Pair<String, String> {
+    val sta = Thread.currentThread().stackTrace
+    val strFil = (sta[2]).getFileName()
+    val module = strFil.replace(".kt", "")  
+    val here = (sta[2]).getMethodName()
+    val caller = 
+	try {
+	    (sta[3]).getMethodName()
+	}
+    catch (e: ArrayIndexOutOfBoundsException) {
+	"None"}
+    
+    val result = Pair(module+"."+here, caller) 
+    return result
 }
 
 fun notYetImplemented(fun_nam: String){
