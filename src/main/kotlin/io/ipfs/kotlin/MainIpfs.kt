@@ -52,26 +52,26 @@ fun executeIpfsOfWordList(wor_l: List<String>) {
 	    
 	    when (wor_3) {
 		"add" -> { // "-ipfs add ./parser.bnf" "-ipfs add truc much"
-	                 val word = stringOfGlueOfWordStack(" ", wor_s)
-			 wor_s.clear()
-			 if(isTrace(here)) println ("$here: input word '$word'")
-
-			 val filCon = // file path case
-			 if (isFilePathOfWord(word)) {
-			     stringReadOfFilePath(word)
-			 }
-			 else {
-			     word
-			 }
-
-			  //   val filJav = File(directoryPath)
-			  //   val namedHashList = LocalIpfs().add.directory(filJav)
-
-			  //   val filJav = File(filePath)
-			 //    val namedHash = LocalIpfs().add.file(filJav).Hash
-			 val strH = LocalIpfs().add.string(filCon).Hash
- 			 println ("MultiHash: $strH")
-			 wor_s.clear()
+	                   val word = stringOfGlueOfWordStack(" ", wor_s)
+			   wor_s.clear()
+			   if(isTrace(here)) println ("$here: input word '$word'")
+			   
+			   val filCon = // file path case
+			   if (isFilePathOfWord(word)) {
+			       stringReadOfFilePath(word)
+			   }
+			   else {
+			       word
+			   }
+			   
+			   //   val filJav = File(directoryPath)
+			   //   val namedHashList = LocalIpfs().add.directory(filJav)
+			   
+			   //   val filJav = File(filePath)
+			   //    val namedHash = LocalIpfs().add.file(filJav).Hash
+			   val strH = LocalIpfs().add.string(filCon).Hash
+ 			   println ("MultiHash: $strH")
+			   wor_s.clear()
 		}
 		"cat" -> { // (-ipfs cat) QmdKAX85S5uVKWx4ds5NdznJPjgsqAATnnkA8nE2bXQSSa
 			   val strHas = wor_s.pop()
@@ -85,8 +85,7 @@ fun executeIpfsOfWordList(wor_l: List<String>) {
 		           wor_s.clear()
                            val result = LocalIpfs().info.version()!!.Commit
 			   println ("Ipfs Commit: '$result'")
-	
-    		}
+	    	}
 		"inf" -> { // (-ipfs inf) QmdKAX85S5uVKWx4ds5NdznJPjgsqAATnnkA8nE2bXQSSa
 		           wor_s.clear()
         		   val str = LocalIpfs().info.version()
@@ -169,7 +168,7 @@ fun main(args: Array<String>) {
 		    }
 	  }
 	  else -> {
-	      fatalErrorPrint ("command were one of end, exi[t], hel[p], ipf[s], run", "'"+com+"'", "re Run", here)
+	      fatalErrorPrint ("command were one of end, exi[t], hel[p], inp[put], ipf[s], kwe[xtract], run", "'"+com+"'", "re Run", here)
 	    } // else
       } // when
     } // for

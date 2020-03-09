@@ -7,7 +7,7 @@ buildscript {
     extra["mockitoVersion"] = "2.12.0"
     extra["moshiVersion"]   = "1.4.0"
     extra["okhttpVersion"]  = "4.4.0"
-    extra["okioVersion"]  = "2.4.3"
+    extra["okioVersion"]    = "2.4.3"
     
     repositories {
         jcenter()
@@ -37,7 +37,7 @@ jacoco {
  toolVersion = "${extra["jacocoVersion"]}"
 }
 
-group = "minichain"
+group = "kotlin-minichain"
 
 repositories {
     jcenter()
