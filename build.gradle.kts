@@ -8,6 +8,7 @@ buildscript {
     extra["moshiVersion"]   = "1.4.0"
     extra["okhttpVersion"]  = "4.4.0"
     extra["okioVersion"]    = "2.4.3"
+    extra["http4kVersion"]  = "3.239.0"
     
     repositories {
         jcenter()
@@ -48,6 +49,11 @@ dependencies {
     implementation("com.squareup.moshi:moshi:${extra["moshiVersion"]}")
     implementation("com.squareup.okio:okio:${extra["okioVersion"]}")
     implementation("com.squareup.okhttp3:okhttp:${extra["okhttpVersion"]}")
+
+    implementation("org.http4k:http4k-core:${extra["http4kVersion"]}")
+    implementation("org.http4k:http4k-server-jetty:${extra["http4kVersion"]}")
+    implementation("org.http4k:http4k-client-apache:${extra["http4kVersion"]}")
+    
 
     testImplementation("junit:junit:${extra["junitVersion"]}")
     testImplementation("org.mockito:mockito-core:${extra["mockitoVersion"]}")

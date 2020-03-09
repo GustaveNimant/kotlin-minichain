@@ -5,6 +5,14 @@ import io.ipfs.kotlin.defaults.*
 import java.io.File
 import java.util.Stack
 
+import org.http4k.client.ApacheClient
+import org.http4k.core.Method
+import org.http4k.core.Request
+import org.http4k.core.Response
+import org.http4k.core.Status.Companion.OK
+import org.http4k.server.Jetty
+import org.http4k.server.asServer
+
 /**
  * Author : Emile Achadde 05 mars 2020 at 11:47:43+01:00
  */
@@ -167,6 +175,26 @@ fun main(args: Array<String>) {
 			println ("$k => $v")
 		    }
 	  }
+	  "htt" -> {
+
+	      // https://www.http4k.org/quickstart/
+	      val app = { request: Request -> Response(OK).body("Hello, ${request.query("name")}!") }
+
+	      println ("$here: app $app")
+    
+	      val jettyServer = app.asServer(Jetty(9000)).start()
+    
+	      val request = Request(Method.GET, "http://localhost:9000").query("name", "John Doe")
+	      println ("$here: request $request")
+    
+	      val client = ApacheClient()
+	      println ("$here: client $client")
+    
+	      println(client(request))
+
+	      jettyServer.stop()
+	      
+	      }
 	  else -> {
 	      fatalErrorPrint ("command were one of end, exi[t], hel[p], inp[put], ipf[s], kwe[xtract], run", "'"+com+"'", "re Run", here)
 	    } // else
