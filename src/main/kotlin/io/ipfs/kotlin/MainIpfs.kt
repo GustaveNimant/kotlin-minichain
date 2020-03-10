@@ -23,7 +23,6 @@ import org.http4k.routing.routes
 import org.http4k.server.Jetty
 import org.http4k.server.asServer
 
-
 /**
  * Author : Emile Achadde 05 mars 2020 at 11:47:43+01:00
  */
@@ -165,6 +164,7 @@ fun main(args: Array<String>) {
 	  }
 	  "end", "exi" -> {println("\nnormal termination") }
 	  "exa" -> {
+	      // https://github.com/http4k/http4k/blob/master/src/docs/cookbook/readme/example.kt
 	      // we can bind HttpHandlers (which are just functions from  Request -> Response) to paths/methods to create a Route,
 	      // then combine many Routes together to make another HttpHandler
 	      
